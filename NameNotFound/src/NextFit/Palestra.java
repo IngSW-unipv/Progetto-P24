@@ -15,31 +15,33 @@ public class Palestra  //classe di tipo pure fabbrication -> pattern factory per
 		contatoreD = 0;
 	}
 
-	public void registraCliente(String nome, String cognome, String mail, String password, int età)
+	public void registraCliente(Cliente cliente)
 	{
-		for (int i = 0; i < maxC; i++)
-		{
-			if (nome.equals(clienti[i].getNome()) && cognome.equals(clienti[i].getCognome()) && mail.equals(clienti[i].getMail())) //cotrollo su nome, cognome e mail che sono la chiave nel database 
+		if (contatoreC < maxC && cliente.getEtà() > 17)
 			{
-				System.out.println("Il cliente è già presente nel database. ");
-			}
-			else if (contatoreC < maxC && età > 17)
-			{
-				clienti[contatoreC] = new Cliente(nome, cognome, mail, password, età);
+				clienti[contatoreC] = cliente;
 				contatoreC ++;
 			}
-			else if (età < 18)
+			else if (cliente.getEtà() < 18)
 				System.out.println("La palestra non può iscrivere minorenni. ");
 			else
 				System.out.println("La palestra non può iscrivere più di "+ maxC +" clienti. ");
-		}
+		
+		for (int i = 0; i < contatoreC - 1; i++)
+			{
+				if (cliente.getNome().equals(clienti[i].getNome()) && cliente.getCognome().equals(clienti[i].getCognome()) && cliente.getMail().equals(clienti[i].getMail())) //cotrollo su nome, cognome e mail che sono la chiave nel database 
+				{
+					System.out.println("Il cliente è già presente nel database. ");
+					contatoreC --; //alla nuova iscrizione verrà sovrascritto il cliente nuovo su quello già presente
+				}
+			}
 	}
 	
-	public void registraDipendente (String nome, String cognome, String mail, String password, int età, double stipendio, String tipo)
+	/*public void registraDipendente (Dipendente dipendente, String tipo)
 	{
 		for (int i = 0; i < maxC; i++)
 		{
-			if (nome.equals(dipendenti[i].getNome()) && cognome.equals(dipendenti[i].getCognome()) && mail.equals(dipendenti[i].getMail())) //cotrollo su nome, cognome e mail che sono la chiave nel database 
+			if (dipendente.getNome().equals(dipendenti[i].getNome()) && dipendente.getCognome().equals(dipendenti[i].getCognome()) && dipendente.getMail().equals(dipendenti[i].getMail())) //cotrollo su nome, cognome e mail che sono la chiave nel database 
 			{
 				System.out.println("Il cliente è già presente nel database. ");
 			}
@@ -47,7 +49,7 @@ public class Palestra  //classe di tipo pure fabbrication -> pattern factory per
 			{
 				if (contatoreD < maxD)
 				{
-					dipendenti[contatoreD] = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+					dipendenti[contatoreD] = new PersonalTrainer(dipendente); !!!!!!!
 					contatoreD ++;
 				}
 				else
@@ -94,5 +96,5 @@ public class Palestra  //classe di tipo pure fabbrication -> pattern factory per
 					System.out.println("La palestra non può iscrivere più di "+ maxD +" dipendenti. ");
 			}
 		}
-	}
+	}*/
 }
