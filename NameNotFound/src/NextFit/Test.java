@@ -5,7 +5,7 @@ public class Test
 	public static void main(String[] args) 
 	{
 		Palestra NextFit = new Palestra(6,3);
-		Cliente u = new Cliente("pino" , "pino", "pino", "pino", 19);
+		/*Cliente u = new Cliente("pino" , "pino", "pino", "pino", 19);
 		Cliente u1 = new Cliente("pino" , "pino", "pino", "pino", 19);
 		Cliente u2 = new Cliente("cino" , "pino", "pino", "pino", 1);
 		Cliente u3 = new Cliente("cino" , "pino", "pino", "pino", 19);
@@ -27,8 +27,13 @@ public class Test
 		NextFit.registraCliente(u7);
 		NextFit.registraCliente(u8);
 		NextFit.registraCliente(u9);
-		NextFit.registraCliente(u10);
+		NextFit.registraCliente(u10);*/
 		
+		NextFit.registraDipendente(NextFit.creaDipendente("pino" , "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
+		NextFit.registraDipendente(NextFit.creaDipendente("wino" , "pino", "pino", "pino", 19, 98919, "Dietista"));
+		NextFit.registraDipendente(NextFit.creaDipendente("pino" , "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
+		NextFit.registraDipendente(NextFit.creaDipendente("cino" , "pino", "pino", "pino", 19, 98919, "Corsista"));
+		NextFit.registraDipendente(NextFit.creaDipendente("tino" , "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
 		
 	}
 }

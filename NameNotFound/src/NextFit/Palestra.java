@@ -37,64 +37,54 @@ public class Palestra  //classe di tipo pure fabbrication -> pattern factory per
 			}
 	}
 	
-	/*public void registraDipendente (Dipendente dipendente, String tipo)
+	public Dipendente creaDipendente (String nome, String cognome, String mail, String password, int età, double stipendio, String tipo)
 	{
-		for (int i = 0; i < maxC; i++)
+		if (tipo.equals("PersonalTrainer"))
+		{
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+			return d;
+		}
+		else if (tipo.equals("Corsista"))
+		{
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+			return d;
+		}
+		else if (tipo.equals("Fisioterapista"))
+		{
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+			return d;
+		}
+		else if (tipo.equals("Dietista"))
+		{
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+			return d;
+		}
+		else if (tipo.equals("Istruttore di sala"))
+		{
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+			return d;
+		}
+		else
+		return null;
+	}
+	
+	public void registraDipendente (Dipendente dipendente)
+	{
+		if (contatoreD < maxD)
+		{
+			dipendenti[contatoreD] = dipendente;
+			contatoreD ++;
+		}
+		else
+			System.out.println("La palestra non può iscrivere più di "+ maxD +" dipendenti. ");
+
+		for (int i = 0; i < contatoreD - 1; i++)
 		{
 			if (dipendente.getNome().equals(dipendenti[i].getNome()) && dipendente.getCognome().equals(dipendenti[i].getCognome()) && dipendente.getMail().equals(dipendenti[i].getMail())) //cotrollo su nome, cognome e mail che sono la chiave nel database 
 			{
-				System.out.println("Il cliente è già presente nel database. ");
-			}
-			else if (tipo.equals("PersonalTrainer"))
-			{
-				if (contatoreD < maxD)
-				{
-					dipendenti[contatoreD] = new PersonalTrainer(dipendente); !!!!!!!
-					contatoreD ++;
-				}
-				else
-					System.out.println("La palestra non può iscrivere più di "+ maxD +" dipendenti. ");
-			}
-			else if (tipo.equals("Corsista"))
-			{
-				if (contatoreD < maxD)
-				{
-					dipendenti[contatoreD] = new Corsista(nome, cognome, mail, password, età, stipendio);
-					contatoreD ++;
-				}
-				else
-					System.out.println("La palestra non può iscrivere più di "+ maxD +" dipendenti. ");
-			}
-			else if (tipo.equals("Fisioterapista"))
-			{
-				if (contatoreD < maxD)
-				{
-					dipendenti[contatoreD] = new Fisioterapista(nome, cognome, mail, password, età, stipendio);
-					contatoreD ++;
-				}
-				else
-					System.out.println("La palestra non può iscrivere più di "+ maxD +" dipendenti. ");
-			}
-			else if (tipo.equals("Dietista"))
-			{
-				if (contatoreD < maxD)
-				{
-					dipendenti[contatoreD] = new Dietista(nome, cognome, mail, password, età, stipendio);
-					contatoreD ++;
-				}
-				else
-					System.out.println("La palestra non può iscrivere più di "+ maxD +" dipendenti. ");
-			}
-			else if (tipo.equals("Istruttore di sala"))
-			{
-				if (contatoreD < maxD)
-				{
-					dipendenti[contatoreD] = new IstruttorediSala(nome, cognome, mail, password, età, stipendio);
-					contatoreD ++;
-				}
-				else
-					System.out.println("La palestra non può iscrivere più di "+ maxD +" dipendenti. ");
+				System.out.println("Il dipendente è già presente nel database. ");
+				contatoreD --;
 			}
 		}
-	}*/
+	}
 }
