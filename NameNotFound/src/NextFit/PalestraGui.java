@@ -52,7 +52,7 @@ public class PalestraGui extends JFrame {
                 palestra.registraCliente(cliente);
                 SwingUtilities.invokeLater(new Runnable() {
     	            public void run() {
-    	                new AbbonamentoGui();
+    	                new AbbonamentoGui(cliente);
     	            }
     	        });
             }
