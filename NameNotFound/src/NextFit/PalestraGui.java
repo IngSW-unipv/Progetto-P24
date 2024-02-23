@@ -11,12 +11,14 @@ public class PalestraGui extends JFrame {
     private JPasswordField passwordField;
     private Palestra palestra;
 
+
     public PalestraGui(Palestra palestra) {
         this.palestra = palestra;
+     
 
         setTitle("Registrazione Cliente Palestra");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+       
         JPanel panel = new JPanel(new GridLayout(6, 2));
 
         nomeField = new JTextField();
@@ -48,6 +50,11 @@ public class PalestraGui extends JFrame {
 
                 Cliente cliente = new Cliente(nome, cognome, mail,password, eta);
                 palestra.registraCliente(cliente);
+                SwingUtilities.invokeLater(new Runnable() {
+    	            public void run() {
+    	                new AbbonamentoGui();
+    	            }
+    	        });
             }
         });
 
@@ -60,7 +67,6 @@ public class PalestraGui extends JFrame {
         setSize(480, 640); // Impostiamo le dimensioni della finestra
         setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
         setVisible(true);
-
     }
 
  
