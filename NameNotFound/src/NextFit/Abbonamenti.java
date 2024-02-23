@@ -1,27 +1,30 @@
 package NextFit;
 
-
-import java.time.LocalDate;
-
 public class Abbonamenti 
 {
 	public String tipo;
 	public double costo;
 	public int durata;
-	public LocalDate dataScad; 
 	
-	public Abbonamenti(String tipo, int durata, double costo, LocalDate dataScad)
+	public Abbonamenti(String tipo, double costo)
 	{
 		if (tipo.toLowerCase().equals("mensile"))
+			{
 			this.tipo = "mensile";
+			this.durata = 1;
+			}
 		else if (tipo.toLowerCase().equals("semestrale"))
+			{
 			this.tipo = "semestrale";
+			this.durata = 6;
+			}
 		else if (tipo.toLowerCase().equals("annuale"))
+		{
 			this.tipo = "annuale";
+			this.durata = 12;
+		}
 		
-		this.durata = durata;
 		this.costo = costo;
-		this.dataScad = dataScad; 
 	}
 
 	public String getTipo() 
@@ -46,7 +49,7 @@ public class Abbonamenti
 	
 	public void getAbbo()
 	{
-		System.out.println("Tipo: " + tipo + " Costo: " + costo + "€ Scadenza: " + dataScad);
+		System.out.println("Tipo: " + tipo + " Costo: " + costo);
 	}
 
 	public int getDurata() 

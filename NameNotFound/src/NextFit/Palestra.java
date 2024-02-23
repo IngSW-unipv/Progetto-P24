@@ -87,4 +87,6 @@ public class Palestra  //classe di tipo pure fabbrication -> pattern factory per
 			}
 		}
 	}
+	
+
 }

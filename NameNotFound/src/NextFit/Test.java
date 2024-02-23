@@ -35,10 +35,16 @@ public class Test
 		NextFit.registraDipendente(NextFit.creaDipendente("cino" , "pino", "pino", "pino", 19, 98919, "Corsista"));
 		NextFit.registraDipendente(NextFit.creaDipendente("tino" , "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));*/
 		
-		Proprietario p = new Proprietario();
+		//Proprietario p = new Proprietario();
 		
-		p.creaAbbonamento("semestrale", 410);
+		//p.creaAbbonamento("semestrale", 410);
 		
+		/*Cliente u1 = new Cliente("pino" , "pino", "pino", "pino", 19);
+		Abbonamenti a = new Abbonamenti("MENSILE", 234);
+		
+		ClienteAbbonato c = new ClienteAbbonato(u1,a);
+		
+		c.visuClAbb(c);*/
 		
 	}
 }
