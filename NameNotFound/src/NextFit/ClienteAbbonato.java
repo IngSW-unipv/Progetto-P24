@@ -2,54 +2,48 @@ package NextFit;
 
 import java.time.LocalDate;
 
-public class ClienteAbbonato 
-{
+public class ClienteAbbonato {
 	private Cliente cliente;
-    private Abbonamenti abbonamento;
-    private LocalDate dataScadenza;
-    
-    public ClienteAbbonato(Cliente cliente, Abbonamenti abbonamento) 
-    {
-        this.cliente = cliente;
-        this.abbonamento = abbonamento;
-        
-        LocalDate dataOdierna = null;
-        dataOdierna = dataOdierna.now();
-        dataScadenza = dataOdierna.plusMonths(abbonamento.getDurata());
-    }
-    
-    public Cliente getCliente() 
-    {
+	private Abbonamenti abbonamento;
+	private LocalDate dataScadenza;
+
+	public ClienteAbbonato(Cliente cliente, Abbonamenti abbonamento) {
+		this.cliente = cliente;
+		this.abbonamento = abbonamento;
+
+		LocalDate dataOdierna = null;
+		dataOdierna = dataOdierna.now();
+		dataScadenza = dataOdierna.plusMonths(abbonamento.getDurata());
+	}
+
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) 
-	{
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
-	public Abbonamenti getAbbonamento() 
-	{
+	public Abbonamenti getAbbonamento() {
 		return abbonamento;
 	}
-	
-	public void setAbbonamento(Abbonamenti abbonamento) 
-	{
+
+	public void setAbbonamento(Abbonamenti abbonamento) {
 		this.abbonamento = abbonamento;
 	}
 
-	public LocalDate getDataScadenza() 
-	{
+	public LocalDate getDataScadenza() {
 		return dataScadenza;
 	}
 
-	public void setDataScadenza(LocalDate dataScadenza) 
-	{
+	public void setDataScadenza(LocalDate dataScadenza) {
 		this.dataScadenza = dataScadenza;
 	}
 
-	public void visuClAbb(ClienteAbbonato ca)
-    {
-    	System.out.println("Il cliente: "+ ca.getCliente() + " ha l'abbonamento: " + ca.getAbbonamento() + " con scadenza: " + ca.getDataScadenza());
-    }
+	public void visuClAbb(ClienteAbbonato ca) {
+		System.out.println("Il cliente: " + ca.getCliente() + " ha l'abbonamento: " + ca.getAbbonamento()
+				+ " con scadenza: " + ca.getDataScadenza());
+	}
+	
+	
 }
