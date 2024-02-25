@@ -2,27 +2,60 @@ package NextFit;
 
 public class Proprietario 
 {
-	/*public void creaAbbonamento(String tipo, double costo) //voglio cambiare tutto voglio che il proprietario crea i tre tipi di abbo con i costi e che poi quando l'utente sceglie la tipo gli venga restituita la data di scadenza
+	private Abbonamenti abbonamentoMensile;
+    private Abbonamenti abbonamentoSemestrale;
+    private Abbonamenti abbonamentoAnnuale;
+
+    public Proprietario() 
+    {
+        this.abbonamentoMensile = new Abbonamenti("Mensile", 50.0);
+        this.abbonamentoSemestrale = new Abbonamenti("Semestrale", 250.0);
+        this.abbonamentoAnnuale = new Abbonamenti("Annuale", 450.0);
+    }
+    
+    public Abbonamenti getAbbonamentoMensile() 
+    {
+		return abbonamentoMensile;
+	}
+
+	public void setAbbonamentoMensile(Abbonamenti abbonamentoMensile) 
 	{
-		LocalDate dataIn = LocalDate.now();
-		LocalDate dataScad;
-		
-        switch (tipo.toLowerCase()) 
-        {
-            case "mensile":
-            	dataScad = dataIn.plusMonths(1);
-            	Abbonamenti a = new Abbonamenti("Mensile", 1, costo, dataScad);
-                a.getAbbo();
-            case "semestrale":
-            	dataScad = dataIn.plusMonths(6);
-            	Abbonamenti a1 = new Abbonamenti("Semestrale", 6, costo, dataScad);
-                a1.getAbbo();
-            case "annuale":
-            	dataScad = dataIn.plusMonths(12);
-            	Abbonamenti a2 = new Abbonamenti("Annuale", 12, costo, dataScad);
-                a2.getAbbo();
-            default:
-                throw new IllegalArgumentException("Tipo di abbonamento non valido");
-        }
-	}*/
+		this.abbonamentoMensile = abbonamentoMensile;
+	}
+
+	public Abbonamenti getAbbonamentoSemestrale()
+	{
+		return abbonamentoSemestrale;
+	}
+
+	public void setAbbonamentoSemestrale(Abbonamenti abbonamentoSemestrale) 
+	{
+		this.abbonamentoSemestrale = abbonamentoSemestrale;
+	}
+
+	public Abbonamenti getAbbonamentoAnnuale()
+	{
+		return abbonamentoAnnuale;
+	}
+
+	public void setAbbonamentoAnnuale(Abbonamenti abbonamentoAnnuale)
+	{
+		this.abbonamentoAnnuale = abbonamentoAnnuale;
+	}
+
+	public void modificaCosto(String tipo, double costo)
+    {
+    	if (tipo.toLowerCase().equals("mensile"))
+		{
+    		abbonamentoMensile.setCosto(costo);
+		}
+    	else if (tipo.toLowerCase().equals("semestrale"))
+		{
+			abbonamentoSemestrale.setCosto(costo);
+		}
+    	else if (tipo.toLowerCase().equals("annuale"))
+		{
+			abbonamentoAnnuale.setCosto(costo);
+		}
+    }
 }

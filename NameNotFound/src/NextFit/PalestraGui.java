@@ -5,14 +5,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PalestraGui extends JFrame {
+public class PalestraGui extends JFrame 
+{
     private JTextField nomeField, cognomeField, mailField, etaField;
     private JButton registraButton;
     private JPasswordField passwordField;
     private Palestra palestra;
 
 
-    public PalestraGui(Palestra palestra) {
+    public PalestraGui(Palestra palestra, Proprietario proprietario, CreaClAbbo creabbo) 
+    {
         this.palestra = palestra;
      
 
@@ -52,7 +54,7 @@ public class PalestraGui extends JFrame {
                 palestra.registraCliente(cliente);
                 SwingUtilities.invokeLater(new Runnable() {
     	            public void run() {
-    	                new AbbonamentoGui(cliente);
+    	                new AbbonamentoGui(cliente, proprietario, creabbo);
     	            }
     	        });
             }

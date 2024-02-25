@@ -16,7 +16,7 @@ public class AbbonamentoGui extends JFrame
 {
 	private JButton mensile,semestrale,annuale;
 	private Cliente c;
-	public AbbonamentoGui(Cliente c)
+	public AbbonamentoGui(Cliente c, Proprietario p, CreaClAbbo clabbo)
 {
 		this.c=c;
 	setTitle("scelta abbonamenti");
@@ -33,17 +33,17 @@ public class AbbonamentoGui extends JFrame
          @Override
          public void actionPerformed(ActionEvent e) {
              
- 	       Abbonamenti a= new Abbonamenti("mensile",80);
- 	       ClienteAbbonato ca=new ClienteAbbonato(c,a);
+ 	       ClienteAbbonato ca=new ClienteAbbonato(c,p.getAbbonamentoMensile());
+ 	       clabbo.abbonaCl(ca);
          }
      });
 	 
 	 semestrale.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-             
- 	       Abbonamenti a= new Abbonamenti("semestrale",80);
- 	       ClienteAbbonato ca=new ClienteAbbonato(c,a);
+            
+ 	       ClienteAbbonato ca=new ClienteAbbonato(c,p.getAbbonamentoSemestrale());
+ 	       clabbo.abbonaCl(ca);
  	       ca.visuClAbb(ca);
 
          }
@@ -53,8 +53,8 @@ public class AbbonamentoGui extends JFrame
          @Override
          public void actionPerformed(ActionEvent e) {
              
- 	       Abbonamenti a= new Abbonamenti("annuale",80);
- 	       ClienteAbbonato ca=new ClienteAbbonato(c,a);
+ 	       ClienteAbbonato ca=new ClienteAbbonato(c,p.getAbbonamentoAnnuale());
+ 	       clabbo.abbonaCl(ca);
          }
      });
 	

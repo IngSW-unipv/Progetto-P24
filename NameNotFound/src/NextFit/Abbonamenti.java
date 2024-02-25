@@ -42,7 +42,7 @@ public class Abbonamenti
 		return costo;
 	}
 
-	public void setCosto(double costo, String tipo)
+	public void setCosto(double costo)
 	{
 		this.costo = costo;
 	}

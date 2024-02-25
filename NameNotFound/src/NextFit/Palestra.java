@@ -6,7 +6,8 @@ public class Palestra  //classe di tipo pure fabbrication -> pattern factory per
 	private Dipendente[] dipendenti;
 	private int contatoreC, contatoreD, maxC, maxD;
 	
-	public Palestra(int maxC, int maxD) {
+	public Palestra(int maxC, int maxD) 
+	{
 		this.maxC = maxC;
 		this.maxD = maxD;
 		clienti = new Cliente[maxC];
@@ -87,6 +88,16 @@ public class Palestra  //classe di tipo pure fabbrication -> pattern factory per
 			}
 		}
 	}
-	
 
+	public int getMaxC() 
+	{
+		return maxC;
+	}
+
+	public void setMaxC(int maxC) 
+	{
+		this.maxC = maxC;
+	}
+	
+	
 }
