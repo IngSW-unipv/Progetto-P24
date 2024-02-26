@@ -39,20 +39,20 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 	public Dipendente creaDipendente(String nome, String cognome, String mail, String password, int età,
 			double stipendio, String tipo) {
-		if (tipo.equals("PersonalTrainer")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+		if (tipo.toLowerCase().equals("personaltrainer")) {
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
-		} else if (tipo.equals("Corsista")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+		} else if (tipo.toLowerCase().equals("corsista")) {
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
-		} else if (tipo.equals("Fisioterapista")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+		} else if (tipo.toLowerCase().equals("fisioterapista")) {
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
-		} else if (tipo.equals("Dietista")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+		} else if (tipo.toLowerCase().equals("dietista")) {
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
-		} else if (tipo.equals("Istruttore di sala")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio);
+		} else if (tipo.toLowerCase().equals("istruttore di sala")) {
+			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
 		} else
 			return null;
@@ -85,4 +85,31 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		this.maxC = maxC;
 	}
 
+	public void visuDip(String tipo) {
+		System.out.println("I " + tipo.toLowerCase() + " sono : \n");
+		for (int i = 0; i < contatoreD; i++) {
+			if (tipo.toLowerCase().equals(dipendenti[i].getTipo())) {
+				System.out.println(dipendenti[i].getNome() + " " + dipendenti[i].getCognome() + "\n");
+			}
+		}
+	}
+	
+	public Dipendente getDIP(String tipo, int n) {
+		Dipendente[] dip;
+		dip = new Dipendente[contatoreD];
+		int j = 0;
+		for (int i = 0; i < contatoreD; i++) {
+			if (tipo.toLowerCase().equals(dipendenti[i].getTipo())) {
+				dip[j] = dipendenti[i];
+				j++;
+			}
+		}
+		for (int i = 0; i < contatoreD; i++) {
+			if (dip[i] == null) {
+				j--;
+			}
+		}
+		return dip[n];
+
+	}
 }

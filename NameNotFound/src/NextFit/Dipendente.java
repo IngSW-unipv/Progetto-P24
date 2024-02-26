@@ -1,11 +1,12 @@
 package NextFit;
 
 public abstract class Dipendente {
-	protected String nome, cognome, mail, password;
+	protected String nome, cognome, mail, password, tipo;
 	protected int età;
 	protected double stipendio;
 
-	public Dipendente(String nome, String cognome, String mail, String password, int età, double stipendio) {
+	public Dipendente(String nome, String cognome, String mail, String password, int età, double stipendio,
+			String tipo) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
@@ -13,6 +14,7 @@ public abstract class Dipendente {
 		this.password = password;
 		this.età = età;
 		this.stipendio = stipendio;
+		this.tipo = tipo.toLowerCase();
 	}
 
 	public String getNome() {
@@ -61,6 +63,14 @@ public abstract class Dipendente {
 
 	public void setStipendio(double stipendio) {
 		this.stipendio = stipendio;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }
