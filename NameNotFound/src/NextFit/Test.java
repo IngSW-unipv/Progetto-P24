@@ -34,8 +34,12 @@ public class Test {
 		  "pino", 19, 98919, "Corsista"));
 		  NextFit.registraDipendente(NextFit.creaDipendente("tino" , "pino", "pino",
 		  "pino", 19, 98919, "PersonalTrainer"));
+		  NextFit.registraDipendente(NextFit.creaDipendente("twino" , "pino", "pino",
+				  "pino", 19, 98919, "PersonalTrainer"));
+		  NextFit.registraDipendente(NextFit.creaDipendente("tfino" , "pino", "pino",
+				  "pino", 19, 98919, "PersonalTrainer"));
 		  
-		  System.out.println(NextFit.getDIP("Personaltrainer", 3));
+		  System.out.println(NextFit.getDIP("Personaltrainer", 1) + " " + NextFit.contaDip("personaltrainer"));
 		  
 		  NextFit.visuDip("Personaltrainer");*/
 		 

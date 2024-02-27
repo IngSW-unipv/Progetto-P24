@@ -104,12 +104,17 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 				j++;
 			}
 		}
-		for (int i = 0; i < contatoreD; i++) {
-			if (dip[i] == null) {
-				j--;
-			}
-		}
 		return dip[n];
 
+	}
+	
+	public int contaDip(String tipo) {
+		int j = 0;
+		for (int i = 0; i < contatoreD; i++) {
+			if (tipo.toLowerCase().equals(dipendenti[i].getTipo())) {
+				j++;
+			}
+		}
+		return j;
 	}
 }
