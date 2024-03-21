@@ -1,61 +1,38 @@
 package NextFit;
 
+import javax.swing.SwingUtilities;
+
 public class Test {
 	public static void main(String[] args) {
-		 Palestra NextFit = new Palestra(6,10);
+		Palestra NextFit = new Palestra(20, 20);
+
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("pino", "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
+		NextFit.registraDipendente(NextFit.creaDipendente("wino", "pino", "pino", "pino", 19, 98919, "Dietista"));
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("gino", "tino", "pino", "pino", 19, 98919, "PersonalTrainer"));
+		NextFit.registraDipendente(NextFit.creaDipendente("cino", "pino", "pino", "pino", 19, 98919, "Corsista"));
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("tino", "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("tidno", "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("tidgno", "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
+		System.out.println(NextFit.getDIP("Personaltrainer", 0).getCognome());
+
+		NextFit.visuDip("Personaltrainer");
+
+		System.out.println(NextFit.contaDip("personaltrainer"));
 		/*
-		 * Cliente u = new Cliente("pino" , "pino", "pino", "pino", 19); Cliente u1 =
-		 * new Cliente("pino" , "pino", "pino", "pino", 19); Cliente u2 = new
-		 * Cliente("cino" , "pino", "pino", "pino", 1); Cliente u3 = new Cliente("cino"
-		 * , "pino", "pino", "pino", 19); Cliente u4 = new Cliente("lino" , "pino",
-		 * "pino", "pino", 19); Cliente u5 = new Cliente("tino" , "pino", "pino",
-		 * "pino", 19); Cliente u6 = new Cliente("wino" , "pino", "pino", "pino", 19);
-		 * Cliente u7 = new Cliente("qino" , "pino", "pino", "pino", 19); Cliente u8 =
-		 * new Cliente("dino" , "pino", "pino", "pino", 19); Cliente u9 = new
-		 * Cliente("mino" , "pino", "pino", "pino", 19); Cliente u10 = new
-		 * Cliente("sino" , "pino", "pino", "pino", 19);
 		 * 
-		 * NextFit.registraCliente(u); NextFit.registraCliente(u1);
-		 * NextFit.registraCliente(u2); NextFit.registraCliente(u3);
-		 * NextFit.registraCliente(u4); NextFit.registraCliente(u5);
-		 * NextFit.registraCliente(u6); NextFit.registraCliente(u7);
-		 * NextFit.registraCliente(u8); NextFit.registraCliente(u9);
-		 * NextFit.registraCliente(u10);
-		 */
-
-		
-		 /*NextFit.registraDipendente(NextFit.creaDipendente("pino" , "pino", "pino",
-		  "pino", 19, 98919, "PersonalTrainer"));
-		  NextFit.registraDipendente(NextFit.creaDipendente("wino" , "pino", "pino",
-		  "pino", 19, 98919, "Dietista"));
-		  NextFit.registraDipendente(NextFit.creaDipendente("pino" , "pino", "pino",
-		  "pino", 19, 98919, "PersonalTrainer"));
-		  NextFit.registraDipendente(NextFit.creaDipendente("cino" , "pino", "pino",
-		  "pino", 19, 98919, "Corsista"));
-		  NextFit.registraDipendente(NextFit.creaDipendente("tino" , "pino", "pino",
-		  "pino", 19, 98919, "PersonalTrainer"));
-		  NextFit.registraDipendente(NextFit.creaDipendente("twino" , "pino", "pino",
-				  "pino", 19, 98919, "PersonalTrainer"));
-		  NextFit.registraDipendente(NextFit.creaDipendente("tfino" , "pino", "pino",
-				  "pino", 19, 98919, "PersonalTrainer"));
-		  
-		  System.out.println(NextFit.getDIP("Personaltrainer", 1) + " " + NextFit.contaDip("personaltrainer"));
-		  
-		  NextFit.visuDip("Personaltrainer");*/
-		 
-
-		// Proprietario p = new Proprietario();
-
-		// p.creaAbbonamento("semestrale", 410);
-
-		/*
 		 * Cliente u1 = new Cliente("pino" , "pino", "pino", "pino", 19); Abbonamenti a
-		 * = new Abbonamenti("MENSILE", 234);
-		 * 
-		 * ClienteAbbonato c = new ClienteAbbonato(u1,a);
-		 * 
-		 * c.visuClAbb(c);
+		 * = new Abbonamenti("MENSILE", 234); ClienteAbbonato c = new
+		 * ClienteAbbonato(u1,a); c.visuClAbb(c);
 		 */
-
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new ListaPT(NextFit);
+			}
+		});
 	}
 }
