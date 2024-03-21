@@ -43,16 +43,16 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
 		} else if (tipo.toLowerCase().equals("corsista")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
+			Dipendente d = new Corsista(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
 		} else if (tipo.toLowerCase().equals("fisioterapista")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
+			Dipendente d = new Fisioterapista(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
 		} else if (tipo.toLowerCase().equals("dietista")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
+			Dipendente d = new Dietista(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
 		} else if (tipo.toLowerCase().equals("istruttore di sala")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
+			Dipendente d = new IstruttorediSala(nome, cognome, mail, password, età, stipendio, tipo);
 			return d;
 		} else
 			return null;
@@ -93,7 +93,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			}
 		}
 	}
-	
+
 	public Dipendente getDIP(String tipo, int n) {
 		Dipendente[] dip;
 		dip = new Dipendente[contatoreD];
@@ -105,9 +105,8 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			}
 		}
 		return dip[n];
-
 	}
-	
+
 	public int contaDip(String tipo) {
 		int j = 0;
 		for (int i = 0; i < contatoreD; i++) {
