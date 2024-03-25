@@ -53,11 +53,11 @@ public class Test {
 		corsi.aggCorsi(c2);
 		corsi.aggCorsi(c3);
 		
-		SwingUtilities.invokeLater(new Runnable() {
+		/*SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new ListaCORSI(corsi);
 			}
-		});
+		});*/
 	}
 	
 }

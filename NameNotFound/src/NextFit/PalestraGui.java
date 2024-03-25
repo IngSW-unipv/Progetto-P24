@@ -10,7 +10,7 @@ public class PalestraGui extends JFrame {
 	private JButton registraButton;
 	private JPasswordField passwordField;
 
-	public PalestraGui(Palestra palestra, Proprietario proprietario, CreaClAbbo creabbo) {
+	public PalestraGui(Palestra palestra, Proprietario proprietario, CreaClAbbo creabbo,Corsi co) {
 
 		setTitle("Registrazione Cliente Palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +48,8 @@ public class PalestraGui extends JFrame {
 				palestra.registraCliente(cliente);
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						new AbbonamentoGui(cliente, proprietario, creabbo);
+						new LatoClienteGui(co,cliente,palestra);
+						//new AbbonamentoGui(cliente, proprietario, creabbo);
 					}
 				});
 			}

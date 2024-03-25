@@ -60,7 +60,7 @@ public class Corso {
 
 	public void eliPdalCorso() {
 		np--;
-		if (np == 0) {
+		if (np < 0) {
 			np++;
 			System.out.println("Impossibile eliminare clienti dal corso poichè il corso non ne ha. ");
 		}

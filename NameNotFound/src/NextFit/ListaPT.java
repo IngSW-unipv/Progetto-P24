@@ -15,7 +15,7 @@ public class ListaPT extends JFrame {
 	private ArrayList<JButton> trainerButtons;
 	private JPanel buttonPanel;
 
-	public ListaPT(Palestra p) {
+	public ListaPT(Palestra p,Cliente c) {
 		setTitle("Interfaccia Personal Trainer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
