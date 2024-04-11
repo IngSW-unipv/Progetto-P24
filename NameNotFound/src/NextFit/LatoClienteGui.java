@@ -13,10 +13,13 @@ import javax.swing.SwingUtilities;
 
 public class LatoClienteGui extends JFrame {
 	private JButton PT,CORSI;
+	private ListaCORSI listaCORSI;
 
 	public LatoClienteGui(Corsi co,Cliente c,Palestra palestra) {
 		setTitle("Pagina principale");
-
+		
+		listaCORSI = new ListaCORSI(co, c, LatoClienteGui.this); //creo adesso la gui figlia
+		listaCORSI.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel(new GridLayout(1, 1));
@@ -47,12 +50,9 @@ public class LatoClienteGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						new ListaCORSI(co,c);
-						
-					}
-				});	
+                    listaCORSI.setVisible(true); // Riapre la finestra già esistente
+                
+                dispose();
 				
 			}
 		});
