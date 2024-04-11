@@ -19,4 +19,11 @@ public class CreaClAbbo {
 		}
 	}
 
+	public void visuClAbbo() {
+		System.out.println("Lista dei clienti: ");
+		for (int i = 0; i < contatoreCA; i++) {
+			System.out.println(clientiAbbo[i].getCliente().getNome() + " " + clientiAbbo[i].getCliente().getCognome()
+					+ " " + clientiAbbo[i].getDataScadenza());
+		}
+	}
 }
