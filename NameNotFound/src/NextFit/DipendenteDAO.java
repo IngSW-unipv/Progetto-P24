@@ -42,4 +42,34 @@ public class DipendenteDAO {
 		connessione.closeConnection(conn);
 		return result;
 	}
+	
+	public boolean insertDipendente(Dipendente d) {
+		conn = DBConnection.startConnection(conn, schema);
+
+		PreparedStatement st1;
+
+		boolean esito = true;
+
+		try {
+			String query = "INSERT INTO dipendenti (nome, cognome, mail, eta, password, tipo, stipendio) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			st1 = conn.prepareStatement(query);
+			st1.setString(1, d.getNome());
+			st1.setString(2, d.getCognome());
+			st1.setString(3, d.getMail());
+			st1.setInt(4, d.getEtà());
+			st1.setString(5, d.getPassword());
+			st1.setString(6, d.getTipo()); 
+			st1.setDouble(7, d.getStipendio());
+
+			st1.executeUpdate(); 
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			esito = false;
+		} finally {
+			DBConnection.closeConnection(conn);
+		}
+
+		return esito;
+	}
 }

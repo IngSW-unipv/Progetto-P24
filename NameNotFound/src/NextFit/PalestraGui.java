@@ -49,7 +49,7 @@ public class PalestraGui extends JFrame {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						new LatoClienteGui(co,cliente,palestra);
-						//new AbbonamentoGui(cliente, proprietario, creabbo);
+						new AbbonamentoGui(cliente, proprietario, creabbo);
 					}
 				});
 			}

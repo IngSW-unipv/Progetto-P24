@@ -40,39 +40,48 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	public Dipendente creaDipendente(String nome, String cognome, String mail, String password, int età,
 			double stipendio, String tipo) {
 		switch (tipo.toLowerCase()) {
-        case "personaltrainer":
-            return new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
-        case "corsista":
-            return new Corsista(nome, cognome, mail, password, età, stipendio, tipo);
-        case "fisioterapista":
-            return new Fisioterapista(nome, cognome, mail, password, età, stipendio, tipo);
-        case "dietista":
-            return new Dietista(nome, cognome, mail, password, età, stipendio, tipo);
-        case "istruttoredisala":
-            return new IstruttorediSala(nome, cognome, mail, password, età, stipendio, tipo);
-        default:
-            System.out.println("Tipo di dipendente non riconosciuto: " + tipo);
-            return null;
-    }
+		case "personaltrainer":
+			return new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
+		case "corsista":
+			return new Corsista(nome, cognome, mail, password, età, stipendio, tipo);
+		case "fisioterapista":
+			return new Fisioterapista(nome, cognome, mail, password, età, stipendio, tipo);
+		case "dietista":
+			return new Dietista(nome, cognome, mail, password, età, stipendio, tipo);
+		case "istruttoredisala":
+			return new IstruttorediSala(nome, cognome, mail, password, età, stipendio, tipo);
+		default:
+			System.out.println("Tipo di dipendente non riconosciuto: " + tipo);
+			return null;
+		}
 	}
 
 	public void registraDipendente(Dipendente dipendente) {
 		if (contatoreD < maxD) {
-			dipendenti[contatoreD] = dipendente;
-			contatoreD++;
-		} else
-			System.out.println("La palestra non può iscrivere più di " + maxD + " dipendenti. ");
+	        dipendenti[contatoreD] = dipendente;
+	        contatoreD++;
+	    } else {
+	        System.out.println("La palestra non può iscrivere più di " + maxD + " dipendenti. ");
+	        return; 
+	    }
 
-		for (int i = 0; i < contatoreD - 1; i++) {
-			if (dipendente.getNome().equals(dipendenti[i].getNome())
-					&& dipendente.getCognome().equals(dipendenti[i].getCognome())
-					&& dipendente.getMail().equals(dipendenti[i].getMail())) // cotrollo su nome, cognome e mail che
-																				// sono la chiave nel database
-			{
-				System.out.println("Il dipendente è già presente nel database. ");
-				contatoreD--;
-			}
-		}
+	    boolean presenteNelDatabase = false;
+
+	    for (int i = 0; i < contatoreD - 1; i++) {
+	        if (dipendente.getNome().equals(dipendenti[i].getNome())
+	                && dipendente.getCognome().equals(dipendenti[i].getCognome())
+	                && dipendente.getMail().equals(dipendenti[i].getMail())) {
+	            presenteNelDatabase = true;
+	            System.out.println("Il dipendente è già presente nel database. ");
+	            contatoreD--;
+	            break; 
+	        }
+	    }
+
+	    if (!presenteNelDatabase) {
+	        DipendenteDAO dao1 = new DipendenteDAO();
+	        dao1.insertDipendente(dipendente);
+	    }
 	}
 
 	public int getMaxC() {

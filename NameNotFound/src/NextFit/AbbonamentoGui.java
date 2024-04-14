@@ -31,6 +31,10 @@ public class AbbonamentoGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				ClienteAbbonato ca = new ClienteAbbonato(c, p.getAbbonamentoMensile());
+				
+				ClienteAbboDAO dao0 = new ClienteAbboDAO();
+				dao0.insertCliente(c, ca);
+				
 				clabbo.abbonaCl(ca);
 			}
 		});
@@ -40,6 +44,10 @@ public class AbbonamentoGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				ClienteAbbonato ca = new ClienteAbbonato(c, p.getAbbonamentoSemestrale());
+				
+				ClienteAbboDAO dao0 = new ClienteAbboDAO();
+				dao0.insertCliente(c, ca);
+				
 				clabbo.abbonaCl(ca);
 				ca.visuClAbb(ca);
 
@@ -51,6 +59,10 @@ public class AbbonamentoGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				ClienteAbbonato ca = new ClienteAbbonato(c, p.getAbbonamentoAnnuale());
+				
+				ClienteAbboDAO dao0 = new ClienteAbboDAO();
+				dao0.insertCliente(c, ca);
+				
 				clabbo.abbonaCl(ca);
 			}
 		});

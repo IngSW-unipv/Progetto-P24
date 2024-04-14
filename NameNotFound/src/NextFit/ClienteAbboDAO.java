@@ -18,7 +18,7 @@ public class ClienteAbboDAO {
 
 		DBConnection connessione = new DBConnection();
 		connessione.connetti();
-		
+
 		conn = DBConnection.startConnection(conn, schema);
 
 		Statement st1;
@@ -48,4 +48,34 @@ public class ClienteAbboDAO {
 		connessione.closeConnection(conn);
 		return result;
 	}
+
+	public boolean insertCliente(Cliente c, ClienteAbbonato ca) {
+		conn = DBConnection.startConnection(conn, schema);
+
+		PreparedStatement st1;
+
+		boolean esito = true;
+
+		try {
+			String query = "INSERT INTO clienti (nome, cognome, mail, eta, password, scad_abb) VALUES (?, ?, ?, ?, ?, ?)";
+			st1 = conn.prepareStatement(query);
+			st1.setString(1, c.getNome());
+			st1.setString(2, c.getCognome());
+			st1.setString(3, c.getMail());
+			st1.setInt(4, c.getEtà());
+			st1.setString(5, c.getPassword());
+			st1.setDate(6, java.sql.Date.valueOf(ca.getDataScadenza())); 
+
+			st1.executeUpdate(); 
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			esito = false;
+		} finally {
+			DBConnection.closeConnection(conn);
+		}
+
+		return esito;
+	}
+
 }

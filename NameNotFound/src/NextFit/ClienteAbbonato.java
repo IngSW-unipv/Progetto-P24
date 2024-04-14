@@ -45,5 +45,4 @@ public class ClienteAbbonato {
 				+ " con scadenza: " + ca.getDataScadenza());
 	}
 	
-	
 }
