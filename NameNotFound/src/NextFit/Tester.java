@@ -9,6 +9,17 @@ public class Tester {
 		Palestra NextFit = new Palestra(100, 100); // Passa la capacità massima di clienti alla palestra
 		CreaClAbbo ca = new CreaClAbbo(NextFit);
 		Proprietario proprietario = new Proprietario();
+		
+		ClienteAbboDAO dao0 = new ClienteAbboDAO();
+		dao0.selectAll(ca);
+		
+		DipendenteDAO dao1 = new DipendenteDAO();
+		dao1.selectAll(NextFit);
+		
+		ca.visuClAbbo();
+		NextFit.visuListaDip();
+		NextFit.visuDip("personaltrainer");
+		
 		NextFit.registraDipendente(NextFit.creaDipendente("pino", "pino", "pino", "pino", 19, 98919, "corsista"));
 		NextFit.registraDipendente(NextFit.creaDipendente("wino", "pino", "pino", "pino", 19, 98919, "Dietista"));
 		NextFit.registraDipendente(
@@ -40,11 +51,5 @@ public class Tester {
 			}
 		});
 
-		ClienteAbboDAO dao = new ClienteAbboDAO();
-
-		// Chiamata al metodo selectAll() per recuperare i dati dal database
-		ArrayList<ClienteAbbonato> clienti = dao.selectAll(ca);
-
-		ca.visuClAbbo();
 	}
 }

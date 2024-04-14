@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ClienteAbboDAO {
 
-	private String schema = "palestra";
+	private String schema;
 	private Connection conn;
 
 	public ClienteAbboDAO() {

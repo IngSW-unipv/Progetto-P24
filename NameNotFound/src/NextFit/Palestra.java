@@ -39,23 +39,21 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 	public Dipendente creaDipendente(String nome, String cognome, String mail, String password, int età,
 			double stipendio, String tipo) {
-		if (tipo.toLowerCase().equals("personaltrainer")) {
-			Dipendente d = new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
-			return d;
-		} else if (tipo.toLowerCase().equals("corsista")) {
-			Dipendente d = new Corsista(nome, cognome, mail, password, età, stipendio, tipo);
-			return d;
-		} else if (tipo.toLowerCase().equals("fisioterapista")) {
-			Dipendente d = new Fisioterapista(nome, cognome, mail, password, età, stipendio, tipo);
-			return d;
-		} else if (tipo.toLowerCase().equals("dietista")) {
-			Dipendente d = new Dietista(nome, cognome, mail, password, età, stipendio, tipo);
-			return d;
-		} else if (tipo.toLowerCase().equals("istruttore di sala")) {
-			Dipendente d = new IstruttorediSala(nome, cognome, mail, password, età, stipendio, tipo);
-			return d;
-		} else
-			return null;
+		switch (tipo.toLowerCase()) {
+        case "personaltrainer":
+            return new PersonalTrainer(nome, cognome, mail, password, età, stipendio, tipo);
+        case "corsista":
+            return new Corsista(nome, cognome, mail, password, età, stipendio, tipo);
+        case "fisioterapista":
+            return new Fisioterapista(nome, cognome, mail, password, età, stipendio, tipo);
+        case "dietista":
+            return new Dietista(nome, cognome, mail, password, età, stipendio, tipo);
+        case "istruttoredisala":
+            return new IstruttorediSala(nome, cognome, mail, password, età, stipendio, tipo);
+        default:
+            System.out.println("Tipo di dipendente non riconosciuto: " + tipo);
+            return null;
+    }
 	}
 
 	public void registraDipendente(Dipendente dipendente) {
@@ -86,11 +84,17 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	}
 
 	public void visuDip(String tipo) {
-		System.out.println("I " + tipo.toLowerCase() + " sono : \n");
+		System.out.println("I " + tipo.toLowerCase() + " sono :");
 		for (int i = 0; i < contatoreD; i++) {
 			if (tipo.toLowerCase().equals(dipendenti[i].getTipo())) {
-				System.out.println(dipendenti[i].getNome() + " " + dipendenti[i].getCognome() + "\n");
+				System.out.println(dipendenti[i].getNome() + " " + dipendenti[i].getCognome());
 			}
+		}
+	}
+
+	public void visuListaDip() {
+		for (int i = 0; i < contatoreD; i++) {
+			System.out.println(dipendenti[i].getNome() + " " + dipendenti[i].getCognome() + " " + dipendenti[i].tipo);
 		}
 	}
 
