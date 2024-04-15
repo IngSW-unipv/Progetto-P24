@@ -1,6 +1,10 @@
 package NextFit;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +19,7 @@ public class PalestraGui extends JFrame {
 		setTitle("Registrazione Cliente Palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel(new GridLayout(6, 2));
+		JPanel panel = new JPanel(new GridLayout(10, 1));
 
 		nomeField = new JTextField();
 		cognomeField = new JTextField();
@@ -23,6 +27,18 @@ public class PalestraGui extends JFrame {
 		etaField = new JTextField();
 		passwordField = new JPasswordField();
 
+		 Border roundedBorder = BorderFactory.createCompoundBorder(
+	                new LineBorder(Color.BLACK, 2, true),
+	                new EmptyBorder(0, 10, 0, 10) // Margine interno
+	        );
+
+	        nomeField.setBorder(roundedBorder);
+	        cognomeField.setBorder(roundedBorder);
+	        mailField.setBorder(roundedBorder);
+	        etaField.setBorder(roundedBorder);
+	        passwordField.setBorder(roundedBorder);
+		
+		
 		panel.add(new JLabel("Nome:"));
 		panel.add(nomeField);
 		panel.add(new JLabel("Cognome:"));
@@ -33,8 +49,10 @@ public class PalestraGui extends JFrame {
 		panel.add(etaField);
 		panel.add(new JLabel("Password:"));
 		panel.add(passwordField);
-
-		registraButton = new JButton("Registra");
+		
+		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		
+		registraButton = new JButton("Registrati");
 		registraButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -49,7 +67,7 @@ public class PalestraGui extends JFrame {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						new LatoClienteGui(co,cliente,palestra);
-						new AbbonamentoGui(cliente, proprietario, creabbo);
+						//new AbbonamentoGui(cliente, proprietario, creabbo);
 					}
 				});
 			}

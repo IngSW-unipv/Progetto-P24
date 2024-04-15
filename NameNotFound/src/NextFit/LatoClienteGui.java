@@ -1,19 +1,30 @@
 package NextFit;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class LatoClienteGui extends JFrame {
-	private JButton PT,CORSI;
+	private JButton PT,CORSI,SCHEDA,SERVIZI;
 	private ListaCORSI listaCORSI;
+	private JLabel NEXTFIT;
 
 	public LatoClienteGui(Corsi co,Cliente c,Palestra palestra) {
 		setTitle("Pagina principale");
@@ -22,11 +33,30 @@ public class LatoClienteGui extends JFrame {
 		listaCORSI.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel(new GridLayout(1, 1));
-		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JPanel buttonPanel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+        Color CBACK = new Color(28, 28, 28);
+        
+        panel.setBackground(CBACK);
+        
+        NEXTFIT = new JLabel("<html><font color='orange'>NEXT</font><font color='white'>FIT</font></html>");
+        NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
+        
+        panel.add(NEXTFIT);
 
-		PT = new JButton("Personal Trainer");
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        
+		PT = new JButton("PERSONAL TRAINER");
+		
+		Color CBUT = new Color(40, 40, 40);
+		
+		PT.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		PT.setBackground(CBUT);
+		PT.setFont(new Font("Rockwell", Font.BOLD, 20));
+		PT.setForeground(Color.white);
+		
 		PT.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -40,12 +70,16 @@ public class LatoClienteGui extends JFrame {
 				
 			}
 		});
-		buttonPanel.add(PT);
-
-		panel.add(buttonPanel);
+		panel.add(PT);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+	
 
 		getContentPane().add(panel, BorderLayout.CENTER);
 		CORSI = new JButton("CORSI");
+		CORSI.setFont(new Font("Rockwell", Font.BOLD, 20));
+		CORSI.setForeground(Color.white);
+		CORSI.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		CORSI.setBackground(CBUT);
 		CORSI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -58,10 +92,26 @@ public class LatoClienteGui extends JFrame {
 		});
 		
 
-		buttonPanel2.add(CORSI);
+		panel.add(CORSI);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		SCHEDA = new JButton("SCHEDA");
+		SCHEDA.setFont(new Font("Rockwell", Font.BOLD, 20));
+		SCHEDA.setForeground(Color.white);
+		SCHEDA.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		SCHEDA.setBackground(CBUT);
+		panel.add(SCHEDA);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		SERVIZI = new JButton("SERVIZI AGGIUNTIVI");
+		SERVIZI.setFont(new Font("Rockwell", Font.BOLD, 20));
+		SERVIZI.setForeground(Color.white);
+		SERVIZI.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		SERVIZI.setBackground(CBUT);
+		panel.add(SERVIZI);
 
-		panel.add(buttonPanel2);
-
+		
+		
+		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		
 		getContentPane().add(panel, BorderLayout.CENTER);
 
 		setSize(480, 640);
