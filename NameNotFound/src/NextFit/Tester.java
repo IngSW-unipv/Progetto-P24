@@ -38,6 +38,7 @@ public class Tester {
 		Corso c1 = new Corso("Boxe", NextFit.getDIP("corsista", 1), 9, 0);
 		Corso c2 = new Corso("Nuoto", NextFit.getDIP("corsista", 1), 9, 0);
 		Corso c3 = new Corso("Aerobica", NextFit.getDIP("corsista", 3), 9, 0);
+		
 
 		Corsi corsi = new Corsi(20);
 		corsi.aggCorsi(c0);
