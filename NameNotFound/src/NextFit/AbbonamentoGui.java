@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 public class AbbonamentoGui extends JFrame {
 	private JButton mensile, semestrale, annuale;
 
-	public AbbonamentoGui(Cliente c, Proprietario p, CreaClAbbo clabbo) {
+	public AbbonamentoGui(Cliente c, Proprietario p, Palestra pa) {
 		setTitle("scelta abbonamenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -35,7 +35,7 @@ public class AbbonamentoGui extends JFrame {
 				ClienteAbboDAO dao0 = new ClienteAbboDAO();
 				dao0.insertCliente(c, ca);
 				
-				clabbo.abbonaCl(ca);
+				pa.abbonaCl(ca);
 			}
 		});
 
@@ -48,7 +48,7 @@ public class AbbonamentoGui extends JFrame {
 				ClienteAbboDAO dao0 = new ClienteAbboDAO();
 				dao0.insertCliente(c, ca);
 				
-				clabbo.abbonaCl(ca);
+				pa.abbonaCl(ca);
 				ca.visuClAbb(ca);
 
 			}
@@ -63,7 +63,7 @@ public class AbbonamentoGui extends JFrame {
 				ClienteAbboDAO dao0 = new ClienteAbboDAO();
 				dao0.insertCliente(c, ca);
 				
-				clabbo.abbonaCl(ca);
+				pa.abbonaCl(ca);
 			}
 		});
 

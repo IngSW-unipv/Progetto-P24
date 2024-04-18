@@ -13,7 +13,7 @@ public class ClienteAbboDAO {
 		this.schema = "palestra";
 	}
 
-	public ArrayList<ClienteAbbonato> selectAll(CreaClAbbo clabbo) {
+	public ArrayList<ClienteAbbonato> selectAll(Palestra p) {
 		ArrayList<ClienteAbbonato> result = new ArrayList<>();
 
 		DBConnection connessione = new DBConnection();
@@ -37,7 +37,7 @@ public class ClienteAbboDAO {
 				ClienteAbbonato c1 = new ClienteAbbonato(c0, a);
 				c1.setDataScadenza(LocalDate.parse(rs1.getString(6)));
 				// problema del creaclienteabbo
-				clabbo.abbonaCl(c1);
+				p.abbonaCl(c1);
 
 				result.add(c1);
 			}

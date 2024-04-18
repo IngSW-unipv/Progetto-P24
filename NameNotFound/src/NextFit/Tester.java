@@ -7,33 +7,28 @@ import javax.swing.SwingUtilities;
 public class Tester {
 	public static void main(String[] args) {
 		Palestra NextFit = new Palestra(100, 100); // Passa la capacità massima di clienti alla palestra
-		CreaClAbbo ca = new CreaClAbbo(NextFit);
 		Proprietario proprietario = new Proprietario();
 		
 		ClienteAbboDAO dao0 = new ClienteAbboDAO();
-		dao0.selectAll(ca);
-		
 		DipendenteDAO dao1 = new DipendenteDAO();
+		
+		dao0.selectAll(NextFit);
 		dao1.selectAll(NextFit);
 		
-		ca.visuClAbbo();
+		NextFit.registraDipendente(NextFit.creaDipendente("Pino", "Pino", "pino@tmail.com", "pi123no", 23, 2000, "corsista"));
+		NextFit.registraDipendente(NextFit.creaDipendente("Wino", "Wino", "wino@fmai.com", "wi123no", 24, 1800, "Dietista"));
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("Gino", "Gino", "gino@mail.com", "gi1234no", 32, 540, "PersonalTrainer"));
+		NextFit.registraDipendente(NextFit.creaDipendente("Cino", "Cino", "cino@smail.com", "ci764no", 19, 675, "Corsista"));
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("Tino", "Tino", "tino@mail.com", "tin233o", 29, 1000, "PersonalTrainer"));
+		NextFit.registraDipendente(
+				NextFit.creaDipendente("Sino", "Sino", "Sino@mail.com", "sn233o", 39, 1900, "PersonalTrainer"));
+		
+		NextFit.visuClAbbo();
 		NextFit.visuListaDip();
 		NextFit.visuDip("personaltrainer");
 		
-		NextFit.registraDipendente(NextFit.creaDipendente("pino", "pino", "pino", "pino", 19, 98919, "corsista"));
-		NextFit.registraDipendente(NextFit.creaDipendente("wino", "pino", "pino", "pino", 19, 98919, "Dietista"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("gino", "tino", "pino", "pino", 19, 98919, "PersonalTrainer"));
-		NextFit.registraDipendente(NextFit.creaDipendente("cino", "pino", "pino", "pino", 19, 98919, "Corsista"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("tino", "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("tidno", "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("tidgno", "pino", "pino", "pino", 19, 98919, "PersonalTrainer"));
-		NextFit.registraDipendente(NextFit.creaDipendente("tgno", "pino", "pino", "pino", 19, 98919, "Corsista"));
-		NextFit.registraDipendente(NextFit.creaDipendente("gno", "pino", "pino", "pino", 19, 98919, "Corsista"));
-		NextFit.registraDipendente(NextFit.creaDipendente("teidgno", "pino", "pino", "pino", 19, 98919, "Corsista"));
 		Corso c0 = new Corso("Pilates", NextFit.getDIP("corsista", 0), 9, 0);
 		Corso c1 = new Corso("Boxe", NextFit.getDIP("corsista", 1), 9, 0);
 		Corso c2 = new Corso("Nuoto", NextFit.getDIP("corsista", 1), 9, 0);
@@ -48,7 +43,7 @@ public class Tester {
 		corsi.aggCorsi(c3);
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new PalestraGui(NextFit, proprietario, ca, corsi);
+				new PalestraGui(NextFit, proprietario, corsi);
 			}
 		});
 

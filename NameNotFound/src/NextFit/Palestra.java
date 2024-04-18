@@ -5,25 +5,35 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 {
 	private Cliente[] clienti;
 	private Dipendente[] dipendenti;
-	private int contatoreC, contatoreD, maxC, maxD;
+	private ClienteAbbonato[] clientiAbbo;
+	private int contatoreC, contatoreD, contatoreCA, maxC, maxD, maxCA;
 
 	public Palestra(int maxC, int maxD) {
 		this.maxC = maxC;
+		this.maxCA = maxC;
 		this.maxD = maxD;
 		clienti = new Cliente[maxC];
 		dipendenti = new Dipendente[maxD];
+		clientiAbbo = new ClienteAbbonato[maxCA];
 		contatoreC = 0;
+		contatoreCA = 0;
 		contatoreD = 0;
 	}
 
-	public void registraCliente(Cliente cliente) {
+	public boolean registraCliente(Cliente cliente) {
+		boolean t = false;
+
 		if (contatoreC < maxC && cliente.getEtà() > 17) {
 			clienti[contatoreC] = cliente;
 			contatoreC++;
-		} else if (cliente.getEtà() < 18)
+			t = true;
+		} else if (cliente.getEtà() < 18) {
 			System.out.println("La palestra non può iscrivere minorenni. ");
-		else
+			t = false;
+		} else {
 			System.out.println("La palestra non può iscrivere più di " + maxC + " clienti. ");
+			t = false;
+		}
 
 		for (int i = 0; i < contatoreC - 1; i++) {
 			if (cliente.getNome().equals(clienti[i].getNome()) && cliente.getCognome().equals(clienti[i].getCognome())
@@ -32,9 +42,11 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			{
 				System.out.println("Il cliente è già presente nel database. ");
 				contatoreC--; // alla nuova iscrizione verrà sovrascritto il cliente nuovo su quello già
-								// presente
+				t = false; // presente
 			}
 		}
+
+		return t;
 	}
 
 	public Dipendente creaDipendente(String nome, String cognome, String mail, String password, int età,
@@ -58,30 +70,28 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 	public void registraDipendente(Dipendente dipendente) {
 		if (contatoreD < maxD) {
-	        dipendenti[contatoreD] = dipendente;
-	        contatoreD++;
-	    } else {
-	        System.out.println("La palestra non può iscrivere più di " + maxD + " dipendenti. ");
-	        return; 
-	    }
+			dipendenti[contatoreD] = dipendente;
+			contatoreD++;
+		} else {
+			System.out.println("La palestra non può iscrivere più di " + maxD + " dipendenti. ");
+			return;
+		}
 
-	    boolean presenteNelDatabase = false;
+		boolean presenteNelDatabase = false;
 
-	    for (int i = 0; i < contatoreD - 1; i++) {
-	        if (dipendente.getNome().equals(dipendenti[i].getNome())
-	                && dipendente.getCognome().equals(dipendenti[i].getCognome())
-	                && dipendente.getMail().equals(dipendenti[i].getMail())) {
-	            presenteNelDatabase = true;
-	            System.out.println("Il dipendente è già presente nel database. ");
-	            contatoreD--;
-	            break; 
-	        }
-	    }
-
-	    if (!presenteNelDatabase) {
-	        DipendenteDAO dao1 = new DipendenteDAO();
-	        dao1.insertDipendente(dipendente);
-	    }
+		for (int i = 0; i < contatoreD - 1; i++) {
+			if (dipendente.getNome().equals(dipendenti[i].getNome())
+					&& dipendente.getCognome().equals(dipendenti[i].getCognome())
+					&& dipendente.getMail().equals(dipendenti[i].getMail())) {
+				presenteNelDatabase = true;
+				System.out.println("Il dipendente è già presente nel database. ");
+				contatoreD--;
+				if (presenteNelDatabase == false) {
+					DipendenteDAO dao1 = new DipendenteDAO();
+					dao1.insertDipendente(dipendente);
+				}
+			}
+		}
 	}
 
 	public int getMaxC() {
@@ -128,5 +138,22 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			}
 		}
 		return j;
+	}
+
+	public void abbonaCl(ClienteAbbonato ca) {
+		if (contatoreCA < maxCA) {
+			clientiAbbo[contatoreCA] = ca;
+			contatoreCA++;
+		} else {
+			System.out.println("Non possono essere abbonati più di " + maxCA + " clienti. ");
+		}
+	}
+
+	public void visuClAbbo() {
+		System.out.println("Lista dei clienti: ");
+		for (int i = 0; i < contatoreCA; i++) {
+			System.out.println(clientiAbbo[i].getCliente().getNome() + " " + clientiAbbo[i].getCliente().getCognome()
+					+ " " + clientiAbbo[i].getDataScadenza());
+		}
 	}
 }
