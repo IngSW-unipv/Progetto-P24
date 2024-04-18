@@ -69,6 +69,18 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	}
 
 	public void registraDipendente(Dipendente dipendente) {
+		boolean presenteNelDatabase = false;
+
+		for (int i = 0; i < contatoreD; i++) {
+			if (dipendente.getNome().equals(dipendenti[i].getNome())
+					&& dipendente.getCognome().equals(dipendenti[i].getCognome())
+					&& dipendente.getMail().equals(dipendenti[i].getMail())) {
+				presenteNelDatabase = true;
+				System.out.println("Il dipendente è già presente nel database. ");
+				return;
+			}
+		}
+
 		if (contatoreD < maxD) {
 			dipendenti[contatoreD] = dipendente;
 			contatoreD++;
@@ -77,20 +89,9 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			return;
 		}
 
-		boolean presenteNelDatabase = false;
-
-		for (int i = 0; i < contatoreD - 1; i++) {
-			if (dipendente.getNome().equals(dipendenti[i].getNome())
-					&& dipendente.getCognome().equals(dipendenti[i].getCognome())
-					&& dipendente.getMail().equals(dipendenti[i].getMail())) {
-				presenteNelDatabase = true;
-				System.out.println("Il dipendente è già presente nel database. ");
-				contatoreD--;
-				if (presenteNelDatabase == false) {
-					DipendenteDAO dao1 = new DipendenteDAO();
-					dao1.insertDipendente(dipendente);
-				}
-			}
+		if (!presenteNelDatabase) {
+			DipendenteDAO dao1 = new DipendenteDAO();
+			dao1.insertDipendente(dipendente);
 		}
 	}
 
@@ -112,6 +113,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	}
 
 	public void visuListaDip() {
+		System.out.println("Lista dipendenti: ");
 		for (int i = 0; i < contatoreD; i++) {
 			System.out.println(dipendenti[i].getNome() + " " + dipendenti[i].getCognome() + " " + dipendenti[i].tipo);
 		}

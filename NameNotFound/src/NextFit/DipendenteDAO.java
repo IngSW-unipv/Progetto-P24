@@ -44,32 +44,57 @@ public class DipendenteDAO {
 	}
 	
 	public boolean insertDipendente(Dipendente d) {
-		conn = DBConnection.startConnection(conn, schema);
+	    conn = DBConnection.startConnection(conn, schema);
 
-		PreparedStatement st1;
+	    PreparedStatement st1;
 
-		boolean esito = true;
+	    boolean esito = true;
 
-		try {
-			String query = "INSERT INTO dipendenti (nome, cognome, mail, eta, password, tipo, stipendio) VALUES (?, ?, ?, ?, ?, ?, ?)";
-			st1 = conn.prepareStatement(query);
-			st1.setString(1, d.getNome());
-			st1.setString(2, d.getCognome());
-			st1.setString(3, d.getMail());
-			st1.setInt(4, d.getEtà());
-			st1.setString(5, d.getPassword());
-			st1.setString(6, d.getTipo()); 
-			st1.setDouble(7, d.getStipendio());
+	    try {
+	        // Check if the employee already exists in the database
+	        if (esisteDIP(d.getNome(), d.getCognome(), d.getMail())) {
+	            System.out.println("Il dipendente è già presente nel database.");
+	            return false;
+	        }
 
-			st1.executeUpdate(); 
+	        String query = "INSERT INTO dipendenti (nome, cognome, mail, eta, password, tipo, stipendio) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	        st1 = conn.prepareStatement(query);
+	        st1.setString(1, d.getNome());
+	        st1.setString(2, d.getCognome());
+	        st1.setString(3, d.getMail());
+	        st1.setInt(4, d.getEtà());
+	        st1.setString(5, d.getPassword());
+	        st1.setString(6, d.getTipo()); 
+	        st1.setDouble(7, d.getStipendio());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			esito = false;
-		} finally {
-			DBConnection.closeConnection(conn);
-		}
+	        st1.executeUpdate(); 
 
-		return esito;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        esito = false;
+	    } finally {
+	        DBConnection.closeConnection(conn);
+	    }
+
+	    return esito;
 	}
+
+	private boolean esisteDIP(String nome, String cognome, String email) {
+	    try {
+	        String query = "SELECT COUNT(*) FROM dipendenti WHERE nome = ? AND cognome = ? AND mail = ?";
+	        PreparedStatement statement = conn.prepareStatement(query);
+	        statement.setString(1, nome);
+	        statement.setString(2, cognome);
+	        statement.setString(3, email);
+	        ResultSet resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            int count = resultSet.getInt(1);
+	            return count > 0;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+
 }
