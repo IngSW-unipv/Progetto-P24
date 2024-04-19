@@ -34,6 +34,7 @@ public class Tester {
 		Corso c2 = new Corso("Nuoto", NextFit.getDIP("corsista", 1), 9, 0);
 		Corso c3 = new Corso("Aerobica", NextFit.getDIP("corsista", 3), 9, 0);
 		
+		System.out.println(NextFit.accesso("alessia.marroni@example.com", "topsecret"));
 
 		Corsi corsi = new Corsi(20);
 		corsi.aggCorsi(c0);

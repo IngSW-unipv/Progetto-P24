@@ -5,9 +5,9 @@ public class Cliente {
 	private int età;
 
 	public Cliente(String nome, String cognome, String mail, String password, int età) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.mail = mail;
+		this.nome = nome.toLowerCase();
+		this.cognome = cognome.toLowerCase();
+		this.mail = mail.toLowerCase();
 		this.password = password;
 		this.età = età;
 	}

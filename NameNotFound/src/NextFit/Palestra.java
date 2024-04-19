@@ -21,30 +21,30 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	}
 
 	public boolean registraCliente(Cliente cliente) {
+
+		boolean clientePresente = false; // Flag per indicare se il cliente è già presente nel database
 		boolean t = false;
 
-		if (contatoreC < maxC && cliente.getEtà() > 17) {
-			clienti[contatoreC] = cliente;
-			contatoreC++;
-			t = true;
-		} else if (cliente.getEtà() < 18) {
-			System.out.println("La palestra non può iscrivere minorenni. ");
-			t = false;
-		} else {
-			System.out.println("La palestra non può iscrivere più di " + maxC + " clienti. ");
-			t = false;
-		}
-
-		for (int i = 0; i < contatoreC - 1; i++) {
-			if (cliente.getNome().equals(clienti[i].getNome()) && cliente.getCognome().equals(clienti[i].getCognome())
-					&& cliente.getMail().equals(clienti[i].getMail())) // cotrollo su nome, cognome e mail che sono la
-																		// chiave nel database
-			{
-				System.out.println("Il cliente è già presente nel database. ");
-				contatoreC--; // alla nuova iscrizione verrà sovrascritto il cliente nuovo su quello già
-				t = false; // presente
+		for (int i = 0; i < contatoreCA; i++) {
+			if (cliente.getNome().equals(clientiAbbo[i].getCliente().getNome()) && cliente.getCognome().equals(clientiAbbo[i].getCliente().getCognome())
+					&& cliente.getMail().equals(clientiAbbo[i].getCliente().getMail())) {
+				System.out.println("Il cliente è già presente nel database.");
+				clientePresente = true; // Imposta il flag a true se il cliente è già presente
+				break;
 			}
 		}
+
+	    if (!clientePresente) {
+	        if (contatoreC < maxC && cliente.getEtà() > 17) {
+	            clienti[contatoreC] = cliente;
+	            contatoreC++;
+	            t = true;
+	        } else if (cliente.getEtà() < 18) {
+	            System.out.println("La palestra non può iscrivere minorenni.");
+	        } else {
+	            System.out.println("La palestra non può iscrivere più di " + maxC + " clienti.");
+	        }
+	    }
 
 		return t;
 	}
@@ -157,5 +157,22 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			System.out.println(clientiAbbo[i].getCliente().getNome() + " " + clientiAbbo[i].getCliente().getCognome()
 					+ " " + clientiAbbo[i].getDataScadenza());
 		}
+	}
+
+	public boolean accesso(String mail, String pass) {
+		boolean t = false;
+
+		for (int i = 0; i < contatoreCA; i++) {
+			if (clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass)) {
+				t = true;
+				break;
+			}
+		}
+
+		return t;
+	}
+
+	public String riconosciTipo(Dipendente d) {
+		return d.getTipo();
 	}
 }

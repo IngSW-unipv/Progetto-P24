@@ -126,6 +126,8 @@ public class PalestraGui extends JFrame {
 							// new AbbonamentoGui(cliente, proprietario, creabbo);
 						}
 					});
+				} else {
+					JOptionPane.showMessageDialog(null, "Impossibile registrarsi per uno dei seguenti motivi:\nminorenne;\ncliente già presente.");
 				}
 			}
 		});

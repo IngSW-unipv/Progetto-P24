@@ -8,9 +8,9 @@ public abstract class Dipendente {
 	public Dipendente(String nome, String cognome, String mail, String password, int età, double stipendio,
 			String tipo) {
 		super();
-		this.nome = nome;
-		this.cognome = cognome;
-		this.mail = mail;
+		this.nome = nome.toLowerCase();
+		this.cognome = cognome.toLowerCase();
+		this.mail = mail.toLowerCase();
 		this.password = password;
 		this.età = età;
 		this.stipendio = stipendio;
