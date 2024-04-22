@@ -13,7 +13,7 @@ public class PalestraGui extends JFrame {
 	private JTextField nomeField, cognomeField, mailField, etaField;
 	private JButton registraButton;
 	private JPasswordField passwordField;
-	private JLabel nome, cognome, pw, eta, mail, NEXTFIT;
+	private JLabel nome, cognome, pw, eta, mail, NEXTFIT,errorLabel;
 
 	public PalestraGui(Palestra palestra, Proprietario proprietario, Corsi co) {
 
@@ -102,6 +102,10 @@ public class PalestraGui extends JFrame {
 
 		Color or = new Color(250, 140, 0);
 
+		  JLabel errorLabel = new JLabel("*Errore: minorenne o Cliente già presente");
+          errorLabel.setForeground(Color.RED);
+		
+		
 		registraButton = new JButton("Registrati");
 
 		registraButton.setBackground(or);
@@ -110,6 +114,7 @@ public class PalestraGui extends JFrame {
 		registraButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
 		registraButton.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nome = nomeField.getText();
@@ -117,21 +122,45 @@ public class PalestraGui extends JFrame {
 				String mail = mailField.getText();
 				String password = new String(passwordField.getPassword());
 				int eta = Integer.parseInt(etaField.getText());
-
 				Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
+				 
+				JPanel buttonPanel = new JPanel();
+		            buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+		            buttonPanel.setBackground(CBACK);
+		            buttonPanel.add(registraButton);
+		            buttonPanel.add(errorLabel);
+		            
 				if (palestra.registraCliente(cliente) == true) {
+					
+					buttonPanel.add(registraButton);
+					buttonPanel.remove(errorLabel);
+					panel.add(buttonPanel);
+					 panel.revalidate();
+			            panel.repaint();
+		            
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
-							new LatoClienteGui(co, cliente, palestra);
+							//new LatoClienteGui(co, cliente, palestra);
 							// new AbbonamentoGui(cliente, proprietario, creabbo);
 						}
 					});
-				} else {
-					JOptionPane.showMessageDialog(null, "Impossibile registrarsi per uno dei seguenti motivi:\nminorenne;\ncliente già presente.");
+				}else
+				{
+
+			           
+
+			            panel.add(buttonPanel);
+
+			            // Aggiorna il pannello
+			            panel.revalidate();
+			            panel.repaint();
+		          
+		          
 				}
 			}
 		});
 		panel.add(registraButton);
+		
 
 		getContentPane().add(panel, BorderLayout.CENTER);
 

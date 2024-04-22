@@ -7,7 +7,7 @@ public class Corso {
 	private int np; // numero di persone "attuale"
 
 	public Corso(String nome, Dipendente corsista, int maxp, int np) {
-		this.nome = nome;
+		this.nome = nome.toLowerCase();
 		this.corsista = (Corsista) corsista;
 		if (maxp > np) {
 			this.maxp = maxp;

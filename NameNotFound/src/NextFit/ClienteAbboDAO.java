@@ -36,7 +36,7 @@ public class ClienteAbboDAO {
 				Abbonamenti a = new Abbonamenti("mensile", 0);
 				ClienteAbbonato c1 = new ClienteAbbonato(c0, a);
 				c1.setDataScadenza(LocalDate.parse(rs1.getString(6)));
-				// problema del creaclienteabbo
+				
 				p.abbonaCl(c1);
 
 				result.add(c1);

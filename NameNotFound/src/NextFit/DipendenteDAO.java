@@ -51,7 +51,6 @@ public class DipendenteDAO {
 	    boolean esito = true;
 
 	    try {
-	        // Check if the employee already exists in the database
 	        if (esisteDIP(d.getNome(), d.getCognome(), d.getMail())) {
 	            System.out.println("Il dipendente è già presente nel database.");
 	            return false;

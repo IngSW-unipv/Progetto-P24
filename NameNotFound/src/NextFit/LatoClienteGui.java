@@ -26,10 +26,10 @@ public class LatoClienteGui extends JFrame {
 	private ListaCORSI listaCORSI;
 	private JLabel NEXTFIT;
 
-	public LatoClienteGui(Corsi co,Cliente c,Palestra palestra) {
+	public LatoClienteGui(Corsi co,ClienteAbbonato clienteAbbonato,Palestra palestra) {
 		setTitle("Pagina principale");
 		
-		listaCORSI = new ListaCORSI(co, c, LatoClienteGui.this); //creo adesso la gui figlia
+		listaCORSI = new ListaCORSI(co, clienteAbbonato, LatoClienteGui.this); //creo adesso la gui figlia
 		listaCORSI.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -63,7 +63,7 @@ public class LatoClienteGui extends JFrame {
 				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						new ListaPT(palestra,c);
+						new ListaPT(palestra,clienteAbbonato);
 						
 					}
 				});	

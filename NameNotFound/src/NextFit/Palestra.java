@@ -141,6 +141,17 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 		return j;
 	}
+	
+	public Dipendente ricercaDip(String nome, String cognome) {
+		Dipendente d = null;
+		for (int i = 0; i < contatoreD; i++) {
+			if (nome.toLowerCase().equals(dipendenti[i].getNome()) && cognome.toLowerCase().equals(dipendenti[i].getCognome())) {
+				d = dipendenti[i];
+				break;
+			}
+		}
+		return d;
+	}
 
 	public void abbonaCl(ClienteAbbonato ca) {
 		if (contatoreCA < maxCA) {
@@ -170,6 +181,18 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 
 		return t;
+	}
+	
+	public ClienteAbbonato accessoCli(String mail, String pass) {
+		int j = -1;
+		for (int i = 0; i < contatoreCA; i++) {
+			if (clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass)) {
+				j = i;
+				break;
+			}
+		}
+
+		return clientiAbbo[j];
 	}
 
 	public String riconosciTipo(Dipendente d) {
