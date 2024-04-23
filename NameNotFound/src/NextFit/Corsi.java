@@ -1,5 +1,7 @@
 package NextFit;
 
+import DB.CorsiDAO;
+
 public class Corsi {
 	private Corso[] corsi;
 	private int max, c;

@@ -1,5 +1,7 @@
 package NextFit;
 
+import DB.DipendenteDAO;
+
 public class Palestra // classe di tipo pure fabbrication -> pattern factory per la creazione dei
 						// dipendenti e clienti
 {

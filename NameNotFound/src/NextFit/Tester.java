@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
+import DB.ClienteAbboDAO;
+import DB.CorsiDAO;
+import DB.DipendenteDAO;
+import GUI.PrimaPagina;
+
 public class Tester {
 	public static void main(String[] args) {
 		Palestra NextFit = new Palestra(100, 100);
@@ -34,21 +39,19 @@ public class Tester {
 		NextFit.visuClAbbo();
 		NextFit.visuListaDip();
 		NextFit.visuDip("COrsisTA");
-		
-		// corsi.visuCorsi();
 
-		/*
-		 * Corso c0 = new Corso("Pilates", NextFit.getDIP("corsista", 0), 9, 0); Corso
-		 * c1 = new Corso("Boxe", NextFit.getDIP("corsista", 1), 9, 0); Corso c2 = new
-		 * Corso("Nuoto", NextFit.getDIP("corsista", 1), 9, 0); Corso c3 = new
-		 * Corso("Aerobica", NextFit.getDIP("corsista", 3), 9, 0);
-		 * 
-		 * System.out.println(NextFit.accesso("alessia.marroni@example.com",
-		 * "topsecret"));
-		 * 
-		 * corsi.aggCorsi(c0); corsi.aggCorsi(c0); corsi.aggCorsi(c1);
-		 * corsi.aggCorsi(c2); corsi.aggCorsi(c3);
-		 */
+		corsi.visuCorsi();
+
+		Corso c0 = new Corso("Pilates", NextFit.getDIP("corsista", 0), 9, 0);
+		Corso c1 = new Corso("Boxe", NextFit.getDIP("corsista", 1), 9, 0);
+		Corso c2 = new Corso("Nuoto", NextFit.getDIP("corsista", 1), 9, 0);
+		Corso c3 = new Corso("Aerobica", NextFit.getDIP("corsista", 3), 9, 0);
+
+		corsi.aggCorsi(c0);
+		corsi.aggCorsi(c0);
+		corsi.aggCorsi(c1);
+		corsi.aggCorsi(c2);
+		corsi.aggCorsi(c3);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
