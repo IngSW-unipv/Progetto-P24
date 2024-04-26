@@ -12,7 +12,7 @@ import GUI.PrimaPagina;
 public class Tester {
 	public static void main(String[] args) {
 		Palestra NextFit = new Palestra(100, 100);
-		Proprietario proprietario = new Proprietario();
+		Proprietario proprietario = Proprietario.getInstance();
 		Corsi corsi = new Corsi(20);
 
 		ClienteAbboDAO dao0 = new ClienteAbboDAO();

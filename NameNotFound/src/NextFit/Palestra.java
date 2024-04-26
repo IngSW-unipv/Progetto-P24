@@ -176,7 +176,8 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		boolean t = false;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if (clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass)) {
+			if ((clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass)) || 
+					(dipendenti[i].getMail().equals(mail) && dipendenti[i].getPassword().equals(pass))) {
 				t = true;
 				break;
 			}
@@ -195,6 +196,18 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 
 		return clientiAbbo[j];
+	}
+	
+	public Dipendente accessoDip(String mail, String pass) {
+		int j = -1;
+		for (int i = 0; i < contatoreD; i++) {
+			if (dipendenti[i].getMail().equals(mail) && dipendenti[i].getPassword().equals(pass)) {
+				j = i;
+				break;
+			}
+		}
+
+		return dipendenti[j];
 	}
 
 	public String riconosciTipo(Dipendente d) {

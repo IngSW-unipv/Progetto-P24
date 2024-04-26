@@ -1,14 +1,41 @@
 package NextFit;
 
 public class Proprietario {
+	private static Proprietario instance;
 	private Abbonamenti abbonamentoMensile;
 	private Abbonamenti abbonamentoSemestrale;
 	private Abbonamenti abbonamentoAnnuale;
+	private String mail, password;
 
-	public Proprietario() {
+	private Proprietario() {
 		this.abbonamentoMensile = new Abbonamenti("Mensile", 50.0);
 		this.abbonamentoSemestrale = new Abbonamenti("Semestrale", 250.0);
 		this.abbonamentoAnnuale = new Abbonamenti("Annuale", 450.0);
+		this.mail = "proprietario@example.com";
+		this.password = "IlProp";
+	}
+
+	public static Proprietario getInstance() {
+		if (instance == null) {
+			instance = new Proprietario();
+		}
+		return instance;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Abbonamenti getAbbonamentoMensile() {
