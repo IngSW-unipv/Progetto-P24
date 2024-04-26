@@ -17,7 +17,7 @@ public class Login extends JFrame {
 	private JTextField mailField;
 	private JButton loginButton;
 	private JPasswordField passwordField;
-	private JLabel pw, mail, NEXTFIT, errorLabel;
+	private JLabel pw, mail, NEXTFIT;
 
 	public Login(Palestra palestra, Proprietario proprietario, Corsi co) {
 
@@ -78,8 +78,7 @@ public class Login extends JFrame {
 
 		Color or = new Color(250, 140, 0);
 
-		JLabel errorLabel = new JLabel("*Errore: minorenne o Cliente giÃ  presente");
-		errorLabel.setForeground(Color.RED);
+		
 
 		loginButton = new JButton("Entra");
 
@@ -96,8 +95,17 @@ public class Login extends JFrame {
 				String mail = mailField.getText();
 				String password = new String(passwordField.getPassword());
 
-				if (palestra.accesso(mail, password) == true) {
+				if (palestra.esisteCli(mail, password) == true) {
 					new LatoClienteGui(co, palestra.accessoCli(mail, password), palestra);
+				} if(palestra.esisteDip(mail, password)==true)
+				{
+					if(palestra.accessoDip(mail, password).getTipo().equals("personaltrainer"))
+					{
+					new LatoPTGui(palestra.accessoDip(mail, password),palestra);
+				}else if(palestra.accessoDip(mail, password).getTipo().equals("corsista"))
+					{
+					new LatoCorsistaGui(palestra.accessoDip(mail, password),palestra);
+					}
 				}
 
 			}

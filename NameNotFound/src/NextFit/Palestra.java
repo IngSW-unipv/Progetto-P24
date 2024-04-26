@@ -172,12 +172,11 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 	}
 
-	public boolean accesso(String mail, String pass) {
+	public boolean esisteCli(String mail, String pass) {
 		boolean t = false;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if ((clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass)) || 
-					(dipendenti[i].getMail().equals(mail) && dipendenti[i].getPassword().equals(pass))) {
+			if ((clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass))) {
 				t = true;
 				break;
 			}
@@ -185,6 +184,20 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return t;
 	}
+	
+	public boolean esisteDip(String mail, String pass) {
+		boolean t = false;
+
+		for (int i = 0; i < contatoreCA; i++) {
+			if ((dipendenti[i].getMail().equals(mail) && dipendenti[i].getPassword().equals(pass))) {
+				t = true;
+				break;
+			}
+		}
+
+		return t;
+	}
+	
 	
 	public ClienteAbbonato accessoCli(String mail, String pass) {
 		int j = -1;
@@ -209,7 +222,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return dipendenti[j];
 	}
-
+	
 	public String riconosciTipo(Dipendente d) {
 		return d.getTipo();
 	}
