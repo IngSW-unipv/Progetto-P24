@@ -36,6 +36,11 @@ public class ClienteAbbonato {
 		return dataScadenza;
 	}
 
+	public void aggScad(int n) {	//aggiungere scadenza anche in database
+        dataScadenza = dataScadenza.plusMonths(n);
+    }
+	
+	
 	public void setDataScadenza(LocalDate dataScadenza) {
 		this.dataScadenza = dataScadenza;
 	}

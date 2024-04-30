@@ -28,7 +28,8 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		boolean t = false;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if (cliente.getNome().equals(clientiAbbo[i].getCliente().getNome()) && cliente.getCognome().equals(clientiAbbo[i].getCliente().getCognome())
+			if (cliente.getNome().equals(clientiAbbo[i].getCliente().getNome())
+					&& cliente.getCognome().equals(clientiAbbo[i].getCliente().getCognome())
 					&& cliente.getMail().equals(clientiAbbo[i].getCliente().getMail())) {
 				System.out.println("Il cliente è già presente nel database.");
 				clientePresente = true; // Imposta il flag a true se il cliente è già presente
@@ -36,17 +37,17 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			}
 		}
 
-	    if (!clientePresente) {
-	        if (contatoreC < maxC && cliente.getEtà() > 17) {
-	            clienti[contatoreC] = cliente;
-	            contatoreC++;
-	            t = true;
-	        } else if (cliente.getEtà() < 18) {
-	            System.out.println("La palestra non può iscrivere minorenni.");
-	        } else {
-	            System.out.println("La palestra non può iscrivere più di " + maxC + " clienti.");
-	        }
-	    }
+		if (!clientePresente) {
+			if (contatoreC < maxC && cliente.getEtà() > 17) {
+				clienti[contatoreC] = cliente;
+				contatoreC++;
+				t = true;
+			} else if (cliente.getEtà() < 18) {
+				System.out.println("La palestra non può iscrivere minorenni.");
+			} else {
+				System.out.println("La palestra non può iscrivere più di " + maxC + " clienti.");
+			}
+		}
 
 		return t;
 	}
@@ -143,11 +144,12 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 		return j;
 	}
-	
+
 	public Dipendente ricercaDip(String nome, String cognome) {
 		Dipendente d = null;
 		for (int i = 0; i < contatoreD; i++) {
-			if (nome.toLowerCase().equals(dipendenti[i].getNome()) && cognome.toLowerCase().equals(dipendenti[i].getCognome())) {
+			if (nome.toLowerCase().equals(dipendenti[i].getNome())
+					&& cognome.toLowerCase().equals(dipendenti[i].getCognome())) {
 				d = dipendenti[i];
 				break;
 			}
@@ -176,7 +178,8 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		boolean t = false;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if ((clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass))) {
+			if ((clientiAbbo[i].getCliente().getMail().equals(mail)
+					&& clientiAbbo[i].getCliente().getPassword().equals(pass))) {
 				t = true;
 				break;
 			}
@@ -184,7 +187,24 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return t;
 	}
-	
+
+	public ClienteAbbonato ricercaCli(String mail, String nome, String cognome) {
+		int j = -1;
+
+		for (int i = 0; i < contatoreCA; i++) {
+			if (clientiAbbo[i].getCliente().getMail().equals(mail.toLowerCase()) && clientiAbbo[i].getCliente().getNome().equals(nome.toLowerCase())
+					&& clientiAbbo[i].getCliente().getCognome().equals(cognome.toLowerCase())) {
+				j = i;
+				break;
+			}
+		}
+
+		if (j == -1) {
+			return null;
+		} else
+			return clientiAbbo[j];
+	}
+
 	public boolean esisteDip(String mail, String pass) {
 		boolean t = false;
 
@@ -197,12 +217,12 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return t;
 	}
-	
-	
+
 	public ClienteAbbonato accessoCli(String mail, String pass) {
 		int j = -1;
 		for (int i = 0; i < contatoreCA; i++) {
-			if (clientiAbbo[i].getCliente().getMail().equals(mail) && clientiAbbo[i].getCliente().getPassword().equals(pass)) {
+			if (clientiAbbo[i].getCliente().getMail().equals(mail)
+					&& clientiAbbo[i].getCliente().getPassword().equals(pass)) {
 				j = i;
 				break;
 			}
@@ -210,7 +230,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return clientiAbbo[j];
 	}
-	
+
 	public Dipendente accessoDip(String mail, String pass) {
 		int j = -1;
 		for (int i = 0; i < contatoreD; i++) {
@@ -222,8 +242,9 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return dipendenti[j];
 	}
-	
+
 	public String riconosciTipo(Dipendente d) {
 		return d.getTipo();
 	}
 }
+

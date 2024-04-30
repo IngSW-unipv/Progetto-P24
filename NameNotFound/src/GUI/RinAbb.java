@@ -19,16 +19,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import DB.ClienteAbboDAO;
-import NextFit.Cliente;
 import NextFit.ClienteAbbonato;
 import NextFit.Palestra;
-import NextFit.Proprietario;
 
-public class AbbonamentoGui extends JFrame {
-	private JButton mensile, semestrale, annuale;
-	private JLabel AB,attenzione;
 
-	public AbbonamentoGui(Cliente c, Proprietario p, Palestra pa) {
+public class RinAbb extends JFrame{
+	private JButton mensile, semestrale, annuale,back;
+	private JLabel AB;
+	public RinAbb(ClienteAbbonato clienteAbbonato, Palestra palestra,SerAgg parent)
+	{
 		setTitle("scelta abbonamenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -65,16 +64,11 @@ public class AbbonamentoGui extends JFrame {
 		annuale.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 		annuale.setBackground(CBUT);
 		
-		mensile.addActionListener(new ActionListener() {
+	mensile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteAbbonato ca = new ClienteAbbonato(c, p.getAbbonamentoMensile());
-				
-				ClienteAbboDAO dao0 = new ClienteAbboDAO();
-				dao0.insertCliente(c, ca);
-				
-				pa.abbonaCl(ca);
+				clienteAbbonato.aggScad(1);
 			}
 		});
 
@@ -82,13 +76,7 @@ public class AbbonamentoGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteAbbonato ca = new ClienteAbbonato(c, p.getAbbonamentoSemestrale());
-				
-				ClienteAbboDAO dao0 = new ClienteAbboDAO();
-				dao0.insertCliente(c, ca);
-				
-				pa.abbonaCl(ca);
-				ca.visuClAbb(ca);
+				clienteAbbonato.aggScad(6);
 
 			}
 		});
@@ -97,12 +85,7 @@ public class AbbonamentoGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				ClienteAbbonato ca = new ClienteAbbonato(c, p.getAbbonamentoAnnuale());
-				
-				ClienteAbboDAO dao0 = new ClienteAbboDAO();
-				dao0.insertCliente(c, ca);
-				
-				pa.abbonaCl(ca);
+				clienteAbbonato.aggScad(12);
 			}
 		});
 
@@ -112,20 +95,36 @@ public class AbbonamentoGui extends JFrame {
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(annuale);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		String testoat="*Attenzione: qualora non si scegliesse un abbonamento e non si procedesse al pagamento non sarà possibile registrarsi e quindi accedere ai contenuti della palestra*";
-		attenzione=new JLabel("<html><div style='width: 200px; text-align: center;'>" + testoat + "</div></html>");
-		attenzione.setForeground(Color.RED);
-		attenzione.setBorder(BorderFactory.createEmptyBorder(0, 85, 0, 0));
 		
-		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		Color or = new Color(250, 140, 0);
 
-		panel.add(attenzione);
+		back = new JButton("indietro");
+		back.setBackground(or);
+		back.setFont(new Font("Arial", Font.BOLD, 13));
+		back.setMaximumSize(new Dimension(100, 30));
+		back.setBorder(BorderFactory.createLineBorder(or, 6, false));
+		
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
+				parent.setVisible(true);
+				dispose(); // Chiude la finestra corrente
+
+			}
+
+		});
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		panel.add(back);
 		getContentPane().add(panel, BorderLayout.CENTER);
 
+		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		
 		setSize(480, 640);
 		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
 		setVisible(true);
 	}
 
 }
+	
+

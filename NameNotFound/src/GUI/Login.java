@@ -17,11 +17,11 @@ public class Login extends JFrame {
 	private JTextField mailField;
 	private JButton loginButton;
 	private JPasswordField passwordField;
-	private JLabel pw, mail, NEXTFIT;
+	private JLabel pw, mail, NEXTFIT,errorlabel;
 
 	public Login(Palestra palestra, Proprietario proprietario, Corsi co) {
 
-		setTitle("Registrazione Cliente Palestra");
+		setTitle("login palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -78,7 +78,8 @@ public class Login extends JFrame {
 
 		Color or = new Color(250, 140, 0);
 
-		
+		errorlabel = new JLabel("*Errore: mail o password incorretti");
+		errorlabel.setForeground(Color.RED);
 
 		loginButton = new JButton("Entra");
 
@@ -95,17 +96,42 @@ public class Login extends JFrame {
 				String mail = mailField.getText();
 				String password = new String(passwordField.getPassword());
 
+				JPanel buttonPanel = new JPanel();
+				buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+				buttonPanel.setBackground(CBACK);
+				buttonPanel.add(loginButton);
+				buttonPanel.add(errorlabel);
+				
 				if (palestra.esisteCli(mail, password) == true) {
 					new LatoClienteGui(co, palestra.accessoCli(mail, password), palestra);
+					buttonPanel.remove(errorlabel);
+					panel.add(buttonPanel);
+					panel.revalidate();
+					panel.repaint();
 				} if(palestra.esisteDip(mail, password)==true)
 				{
 					if(palestra.accessoDip(mail, password).getTipo().equals("personaltrainer"))
 					{
 					new LatoPTGui(palestra.accessoDip(mail, password),palestra);
+					buttonPanel.remove(errorlabel);
+					panel.add(buttonPanel);
+					panel.revalidate();
+					panel.repaint();
 				}else if(palestra.accessoDip(mail, password).getTipo().equals("corsista"))
 					{
 					new LatoCorsistaGui(palestra.accessoDip(mail, password),palestra);
+					buttonPanel.remove(errorlabel);
+					panel.add(buttonPanel);
+					panel.revalidate();
+					panel.repaint();
 					}
+				}else
+				{
+					panel.add(buttonPanel);
+
+					// Aggiorna il pannello
+					panel.revalidate();
+					panel.repaint();
 				}
 
 			}
