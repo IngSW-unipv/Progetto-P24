@@ -92,21 +92,16 @@ public class Corsi {
 	}
 
 	public boolean iscrittoPresente(ClienteAbbonato c, Corso co) {
-		if (c == null || co == null) {
-			return false;
-		}
+        IscrittoalCorso iscritto = new IscrittoalCorso(co, c);
 
-		IscrittoalCorso iscritto = new IscrittoalCorso(co, c);
+        for (IscrittoalCorso i : iscritti) {
+            if (i.getCliente().equals(iscritto.getCliente()) && i.getCorso().equals(iscritto.getCorso())) {
+                return true;
+            }
 
-		for (IscrittoalCorso i : iscritti) {
-			if (i != null && i.getCliente() != null && i.getCorso() != null) {
-				if (i.getCliente().getCliente() != null && i.getCorso().equals(iscritto.getCorso())) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+        }
+        return false;
+    }
 
 	public IscrittoalCorso trovaIscritto(ClienteAbbonato c, Corso co) {
 		for (IscrittoalCorso iscritto : iscritti) {

@@ -34,11 +34,14 @@ public class ListaCORSI extends JFrame {
 	private JPanel panel,backpanel;
 	private JButton back;
 	private JLabel CORSI;
+	private Boolean[]  isIscritto;
 
 	public ListaCORSI(Corsi co, ClienteAbbonato clienteAbbonato, LatoClienteGui parent) {
 		setTitle("Interfaccia Corsi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		isIscritto=new Boolean[co.getC()];
+		
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
         gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel
         gridLayout.setVgap(10);
@@ -80,19 +83,20 @@ public class ListaCORSI extends JFrame {
 	            button.setForeground(Color.white);
 			coursesButtons.add(button);
 			panel.add(button);
-			
+			isIscritto[n] = false;
 			if(co.iscrittoPresente(clienteAbbonato, co.getCorso(n)))
 			{
 				button.setText(co.getCorso(n).getNome() + " - iscritto");
+				isIscritto[n] = true;
 			}
-			button.addActionListener(new ActionListener() {
-				boolean isIscritto = false;
+			button.addActionListener(new ActionListener() {	
+			
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					CorsiDAO dao = new CorsiDAO();
 					IscrittoalcorsoDAO dao1 = new IscrittoalcorsoDAO();
 					
-					if (!isIscritto) {
+					if (!isIscritto[n]) {
 						co.getCorso(n).aggPalCorso();
 						System.out.println(co.getCorso(n).getNp());
 						JButton button = (JButton) e.getSource();
@@ -103,7 +107,7 @@ public class ListaCORSI extends JFrame {
 						dao1.insertIscrizione(clienteAbbonato, co.getCorso(n));
 						dao.upIscritti(co.getCorso(n).getNome());
 						
-						isIscritto = true;
+						isIscritto[n] = true;
 						
 						co.visuClisCorsi();
 					} else {
@@ -117,7 +121,7 @@ public class ListaCORSI extends JFrame {
 						dao1.deleteIscrizione(clienteAbbonato, co.getCorso(n));
 						dao.dwIscritti(co.getCorso(n).getNome());
 						
-						isIscritto = false;
+						isIscritto[n] = false;
 						
 						co.visuClisCorsi();
 					}
