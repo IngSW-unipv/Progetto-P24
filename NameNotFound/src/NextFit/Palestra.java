@@ -71,7 +71,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 	}
 
-	public void registraDipendente(Dipendente dipendente) {
+	public boolean registraDipendente(Dipendente dipendente) {
 		boolean presenteNelDatabase = false;
 
 		for (int i = 0; i < contatoreD; i++) {
@@ -80,22 +80,31 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 					&& dipendente.getMail().equals(dipendenti[i].getMail())) {
 				presenteNelDatabase = true;
 				System.out.println("Il dipendente è già presente nel database. ");
-				return;
+				return false;
 			}
 		}
+		
+		if (dipendente.getEtà() < 18) {
+	        System.out.println("Il dipendente deve avere almeno 18 anni.");
+	        return false;
+	    }
 
 		if (contatoreD < maxD) {
 			dipendenti[contatoreD] = dipendente;
 			contatoreD++;
 		} else {
 			System.out.println("La palestra non può iscrivere più di " + maxD + " dipendenti. ");
-			return;
+			return false;
 		}
 
 		if (!presenteNelDatabase) {
 			DipendenteDAO dao1 = new DipendenteDAO();
 			dao1.insertDipendente(dipendente);
+			return true;
 		}
+		else
+			return false;
+		
 	}
 
 	public int getMaxC() {
@@ -192,7 +201,8 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		int j = -1;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if (clientiAbbo[i].getCliente().getMail().equals(mail.toLowerCase()) && clientiAbbo[i].getCliente().getNome().equals(nome.toLowerCase())
+			if (clientiAbbo[i].getCliente().getMail().equals(mail.toLowerCase())
+					&& clientiAbbo[i].getCliente().getNome().equals(nome.toLowerCase())
 					&& clientiAbbo[i].getCliente().getCognome().equals(cognome.toLowerCase())) {
 				j = i;
 				break;
@@ -247,4 +257,3 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		return d.getTipo();
 	}
 }
-

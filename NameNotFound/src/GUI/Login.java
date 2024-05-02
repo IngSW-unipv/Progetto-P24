@@ -17,7 +17,7 @@ public class Login extends JFrame {
 	private JTextField mailField;
 	private JButton loginButton;
 	private JPasswordField passwordField;
-	private JLabel pw, mail, NEXTFIT,errorlabel;
+	private JLabel pw, mail, NEXTFIT, errorlabel;
 
 	public Login(Palestra palestra, Proprietario proprietario, Corsi co) {
 
@@ -101,32 +101,38 @@ public class Login extends JFrame {
 				buttonPanel.setBackground(CBACK);
 				buttonPanel.add(loginButton);
 				buttonPanel.add(errorlabel);
-				
+
+				if (mail.equals(proprietario.getMail()) && password.equals(proprietario.getPassword())) {
+					new ProprietarioGui(proprietario, palestra);
+					buttonPanel.remove(errorlabel);
+					panel.add(buttonPanel);
+					panel.revalidate();
+					panel.repaint();
+				}
+
 				if (palestra.esisteCli(mail, password) == true) {
 					new LatoClienteGui(co, palestra.accessoCli(mail, password), palestra);
 					buttonPanel.remove(errorlabel);
 					panel.add(buttonPanel);
 					panel.revalidate();
 					panel.repaint();
-				} if(palestra.esisteDip(mail, password)==true)
-				{
-					if(palestra.accessoDip(mail, password).getTipo().equals("personaltrainer"))
-					{
-					new LatoPTGui(palestra.accessoDip(mail, password),palestra);
-					buttonPanel.remove(errorlabel);
-					panel.add(buttonPanel);
-					panel.revalidate();
-					panel.repaint();
-				}else if(palestra.accessoDip(mail, password).getTipo().equals("corsista"))
-					{
-					new LatoCorsistaGui(palestra.accessoDip(mail, password),palestra);
-					buttonPanel.remove(errorlabel);
-					panel.add(buttonPanel);
-					panel.revalidate();
-					panel.repaint();
+				}
+
+				if (palestra.esisteDip(mail, password) == true) {
+					if (palestra.accessoDip(mail, password).getTipo().equals("personaltrainer")) {
+						new LatoPTGui(palestra.accessoDip(mail, password), palestra);
+						buttonPanel.remove(errorlabel);
+						panel.add(buttonPanel);
+						panel.revalidate();
+						panel.repaint();
+					} else if (palestra.accessoDip(mail, password).getTipo().equals("corsista")) {
+						new LatoCorsistaGui(palestra.accessoDip(mail, password), palestra);
+						buttonPanel.remove(errorlabel);
+						panel.add(buttonPanel);
+						panel.revalidate();
+						panel.repaint();
 					}
-				}else
-				{
+				} else {
 					panel.add(buttonPanel);
 
 					// Aggiorna il pannello

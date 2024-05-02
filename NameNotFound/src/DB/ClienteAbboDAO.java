@@ -41,7 +41,7 @@ public class ClienteAbboDAO {
 				Abbonamenti a = new Abbonamenti("mensile", 0);
 				ClienteAbbonato c1 = new ClienteAbbonato(c0, a);
 				c1.setDataScadenza(LocalDate.parse(rs1.getString(6)));
-				
+
 				p.abbonaCl(c1);
 
 				result.add(c1);
@@ -69,11 +69,38 @@ public class ClienteAbboDAO {
 			st1.setString(3, c.getMail());
 			st1.setInt(4, c.getEtà());
 			st1.setString(5, c.getPassword());
-			st1.setDate(6, java.sql.Date.valueOf(ca.getDataScadenza())); 
+			st1.setDate(6, java.sql.Date.valueOf(ca.getDataScadenza()));
 
-			st1.executeUpdate(); 
+			st1.executeUpdate();
 
 		} catch (Exception e) {
+			e.printStackTrace();
+			esito = false;
+		} finally {
+			DBConnection.closeConnection(conn);
+		}
+
+		return esito;
+	}
+
+	public boolean updateScadenzaAbbonamento(String nome, String cognome, String mail,
+			LocalDate nuovaData) {
+		conn = DBConnection.startConnection(conn, schema);
+
+		PreparedStatement stmt = null;
+		boolean esito = true;
+
+		try {
+			String query = "UPDATE clienti SET scad_abb = ? WHERE nome = ? AND cognome = ? AND mail = ?";
+			stmt = conn.prepareStatement(query);
+			stmt.setDate(1, java.sql.Date.valueOf(nuovaData));
+			stmt.setString(2, nome);
+			stmt.setString(3, cognome);
+			stmt.setString(4, mail);
+
+			int rowsUpdated = stmt.executeUpdate();
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			esito = false;
 		} finally {
