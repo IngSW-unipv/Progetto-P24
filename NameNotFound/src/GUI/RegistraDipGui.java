@@ -153,35 +153,37 @@ public class RegistraDipGui extends JFrame {
 				double stipendio = Double.parseDouble(stipField.getText());
 
 				Dipendente d = palestra.creaDipendente(nome, cognome, mail, password, eta, stipendio, tipo);
-				//palestra.registraDipendente(d);
-				
+				// palestra.registraDipendente(d);
+
 				JPanel buttonPanel = new JPanel();
 				buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 				buttonPanel.setBackground(CBACK);
 				buttonPanel.add(registraButton);
 				buttonPanel.add(errorLabel);
 
-				
-				  if (palestra.registraDipendente(d) == true) {
-				  
-				  buttonPanel.add(registraButton); 
-				  buttonPanel.remove(errorLabel);
-				  panel.add(buttonPanel); 
-				  panel.revalidate(); 
-				  panel.repaint();}
-				  
-				  /*SwingUtilities.invokeLater(new Runnable() { public void run() { // new
+				if (palestra.registraDipendente(d) == true) {
+
+					buttonPanel.add(registraButton);
+					buttonPanel.remove(errorLabel);
+					panel.add(buttonPanel);
+					panel.revalidate();
+					panel.repaint();
+				}
+
+				/*
+				 * SwingUtilities.invokeLater(new Runnable() { public void run() { // new
 				 * LatoClienteGui(co, cliente, palestra); //new AbbonamentoGui(cliente,
-				 * proprietario, palestra); } }); }*/ else {
-				 /* 
-				 * panel.add(buttonPanel);
-				 * 
-				 */ // Aggiorna il pannello 
-				  panel.revalidate(); 
-				  panel.repaint();
-				
-				  }
-				 
+				 * proprietario, palestra); } }); }
+				 */ else {
+
+					panel.add(buttonPanel);
+
+					// Aggiorna il pannello
+					panel.revalidate();
+					panel.repaint();
+
+				}
+
 			}
 		});
 		panel.add(registraButton);

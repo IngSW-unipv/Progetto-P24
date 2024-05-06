@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 import DB.ClienteAbboDAO;
 import NextFit.Cliente;
 import NextFit.ClienteAbbonato;
+import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
 
@@ -28,9 +29,8 @@ public class AbbonamentoGui extends JFrame {
 	private JButton mensile, semestrale, annuale;
 	private JLabel AB, attenzione;
 
-	public AbbonamentoGui(Cliente c, Proprietario p, Palestra pa) {
+	public AbbonamentoGui(Cliente c, Proprietario p, Palestra pa, Corsi co) {
 		setTitle("scelta abbonamenti");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -75,6 +75,10 @@ public class AbbonamentoGui extends JFrame {
 				dao0.insertCliente(c, ca);
 
 				pa.abbonaCl(ca);
+				ca.visuClAbb(ca);
+				
+				new LatoClienteGui(co, ca, pa);
+				dispose();
 			}
 		});
 
@@ -89,7 +93,9 @@ public class AbbonamentoGui extends JFrame {
 
 				pa.abbonaCl(ca);
 				ca.visuClAbb(ca);
-
+				
+				new LatoClienteGui(co, ca, pa);
+				dispose();
 			}
 		});
 
@@ -103,6 +109,10 @@ public class AbbonamentoGui extends JFrame {
 				dao0.insertCliente(c, ca);
 
 				pa.abbonaCl(ca);
+				ca.visuClAbb(ca);
+				
+				new LatoClienteGui(co, ca, pa);
+				dispose();
 			}
 		});
 

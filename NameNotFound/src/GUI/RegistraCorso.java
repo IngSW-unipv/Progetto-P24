@@ -1,28 +1,38 @@
 package GUI;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import NextFit.Cliente;
 import NextFit.Corsi;
+import NextFit.Corso;
+import NextFit.Dipendente;
 import NextFit.Palestra;
-import NextFit.Proprietario;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-public class PalestraGui extends JFrame {
-	private JTextField nomeField, cognomeField, mailField, etaField;
+public class RegistraCorso extends JFrame {
+	private JTextField nomeCField, nomeField, cognomeField, maxField;
 	private JButton registraButton;
-	private JPasswordField passwordField;
-	private JLabel nome, cognome, pw, eta, mail, NEXTFIT, errorLabel;
+	private JLabel nomeC, nome, cognome, maxis, NEXTFIT, errorLabel;
 
-	public PalestraGui(Palestra palestra, Proprietario proprietario, Corsi co) {
+	public RegistraCorso(Corsi corsi, Palestra palestra) {
 
-		setTitle("Registrazione Cliente Palestra");
+		setTitle("Registrazione Corso");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -38,21 +48,18 @@ public class PalestraGui extends JFrame {
 
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
+		nomeCField = new JTextField();
+		nomeCField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+		nomeCField.setForeground(Color.white);
 		nomeField = new JTextField();
 		nomeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 		nomeField.setForeground(Color.white);
 		cognomeField = new JTextField();
 		cognomeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 		cognomeField.setForeground(Color.white);
-		mailField = new JTextField();
-		mailField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-		mailField.setForeground(Color.white);
-		etaField = new JTextField();
-		etaField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-		etaField.setForeground(Color.white);
-		passwordField = new JPasswordField();
-		passwordField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-		passwordField.setForeground(Color.white);
+		maxField = new JTextField();
+		maxField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+		maxField.setForeground(Color.white);
 
 		Color CBUT = new Color(40, 40, 40);
 
@@ -60,28 +67,28 @@ public class PalestraGui extends JFrame {
 				new EmptyBorder(0, 10, 0, 10) // Margine interno
 		);
 
+		nomeCField.setBorder(roundedBorder);
+		nomeCField.setBackground(CBUT);
 		nomeField.setBorder(roundedBorder);
 		nomeField.setBackground(CBUT);
 		cognomeField.setBorder(roundedBorder);
 		cognomeField.setBackground(CBUT);
-		mailField.setBorder(roundedBorder);
-		mailField.setBackground(CBUT);
-		etaField.setBorder(roundedBorder);
-		etaField.setBackground(CBUT);
-		passwordField.setBorder(roundedBorder);
-		passwordField.setBackground(CBUT);
+		maxField.setBorder(roundedBorder);
+		maxField.setBackground(CBUT);
 
-		nome = new JLabel("Nome:");
+		nomeC = new JLabel("Nome Corso:");
+		nomeC.setForeground(Color.white);
+		nome = new JLabel("Nome Corsista:");
 		nome.setForeground(Color.white);
-		cognome = new JLabel("Cognome:");
+		cognome = new JLabel("Cognome Corsista:");
 		cognome.setForeground(Color.white);
-		eta = new JLabel("Età:");
-		eta.setForeground(Color.white);
-		mail = new JLabel("Email:");
-		mail.setForeground(Color.white);
-		pw = new JLabel("Password:");
-		pw.setForeground(Color.white);
+		maxis = new JLabel("Numero max iscritti:");
+		maxis.setForeground(Color.white);
 
+		panel.add(nomeC);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		panel.add(nomeCField);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(nome);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(nomeField);
@@ -90,43 +97,42 @@ public class PalestraGui extends JFrame {
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(cognomeField);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		panel.add(mail);
+		panel.add(maxis);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		panel.add(mailField);
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		panel.add(eta);
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		panel.add(etaField);
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		panel.add(pw);
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		panel.add(passwordField);
+		panel.add(maxField);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
 		Color or = new Color(250, 140, 0);
 
-		JLabel errorLabel = new JLabel("*Errore: minorenne o Cliente già presente");
+		JLabel errorLabel = new JLabel("*Errore corso già esistente o Corsista non trovato. ");
 		errorLabel.setForeground(Color.RED);
 
-		registraButton = new JButton("Registrati");
+		registraButton = new JButton("Registra Corso");
 
 		registraButton.setBackground(or);
 		registraButton.setFont(new Font("Arial", Font.BOLD, 13));
-		registraButton.setMaximumSize(new Dimension(100, 30));
+		registraButton.setMaximumSize(new Dimension(120, 30));
 		registraButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
 		registraButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String ncorso = nomeCField.getText();
 				String nome = nomeField.getText();
 				String cognome = cognomeField.getText();
-				String mail = mailField.getText();
-				String password = new String(passwordField.getPassword());
-				int eta = Integer.parseInt(etaField.getText());
-				Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
+				int max = Integer.parseInt(maxField.getText());
+
+				Dipendente d = palestra.ricercaDip(nome, cognome);
+
+				if (d.getTipo().equals("corsista")) {
+					Corso corso = new Corso(ncorso, d, max, 0);
+					corsi.aggCorsi(corso);
+				}
+				
+				corsi.visuCorsi();
 
 				JPanel buttonPanel = new JPanel();
 				buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -134,20 +140,12 @@ public class PalestraGui extends JFrame {
 				buttonPanel.add(registraButton);
 				buttonPanel.add(errorLabel);
 
-				if (palestra.registraCliente(cliente) == true) {
-
+				if (corsi.ricercaCorso(ncorso, d) != null) {
 					buttonPanel.add(registraButton);
 					buttonPanel.remove(errorLabel);
 					panel.add(buttonPanel);
 					panel.revalidate();
 					panel.repaint();
-
-					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
-							// new LatoClienteGui(co, cliente, palestra);
-							new AbbonamentoGui(cliente, proprietario, palestra, co);
-						}
-					});
 				} else {
 
 					panel.add(buttonPanel);
@@ -157,6 +155,7 @@ public class PalestraGui extends JFrame {
 					panel.repaint();
 
 				}
+
 			}
 		});
 		panel.add(registraButton);
@@ -167,5 +166,4 @@ public class PalestraGui extends JFrame {
 		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
 		setVisible(true);
 	}
-
 }

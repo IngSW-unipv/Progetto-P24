@@ -103,7 +103,7 @@ public class Login extends JFrame {
 				buttonPanel.add(errorlabel);
 
 				if (mail.equals(proprietario.getMail()) && password.equals(proprietario.getPassword())) {
-					new ProprietarioGui(proprietario, palestra);
+					new ProprietarioGui(proprietario, palestra, co);
 					buttonPanel.remove(errorlabel);
 					panel.add(buttonPanel);
 					panel.revalidate();

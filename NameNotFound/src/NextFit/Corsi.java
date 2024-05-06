@@ -54,7 +54,7 @@ public class Corsi {
 		}
 	}
 
-	public Corso ricercaCorso(String nomeCorso, Corsista cr) {
+	public Corso ricercaCorso(String nomeCorso, Dipendente cr) {
 		for (int i = 0; i < c; i++) {
 			Corso corso = corsi[i];
 			if (corso.getNome().equalsIgnoreCase(nomeCorso) && corso.getCorsista().equals(cr)) {
