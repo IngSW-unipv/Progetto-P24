@@ -136,4 +136,13 @@ public class Corsi {
 		}
 		return null; // Se l'iscritto non è trovato
 	}
+	
+	public boolean iscorsoPresente(Corso corso) {
+	    for (IscrittoalCorso iscritto : iscritti) {
+	        if (iscritto.getCorso().equals(corso)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
 }

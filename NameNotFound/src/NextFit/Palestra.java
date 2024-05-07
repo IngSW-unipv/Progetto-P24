@@ -144,6 +144,25 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		return dip[n];
 	}
 
+	public Dipendente getDIP2(int n) {
+		Dipendente[] dip;
+		dip = new Dipendente[contatoreD];
+		int j = 0;
+		for (int i = 0; i < contatoreD; i++) {
+			
+				dip[j] = dipendenti[i];
+				j++;
+			
+		}
+		return dip[n];
+	}
+	
+
+	public int getD()
+	{
+		return contatoreD;
+	}
+	
 	public int contaDip(String tipo) {
 		int j = 0;
 		for (int i = 0; i < contatoreD; i++) {

@@ -25,12 +25,19 @@ import NextFit.Proprietario;
 
 public class ProprietarioGui extends JFrame {
 
-	private JButton RD, RC;
+	private JButton RD, RC,EC,ED;
 	private JLabel NEXTFIT;
+	private ElimDipGui elimdip;
+	private ElimCorsoGui elimc;
 
 	public ProprietarioGui(Proprietario proprietario, Palestra palestra, Corsi corsi) {
 		setTitle("Pagina principale");
-
+		
+		elimdip=new ElimDipGui(palestra,corsi,this);
+		elimdip.setVisible(false);
+		elimc=new ElimCorsoGui(corsi,palestra,this);
+		elimc.setVisible(false);
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -80,6 +87,40 @@ public class ProprietarioGui extends JFrame {
 			}
 		});
 		panel.add(RC);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		ED = new JButton("Elimina dipendente");
+
+		ED.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		ED.setBackground(CBUT);
+		ED.setFont(new Font("Rockwell", Font.BOLD, 20));
+		ED.setForeground(Color.white);
+
+		ED.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				elimdip.setVisible(true);
+				dispose(); // Chiude la finestra corrente
+
+			}
+		});
+		panel.add(ED);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		EC = new JButton("Elimina Corso");
+
+		EC.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		EC.setBackground(CBUT);
+		EC.setFont(new Font("Rockwell", Font.BOLD, 20));
+		EC.setForeground(Color.white);
+
+		EC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				elimc.setVisible(true);
+				dispose(); // Chiude la finestra corrente
+
+			}
+		});
+		panel.add(EC);
 
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 

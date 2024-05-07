@@ -119,5 +119,35 @@ public class IscrittoalcorsoDAO {
 
 		return esito;
 	}
+	
+	public boolean deleteIscrizione1(String nomeCorso, String nomeCorsista, String cognomeCorsista) {
+        conn = DBConnection.startConnection(conn, schema);
+
+        PreparedStatement st1;
+
+        boolean esito = true;
+
+        try {
+            String query = "DELETE FROM iscrizioni_corsi WHERE corso_nome = ? AND corso_istruttore_nome = ? AND corso_istruttore_cognome = ?";
+            st1 = conn.prepareStatement(query);
+            st1.setString(1, nomeCorso);
+            st1.setString(2, nomeCorsista);
+            st1.setString(3, cognomeCorsista);
+
+            int rowsAffected = st1.executeUpdate();
+            if (rowsAffected == 0) {
+                System.out.println("Nessuna riga eliminata. Potrebbe non esistere un'iscrizione corrispondente.");
+            } else {
+                System.out.println("Iscrizione eliminata con successo.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            esito = false;
+        } finally {
+            DBConnection.closeConnection(conn);
+        }
+
+        return esito;
+    }
 
 }
