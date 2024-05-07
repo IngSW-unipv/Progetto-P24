@@ -41,6 +41,31 @@ public class Corsi {
 			dao2.insertCorso(corso);
 		}
 	}
+	
+	public void eliminaCorso(String nomeCorso, Dipendente dip) {
+	    // Cerca il corso da eliminare utilizzando il metodo ricercaCorso
+	    Corso corsoDaEliminare = ricercaCorso(nomeCorso, dip);
+	    if (corsoDaEliminare != null) {
+	        // Trovato il corso da eliminare
+	        for (int i = 0; i < c; i++) {
+	            if (corsoDaEliminare.equals(corsi[i])) {
+	                // Sposta gli elementi successivi nel vettore per riempire il vuoto
+	                for (int j = i; j < c - 1; j++) {
+	                    corsi[j] = corsi[j + 1];
+	                }
+	                // Rimuove l'ultimo elemento del vettore (che ora è duplicato)
+	                corsi[c - 1] = null;
+	                c--; // Decrementa il contatore
+	                System.out.println("Corso eliminato con successo.");
+	                return; // Esci dal metodo dopo aver eliminato il corso
+	            }
+	        }
+	    } else {
+	        // Se il corso non è stato trovato nel vettore
+	        System.out.println("Il corso da eliminare non è presente.");
+	    }
+	}
+
 
 	public int getC() {
 		return c;

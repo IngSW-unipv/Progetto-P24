@@ -42,7 +42,7 @@ public class IscrittoalcorsoDAO {
 
 			while (rs1.next()) {
 				ClienteAbbonato ca = p.ricercaCli(rs1.getString(3), rs1.getString(1), rs1.getString(2));
-				Corsista cr = (Corsista) p.ricercaDip(rs1.getString(5), rs1.getString(6));
+				Corsista cr = (Corsista) p.ricercaCorsista(rs1.getString(5), rs1.getString(6));
 				Corso co = c.ricercaCorso(rs1.getString(4), cr);
 
 				c.iscalCorso(ca, co);

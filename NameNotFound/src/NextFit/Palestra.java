@@ -154,7 +154,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		return j;
 	}
 
-	public Dipendente ricercaDip(String nome, String cognome) {
+	public Dipendente ricercaCorsista(String nome, String cognome) {
 		Dipendente d = null;
 		for (int i = 0; i < contatoreD; i++) {
 			if (nome.toLowerCase().equals(dipendenti[i].getNome())
@@ -164,6 +164,40 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			}
 		}
 		return d;
+	}
+	
+	public Dipendente ricercaDip(String nome, String cognome, String mail) {
+		Dipendente d = null;
+		for (int i = 0; i < contatoreD; i++) {
+			if (nome.toLowerCase().equals(dipendenti[i].getNome())
+					&& cognome.toLowerCase().equals(dipendenti[i].getCognome())
+					&& mail.toLowerCase().equals(dipendenti[i].getMail())) {
+				d = dipendenti[i];
+				break;
+			}
+		}
+		return d;
+	}
+	
+	public void eliDip(String nome, String cognome, String mail) {
+	    Dipendente dipToDelete = ricercaDip(nome, cognome, mail);
+	    if (dipToDelete != null) {
+	        for (int i = 0; i < contatoreD; i++) {
+	            if (dipendenti[i] == dipToDelete) {
+	                // Rimuovi il dipendente spostando gli elementi successivi
+	                for (int j = i; j < contatoreD - 1; j++) {
+	                    dipendenti[j] = dipendenti[j + 1];
+	                }
+	                // Rimuovi l'ultimo elemento e decrementa il contatore
+	                dipendenti[contatoreD - 1] = null;
+	                contatoreD--;
+	                System.out.println("Dipendente eliminato: " + nome + " " + cognome);
+	                return;
+	            }
+	        }
+	    } else {
+	        System.out.println("Il dipendente " + nome + " " + cognome + " non è presente nella lista.");
+	    }
 	}
 
 	public void abbonaCl(ClienteAbbonato ca) {

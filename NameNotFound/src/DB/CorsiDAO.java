@@ -36,7 +36,7 @@ public class CorsiDAO {
 
 			while (rs1.next()) {
 
-				Dipendente d = p.ricercaDip(rs1.getString(2), rs1.getString(3));
+				Dipendente d = p.ricercaCorsista(rs1.getString(2), rs1.getString(3));
 				Corso c0 = new Corso(rs1.getString(1), d, Integer.parseInt(rs1.getString(4)),
 						Integer.parseInt(rs1.getString(5)));
 				c.aggCorsi(c0);
@@ -99,6 +99,31 @@ public class CorsiDAO {
 		return false;
 	}
 
+	public boolean deleteCorso(String nomeCorso, String nomeCorsista, String cognomeCorsista, Corsi corsi, Palestra p) {
+	    conn = DBConnection.startConnection(conn, schema);
+	    PreparedStatement st1;
+	    boolean esito = true;
+
+	    try {
+	        String query = "DELETE FROM corsi WHERE nome_corso = ? AND nome_corsista = ? AND cognome_corsista = ?";
+	        st1 = conn.prepareStatement(query);
+	        st1.setString(1, nomeCorso);
+	        st1.setString(2, nomeCorsista);
+	        st1.setString(3, cognomeCorsista);
+	        st1.executeUpdate();
+	        
+	        corsi.eliminaCorso(nomeCorso, p.ricercaCorsista(nomeCorsista, cognomeCorsista));
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        esito = false;
+	    } finally {
+	        DBConnection.closeConnection(conn);
+	    }
+
+	    return esito;
+	}
+	
 	public boolean upIscritti(String nomeCorso) {
 		conn = DBConnection.startConnection(conn, schema);
 		PreparedStatement st1;

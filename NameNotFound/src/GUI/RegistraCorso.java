@@ -125,7 +125,7 @@ public class RegistraCorso extends JFrame {
 				String cognome = cognomeField.getText();
 				int max = Integer.parseInt(maxField.getText());
 
-				Dipendente d = palestra.ricercaDip(nome, cognome);
+				Dipendente d = palestra.ricercaCorsista(nome, cognome);
 
 				if (d.getTipo().equals("corsista")) {
 					Corso corso = new Corso(ncorso, d, max, 0);

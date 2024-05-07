@@ -43,7 +43,7 @@ public class RegistraDipGui extends JFrame {
 
 		nomeField.setForeground(Color.white);
 		cognomeField = new JTextField();
-		
+
 		cognomeField.setForeground(Color.white);
 		mailField = new JTextField();
 
@@ -51,14 +51,11 @@ public class RegistraDipGui extends JFrame {
 		etaField = new JTextField();
 
 		etaField.setForeground(Color.white);
-		
 
-		String[] options = {"PersonalTrainer", "Corsista", "Dietista"};
+		String[] options = { "PersonalTrainer", "Corsista", "Dietista" };
 		JComboBox<String> tipoField = new JComboBox<>(options);
 		tipoField.setForeground(Color.white);
-		
-	
-		
+
 		passwordField = new JPasswordField();
 
 		passwordField.setForeground(Color.white);
@@ -102,8 +99,6 @@ public class RegistraDipGui extends JFrame {
 		stipendio = new JLabel("Stipendio:");
 		stipendio.setForeground(Color.white);
 
-		
-		
 		panel.add(nome);
 		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(nomeField);
@@ -160,43 +155,39 @@ public class RegistraDipGui extends JFrame {
 				double stipendio = Double.parseDouble(stipField.getText());
 
 				Dipendente d = palestra.creaDipendente(nome, cognome, mail, password, eta, stipendio, tipo);
-				//palestra.registraDipendente(d);
-				
+				// palestra.registraDipendente(d);
+
 				JPanel buttonPanel = new JPanel();
 				buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 				buttonPanel.setBackground(CBACK);
 				buttonPanel.add(registraButton);
 				buttonPanel.add(errorLabel);
 
-				
-				  if (palestra.registraDipendente(d) == true) {
-				  
-				  buttonPanel.add(registraButton); 
-				  buttonPanel.remove(errorLabel);
-				  panel.add(buttonPanel); 
-				  panel.revalidate(); 
-				  panel.repaint();}
-				  
-			/*	  SwingUtilities.invokeLater(new Runnable() { public void run() { // new
-				 LatoClienteGui(co, cliente, palestra); //new AbbonamentoGui(cliente,
-				 proprietario, palestra); } }); }*/ else {
-				  
-				 panel.add(buttonPanel);
-				// Aggiorna il pannello 
-				  panel.revalidate(); 
-				  panel.repaint();
-				
-				  }
-				 
+				if (palestra.registraDipendente(d) == true) {
+
+					buttonPanel.add(registraButton);
+					buttonPanel.remove(errorLabel);
+					panel.add(buttonPanel);
+					panel.revalidate();
+					panel.repaint();
+				}
+
+				else {
+
+					panel.add(buttonPanel);
+					// Aggiorna il pannello
+					panel.revalidate();
+					panel.repaint();
+
+				}
+
 			}
-		}); 
-		
+		});
+
 		panel.add(registraButton);
 
 		getContentPane().add(panel, BorderLayout.CENTER);
 
-		
-		
 		setSize(480, 640); // Impostiamo le dimensioni della finestra
 		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
 		setVisible(true);
