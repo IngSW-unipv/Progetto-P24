@@ -25,19 +25,16 @@ import NextFit.Proprietario;
 
 public class ProprietarioGui extends JFrame {
 
-	private JButton RD, RC,EC,ED;
+	private JButton RD, RC, EC, ED;
 	private JLabel NEXTFIT;
 	private ElimDipGui elimdip;
 	private ElimCorsoGui elimc;
+	private ProprietarioGui pg;
 
 	public ProprietarioGui(Proprietario proprietario, Palestra palestra, Corsi corsi) {
 		setTitle("Pagina principale");
-		
-		elimdip=new ElimDipGui(palestra,corsi,this);
-		elimdip.setVisible(false);
-		elimc=new ElimCorsoGui(corsi,palestra,this);
-		elimc.setVisible(false);
-		
+
+		pg = this;
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -96,9 +93,10 @@ public class ProprietarioGui extends JFrame {
 		ED.setForeground(Color.white);
 
 		ED.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				elimdip.setVisible(true);
+				new ElimDipGui(palestra, corsi, pg);
 				dispose(); // Chiude la finestra corrente
 
 			}
@@ -115,7 +113,7 @@ public class ProprietarioGui extends JFrame {
 		EC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				elimc.setVisible(true);
+				elimc = new ElimCorsoGui(corsi, palestra, pg);
 				dispose(); // Chiude la finestra corrente
 
 			}

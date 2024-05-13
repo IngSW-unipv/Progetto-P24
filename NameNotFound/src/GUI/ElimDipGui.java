@@ -30,11 +30,10 @@ public class ElimDipGui extends JFrame {
 	private JButton back;
 	private JLabel DIPENDENTI;
 
-	public ElimDipGui(Palestra p,Corsi co,ProprietarioGui parent) {
+	public ElimDipGui(Palestra p, Corsi co, ProprietarioGui parent) {
 		setTitle("Interfaccia dipendenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
 		gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel
 		gridLayout.setVgap(10);
@@ -64,48 +63,52 @@ public class ElimDipGui extends JFrame {
 		panel.add(new JLabel());
 
 		for (int i = 0; i <= p.getD() - 1; i++) {
-			JButton button = new JButton(p.getDIP2(i).getNome()+" "+p.getDIP2(i).getCognome());
-			int n = i;
+			final int n = i;
+
+			JButton button = new JButton(p.getDIP2(i).getNome() + " " + p.getDIP2(i).getCognome());
+
 			button.setBackground(CBUT);
 			button.setPreferredSize(new Dimension(200, 100));
 			button.setFont(new Font("Rockwell", Font.BOLD, 20));
 			button.setForeground(Color.white);
 			dipButtons.add(button);
-			panel.add(button);		
+			panel.add(button);
 			button.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DipendenteDAO dipdao=new DipendenteDAO();
-					IscrittoalcorsoDAO idao=new IscrittoalcorsoDAO();
-					CorsiDAO cdao=new CorsiDAO();
-					
-					if(p.getDIP2(n).getTipo().equals("corsista"))
-					{
-						for(int j=0;j<co.getC();j++)
-						{
-							if(p.getDIP2(n).equals(co.getCorso(j).getCorsista()))
-							{
-								if(co.iscorsoPresente(co.getCorso(j)))
-								{
-									idao.deleteIscrizione1(co.getCorso(j).getNome(), p.getDIP2(n).getNome(), p.getDIP2(n).getCognome());
+					DipendenteDAO dipdao = new DipendenteDAO();
+					IscrittoalcorsoDAO idao = new IscrittoalcorsoDAO();
+					CorsiDAO cdao = new CorsiDAO();
+
+					if (p.getDIP2(n).getTipo().equals("corsista")) {
+						for (int j = 0; j < co.getC(); j++) {
+							if (p.getDIP2(n).equals(co.getCorso(j).getCorsista())) {
+								if (co.iscorsoPresente(co.getCorso(j))) {
+									idao.deleteIscrizione1(co.getCorso(j).getNome(), p.getDIP2(n).getNome(),
+											p.getDIP2(n).getCognome());
 								}
-								cdao.deleteCorso(co.getCorso(j).getNome(), p.getDIP2(n).getNome(), p.getDIP2(n).getCognome(), co, p);
+								cdao.deleteCorso(co.getCorso(j).getNome(), p.getDIP2(n).getNome(),
+										p.getDIP2(n).getCognome(), co, p);
 							}
 						}
 						dipdao.eliminaDip(p.getDIP2(n).getNome(), p.getDIP2(n).getCognome(), p.getDIP2(n).getMail(), p);
+
 						panel.remove(button);
-					}else
-					{
+						panel.revalidate();
+						panel.repaint();
+					} else {
 						dipdao.eliminaDip(p.getDIP2(n).getNome(), p.getDIP2(n).getCognome(), p.getDIP2(n).getMail(), p);
+
 						panel.remove(button);
+						panel.revalidate();
+						panel.repaint();
 					}
 
 				}
 			});
 
 		}
-		
 
 		back.addActionListener(new ActionListener() {
 			@Override

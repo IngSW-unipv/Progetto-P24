@@ -126,7 +126,7 @@ public class Login extends JFrame {
 						panel.revalidate();
 						panel.repaint();
 					} else if (palestra.accessoDip(mail, password).getTipo().equals("corsista")) {
-						new LatoCorsistaGui(palestra.accessoDip(mail, password), palestra);
+						new LatoCorsistaGui(palestra.accessoDip(mail, password), palestra, co);
 						buttonPanel.remove(errorlabel);
 						panel.add(buttonPanel);
 						panel.revalidate();

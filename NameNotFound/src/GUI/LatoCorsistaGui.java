@@ -22,62 +22,72 @@ import NextFit.Palestra;
 import NextFit.PersonalTrainer;
 
 public class LatoCorsistaGui extends JFrame {
-	private JButton LC;
+	private JButton LC, LP;
 	private JLabel NEXTFIT;
-	
+	private LatoCorsistaGui lcg;
 
-		
-		public LatoCorsistaGui(Dipendente dipendente,Palestra palestra) {
-	setTitle("Pagina principale");
+	public LatoCorsistaGui(Dipendente dipendente, Palestra palestra, Corsi corsi) {
+		lcg = this;
 
-	
+		setTitle("Pagina principale");
 
-	JPanel panel = new JPanel();
-	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-	Color CBACK = new Color(28, 28, 28);
+		Color CBACK = new Color(28, 28, 28);
 
-	panel.setBackground(CBACK);
+		panel.setBackground(CBACK);
 
-	NEXTFIT = new JLabel("<html><font color='orange'>NEXT</font><font color='white'>FIT</font></html>");
-	NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
+		NEXTFIT = new JLabel("<html><font color='orange'>NEXT</font><font color='white'>FIT</font></html>");
+		NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
 
-	panel.add(NEXTFIT);
+		panel.add(NEXTFIT);
 
-	panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-	LC = new JButton("Lista corsi");
+		LC = new JButton("Lista corsi");
 
-	Color CBUT = new Color(40, 40, 40);
+		Color CBUT = new Color(40, 40, 40);
 
-	LC.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
-	LC.setBackground(CBUT);
-	LC.setFont(new Font("Rockwell", Font.BOLD, 20));
-	LC.setForeground(Color.white);
+		LC.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		LC.setBackground(CBUT);
+		LC.setFont(new Font("Rockwell", Font.BOLD, 20));
+		LC.setForeground(Color.white);
 
-	LC.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
+		LC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// qui apre la lista dei suoi corsi, dove poi scegliendo il corso che vuole apre ListaIsCorsiGui
+			}
+		});
+		panel.add(LC);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-			
+		LP = new JButton("Lista iscritti al corso");
 
-		}
-	});
-	panel.add(LC);
-	panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		LP.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		LP.setBackground(CBUT);
+		LP.setFont(new Font("Rockwell", Font.BOLD, 20));
+		LP.setForeground(Color.white);
 
-	getContentPane().add(panel, BorderLayout.CENTER);
-	
+		LP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ListaIsCorsiGui(dipendente, corsi, lcg);
+			}
+		});
+		panel.add(LP);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-	panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		getContentPane().add(panel, BorderLayout.CENTER);
 
-	getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-	setSize(480, 640);
-	setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
-	setVisible(true);
+		getContentPane().add(panel, BorderLayout.CENTER);
+
+		setSize(480, 640);
+		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
+		setVisible(true);
+	}
+
 }
-	
-}
-
-

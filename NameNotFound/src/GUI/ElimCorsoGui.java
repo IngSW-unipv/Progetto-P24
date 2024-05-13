@@ -30,10 +30,9 @@ public class ElimCorsoGui extends JFrame {
 	private JButton back;
 	private JLabel CORSI;
 
-	public ElimCorsoGui(Corsi co,Palestra p,ProprietarioGui parent) {
+	public ElimCorsoGui(Corsi co, Palestra p, ProprietarioGui parent) {
 		setTitle("Interfaccia Corsi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
 		gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel
@@ -64,28 +63,33 @@ public class ElimCorsoGui extends JFrame {
 		panel.add(new JLabel());
 
 		for (int i = 0; i <= co.getC() - 1; i++) {
+			final int n = i;
+
 			JButton button = new JButton(co.getCorso(i).getNome());
-			int n = i;
+
 			button.setBackground(CBUT);
 			button.setPreferredSize(new Dimension(200, 100));
 			button.setFont(new Font("Rockwell", Font.BOLD, 20));
 			button.setForeground(Color.white);
 			coursesButtons.add(button);
-			panel.add(button);		
+			panel.add(button);
 			button.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					IscrittoalcorsoDAO idao=new IscrittoalcorsoDAO();
-					CorsiDAO cdao=new CorsiDAO();
-					
-					if(co.iscorsoPresente(co.getCorso(n)))
-					{
-						idao.deleteIscrizione1(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(), co.getCorso(n).getCorsista().getCognome());
+
+					IscrittoalcorsoDAO idao = new IscrittoalcorsoDAO();
+					CorsiDAO cdao = new CorsiDAO();
+
+					if (co.iscorsoPresente(co.getCorso(n))) {
+						idao.deleteIscrizione1(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
+								co.getCorso(n).getCorsista().getCognome());
 					}
-					cdao.deleteCorso(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),co.getCorso(n).getCorsista().getCognome(), co, p);
-					
+					cdao.deleteCorso(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
+							co.getCorso(n).getCorsista().getCognome(), co, p);
+					panel.remove(button);
+					panel.revalidate();
+					panel.repaint();
 
 				}
 			});

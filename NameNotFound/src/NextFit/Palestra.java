@@ -83,11 +83,11 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 				return false;
 			}
 		}
-		
+
 		if (dipendente.getEtà() < 18) {
-	        System.out.println("Il dipendente deve avere almeno 18 anni.");
-	        return false;
-	    }
+			System.out.println("Il dipendente deve avere almeno 18 anni.");
+			return false;
+		}
 
 		if (contatoreD < maxD) {
 			dipendenti[contatoreD] = dipendente;
@@ -101,10 +101,9 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 			DipendenteDAO dao1 = new DipendenteDAO();
 			dao1.insertDipendente(dipendente);
 			return true;
-		}
-		else
+		} else
 			return false;
-		
+
 	}
 
 	public int getMaxC() {
@@ -149,20 +148,18 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		dip = new Dipendente[contatoreD];
 		int j = 0;
 		for (int i = 0; i < contatoreD; i++) {
-			
-				dip[j] = dipendenti[i];
-				j++;
-			
+
+			dip[j] = dipendenti[i];
+			j++;
+
 		}
 		return dip[n];
 	}
-	
 
-	public int getD()
-	{
+	public int getD() {
 		return contatoreD;
 	}
-	
+
 	public int contaDip(String tipo) {
 		int j = 0;
 		for (int i = 0; i < contatoreD; i++) {
@@ -184,7 +181,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 		return d;
 	}
-	
+
 	public Dipendente ricercaDip(String nome, String cognome, String mail) {
 		Dipendente d = null;
 		for (int i = 0; i < contatoreD; i++) {
@@ -197,26 +194,26 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 		return d;
 	}
-	
+
 	public void eliDip(String nome, String cognome, String mail) {
-	    Dipendente dipToDelete = ricercaDip(nome, cognome, mail);
-	    if (dipToDelete != null) {
-	        for (int i = 0; i < contatoreD; i++) {
-	            if (dipendenti[i] == dipToDelete) {
-	                // Rimuovi il dipendente spostando gli elementi successivi
-	                for (int j = i; j < contatoreD - 1; j++) {
-	                    dipendenti[j] = dipendenti[j + 1];
-	                }
-	                // Rimuovi l'ultimo elemento e decrementa il contatore
-	                dipendenti[contatoreD - 1] = null;
-	                contatoreD--;
-	                System.out.println("Dipendente eliminato: " + nome + " " + cognome);
-	                return;
-	            }
-	        }
-	    } else {
-	        System.out.println("Il dipendente " + nome + " " + cognome + " non è presente nella lista.");
-	    }
+		Dipendente dipToDelete = ricercaDip(nome, cognome, mail);
+		if (dipToDelete != null) {
+			for (int i = 0; i < contatoreD; i++) {
+				if (dipendenti[i] == dipToDelete) {
+					// Rimuovi il dipendente spostando gli elementi successivi
+					for (int j = i; j < contatoreD - 1; j++) {
+						dipendenti[j] = dipendenti[j + 1];
+					}
+					// Rimuovi l'ultimo elemento e decrementa il contatore
+					dipendenti[contatoreD - 1] = null;
+					contatoreD--;
+					System.out.println("Dipendente eliminato: " + nome + " " + cognome);
+					return;
+				}
+			}
+		} else {
+			System.out.println("Il dipendente " + nome + " " + cognome + " non è presente nella lista.");
+		}
 	}
 
 	public void abbonaCl(ClienteAbbonato ca) {

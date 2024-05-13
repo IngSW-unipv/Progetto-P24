@@ -23,6 +23,16 @@ public class Corsi {
 		return corso;
 	}
 
+	public Corso getCorsodalCorsista(Dipendente d) {
+		Corso corso = null;
+		for (int i = 0; i < c; i++) {
+			if (d.equals(corsi[i].getCorsista())) {
+				corso = corsi[i];
+			}
+		}
+		return corso;
+	}
+
 	public void aggCorsi(Corso corso) {
 		boolean corsoEsistente = false;
 		for (int i = 0; i < c; i++) {
@@ -41,31 +51,30 @@ public class Corsi {
 			dao2.insertCorso(corso);
 		}
 	}
-	
-	public void eliminaCorso(String nomeCorso, Dipendente dip) {
-	    // Cerca il corso da eliminare utilizzando il metodo ricercaCorso
-	    Corso corsoDaEliminare = ricercaCorso(nomeCorso, dip);
-	    if (corsoDaEliminare != null) {
-	        // Trovato il corso da eliminare
-	        for (int i = 0; i < c; i++) {
-	            if (corsoDaEliminare.equals(corsi[i])) {
-	                // Sposta gli elementi successivi nel vettore per riempire il vuoto
-	                for (int j = i; j < c - 1; j++) {
-	                    corsi[j] = corsi[j + 1];
-	                }
-	                // Rimuove l'ultimo elemento del vettore (che ora è duplicato)
-	                corsi[c - 1] = null;
-	                c--; // Decrementa il contatore
-	                System.out.println("Corso eliminato con successo.");
-	                return; // Esci dal metodo dopo aver eliminato il corso
-	            }
-	        }
-	    } else {
-	        // Se il corso non è stato trovato nel vettore
-	        System.out.println("Il corso da eliminare non è presente.");
-	    }
-	}
 
+	public void eliminaCorso(String nomeCorso, Dipendente dip) {
+		// Cerca il corso da eliminare utilizzando il metodo ricercaCorso
+		Corso corsoDaEliminare = ricercaCorso(nomeCorso, dip);
+		if (corsoDaEliminare != null) {
+			// Trovato il corso da eliminare
+			for (int i = 0; i < c; i++) {
+				if (corsoDaEliminare.equals(corsi[i])) {
+					// Sposta gli elementi successivi nel vettore per riempire il vuoto
+					for (int j = i; j < c - 1; j++) {
+						corsi[j] = corsi[j + 1];
+					}
+					// Rimuove l'ultimo elemento del vettore (che ora è duplicato)
+					corsi[c - 1] = null;
+					c--; // Decrementa il contatore
+					System.out.println("Corso eliminato con successo.");
+					return; // Esci dal metodo dopo aver eliminato il corso
+				}
+			}
+		} else {
+			// Se il corso non è stato trovato nel vettore
+			System.out.println("Il corso da eliminare non è presente.");
+		}
+	}
 
 	public int getC() {
 		return c;
@@ -101,9 +110,7 @@ public class Corsi {
 	}
 
 	public void elidalCorso(IscrittoalCorso ic) {
-
 		iscritti.remove(ic);
-
 	}
 
 	public List<IscrittoalCorso> getIscritti() {
@@ -136,13 +143,23 @@ public class Corsi {
 		}
 		return null; // Se l'iscritto non è trovato
 	}
-	
+
 	public boolean iscorsoPresente(Corso corso) {
-	    for (IscrittoalCorso iscritto : iscritti) {
-	        if (iscritto.getCorso().equals(corso)) {
-	            return true;
-	        }
-	    }
-	    return false;
+		for (IscrittoalCorso iscritto : iscritti) {
+			if (iscritto.getCorso().equals(corso)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public List<IscrittoalCorso> getIscrittiCorso(Corso corso) {
+		List<IscrittoalCorso> iscrittiCorso = new ArrayList<>();
+		for (IscrittoalCorso iscritto : iscritti) {
+			if (iscritto.getCorso().equals(corso)) {
+				iscrittiCorso.add(iscritto);
+			}
+		}
+		return iscrittiCorso;
 	}
 }
