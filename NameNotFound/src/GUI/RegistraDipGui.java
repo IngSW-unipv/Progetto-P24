@@ -26,8 +26,10 @@ public class RegistraDipGui extends JFrame {
 		setTitle("Registrazione Dipendente Palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		GridLayout gridLayout = new GridLayout(0, 1);
+		gridLayout.setHgap(10);
+		JPanel panel = new JPanel(gridLayout);
+
 		Color CBACK = new Color(28, 28, 28);
 
 		panel.setBackground(CBACK);
@@ -36,8 +38,6 @@ public class RegistraDipGui extends JFrame {
 		NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
 
 		panel.add(NEXTFIT);
-
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		nomeField = new JTextField();
 
@@ -70,76 +70,78 @@ public class RegistraDipGui extends JFrame {
 
 		nomeField.setBorder(roundedBorder);
 		nomeField.setBackground(CBUT);
+		nomeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		cognomeField.setBorder(roundedBorder);
 		cognomeField.setBackground(CBUT);
+		cognomeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		mailField.setBorder(roundedBorder);
 		mailField.setBackground(CBUT);
+		mailField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		etaField.setBorder(roundedBorder);
 		etaField.setBackground(CBUT);
+		etaField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		tipoField.setBorder(roundedBorder);
 		tipoField.setBackground(CBUT);
+		tipoField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		passwordField.setBorder(roundedBorder);
 		passwordField.setBackground(CBUT);
+		passwordField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		stipField.setBorder(roundedBorder);
 		stipField.setBackground(CBUT);
+		stipField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
 		nome = new JLabel("Nome:");
-		nome.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		nome.setForeground(Color.white);
+		nome.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		cognome = new JLabel("Cognome:");
 		cognome.setForeground(Color.white);
+		cognome.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		eta = new JLabel("Età:");
 		eta.setForeground(Color.white);
+		eta.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		mail = new JLabel("Email:");
 		mail.setForeground(Color.white);
+		mail.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		tipo = new JLabel("Tipologia:");
 		tipo.setForeground(Color.white);
+		tipo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		pw = new JLabel("Password:");
 		pw.setForeground(Color.white);
+		pw.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		stipendio = new JLabel("Stipendio:");
 		stipendio.setForeground(Color.white);
+		stipendio.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
 		panel.add(nome);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(nomeField);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(cognome);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(cognomeField);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(mail);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(mailField);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(eta);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(etaField);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(tipo);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(tipoField);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(pw);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(passwordField);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(stipendio);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 		panel.add(stipField);
-		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
 		Color or = new Color(250, 140, 0);
 
-		JLabel errorLabel = new JLabel("*Errore: minorenne o Dipendente già presente");
+		JLabel errorLabel = new JLabel("*Errore: Dipendente già presente");
 		errorLabel.setForeground(Color.RED);
+
+		JPanel regPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		regPanel.setBackground(CBACK);
 
 		registraButton = new JButton("Registra Dipendente");
 
 		registraButton.setBackground(or);
 		registraButton.setFont(new Font("Arial", Font.BOLD, 13));
-		registraButton.setMaximumSize(new Dimension(150, 30));
+		registraButton.setMaximumSize(new Dimension(30, 30));
 		registraButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
 		registraButton.addActionListener(new ActionListener() {
@@ -186,8 +188,12 @@ public class RegistraDipGui extends JFrame {
 
 		panel.add(registraButton);
 
-		getContentPane().add(panel, BorderLayout.CENTER);
-
+		JScrollPane scrollPane = new JScrollPane(panel);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		regPanel.add(registraButton);
+		panel.add(regPanel);
 		setSize(480, 640); // Impostiamo le dimensioni della finestra
 		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
 		setVisible(true);

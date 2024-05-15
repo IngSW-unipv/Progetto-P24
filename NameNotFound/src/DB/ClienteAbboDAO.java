@@ -83,8 +83,7 @@ public class ClienteAbboDAO {
 		return esito;
 	}
 
-	public boolean updateScadenzaAbbonamento(String nome, String cognome, String mail,
-			LocalDate nuovaData) {
+	public boolean updateScadenzaAbbonamento(String nome, String cognome, String mail, LocalDate nuovaData) {
 		conn = DBConnection.startConnection(conn, schema);
 
 		PreparedStatement stmt = null;

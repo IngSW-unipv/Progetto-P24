@@ -70,7 +70,8 @@ public class RinAbb extends JFrame {
 
 				clienteAbbonato.aggScad(1);
 				dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(),
-						clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(), clienteAbbonato.getDataScadenza());
+						clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(),
+						clienteAbbonato.getDataScadenza());
 			}
 		});
 
@@ -80,7 +81,8 @@ public class RinAbb extends JFrame {
 
 				clienteAbbonato.aggScad(6);
 				dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(),
-						clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(), clienteAbbonato.getDataScadenza());
+						clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(),
+						clienteAbbonato.getDataScadenza());
 
 			}
 		});
@@ -91,7 +93,8 @@ public class RinAbb extends JFrame {
 
 				clienteAbbonato.aggScad(12);
 				dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(),
-						clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(), clienteAbbonato.getDataScadenza());
+						clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(),
+						clienteAbbonato.getDataScadenza());
 			}
 		});
 

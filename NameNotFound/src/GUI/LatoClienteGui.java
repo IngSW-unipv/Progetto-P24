@@ -30,23 +30,22 @@ public class LatoClienteGui extends JFrame {
 	private ListaCORSI listaCORSI;
 	private ListaPT listaPT;
 	private SerAgg serAgg;
-	private JLabel NEXTFIT,SCAD;
+	private JLabel NEXTFIT, SCAD;
 
 	public LatoClienteGui(Corsi co, ClienteAbbonato clienteAbbonato, Palestra palestra) {
 		setTitle("Pagina principale");
 
 		listaCORSI = new ListaCORSI(co, clienteAbbonato, LatoClienteGui.this); // creo adesso la gui figlia
 		listaCORSI.setVisible(false);
-		
+
 		listaPT = new ListaPT(palestra, clienteAbbonato, LatoClienteGui.this); // creo adesso la gui figlia
 		listaPT.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		serAgg = new SerAgg(clienteAbbonato,palestra, LatoClienteGui.this); 
+		serAgg = new SerAgg(clienteAbbonato, palestra, LatoClienteGui.this);
 		serAgg.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -58,13 +57,13 @@ public class LatoClienteGui extends JFrame {
 		NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
 
 		SCAD = new JLabel("<html><font color='orange'>NEXT</font><font color='white'>FIT</font></html>");
-		
-		JPanel labelpanel=new JPanel();
-		
+
+		JPanel labelpanel = new JPanel();
+
 		labelpanel.setBackground(CBACK);
-	    labelpanel.add(NEXTFIT, BorderLayout.WEST); 
-	    labelpanel.add(SCAD, BorderLayout.EAST); 
-		
+		labelpanel.add(NEXTFIT, BorderLayout.WEST);
+		labelpanel.add(SCAD, BorderLayout.EAST);
+
 		panel.add(NEXTFIT);
 
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -122,19 +121,18 @@ public class LatoClienteGui extends JFrame {
 		SERVIZI.setForeground(Color.white);
 		SERVIZI.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 		SERVIZI.setBackground(CBUT);
-		
+
 		SERVIZI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-					serAgg.setVisible(true); 
 
-					dispose();
-				
+				serAgg.setVisible(true);
+
+				dispose();
+
 			}
 		});
-		
+
 		panel.add(SERVIZI);
 
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));

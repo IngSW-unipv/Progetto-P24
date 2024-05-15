@@ -29,7 +29,7 @@ public class LatoCorsistaGui extends JFrame {
 	public LatoCorsistaGui(Dipendente dipendente, Palestra palestra, Corsi corsi) {
 		lcg = this;
 
-		setTitle("Pagina principale");
+		setTitle("Pagina principale Corsista");
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -38,7 +38,7 @@ public class LatoCorsistaGui extends JFrame {
 
 		panel.setBackground(CBACK);
 
-		NEXTFIT = new JLabel("<html><font color='orange'>NEXT</font><font color='white'>FIT</font></html>");
+		NEXTFIT = new JLabel("<html><font color='orange'>CORS</font><font color='white'>ISTA</font></html>");
 		NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
 
 		panel.add(NEXTFIT);
@@ -57,26 +57,10 @@ public class LatoCorsistaGui extends JFrame {
 		LC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// qui apre la lista dei suoi corsi, dove poi scegliendo il corso che vuole apre ListaIsCorsiGui
+				new ListaCorsiProp(corsi, dipendente, lcg);
 			}
 		});
 		panel.add(LC);
-		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-
-		LP = new JButton("Lista iscritti al corso");
-
-		LP.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
-		LP.setBackground(CBUT);
-		LP.setFont(new Font("Rockwell", Font.BOLD, 20));
-		LP.setForeground(Color.white);
-
-		LP.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new ListaIsCorsiGui(dipendente, corsi, lcg);
-			}
-		});
-		panel.add(LP);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		getContentPane().add(panel, BorderLayout.CENTER);

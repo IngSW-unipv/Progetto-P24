@@ -100,30 +100,30 @@ public class CorsiDAO {
 	}
 
 	public boolean deleteCorso(String nomeCorso, String nomeCorsista, String cognomeCorsista, Corsi corsi, Palestra p) {
-	    conn = DBConnection.startConnection(conn, schema);
-	    PreparedStatement st1;
-	    boolean esito = true;
+		conn = DBConnection.startConnection(conn, schema);
+		PreparedStatement st1;
+		boolean esito = true;
 
-	    try {
-	        String query = "DELETE FROM corsi WHERE nome_corso = ? AND nome_corsista = ? AND cognome_corsista = ?";
-	        st1 = conn.prepareStatement(query);
-	        st1.setString(1, nomeCorso);
-	        st1.setString(2, nomeCorsista);
-	        st1.setString(3, cognomeCorsista);
-	        st1.executeUpdate();
-	        
-	        corsi.eliminaCorso(nomeCorso, p.ricercaCorsista(nomeCorsista, cognomeCorsista));
-	        
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        esito = false;
-	    } finally {
-	        DBConnection.closeConnection(conn);
-	    }
+		try {
+			String query = "DELETE FROM corsi WHERE nome_corso = ? AND nome_corsista = ? AND cognome_corsista = ?";
+			st1 = conn.prepareStatement(query);
+			st1.setString(1, nomeCorso);
+			st1.setString(2, nomeCorsista);
+			st1.setString(3, cognomeCorsista);
+			st1.executeUpdate();
 
-	    return esito;
+			corsi.eliminaCorso(nomeCorso, p.ricercaCorsista(nomeCorsista, cognomeCorsista));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			esito = false;
+		} finally {
+			DBConnection.closeConnection(conn);
+		}
+
+		return esito;
 	}
-	
+
 	public boolean upIscritti(String nomeCorso) {
 		conn = DBConnection.startConnection(conn, schema);
 		PreparedStatement st1;

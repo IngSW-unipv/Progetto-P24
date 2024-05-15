@@ -131,7 +131,7 @@ public class RegistraCorso extends JFrame {
 					Corso corso = new Corso(ncorso, d, max, 0);
 					corsi.aggCorsi(corso);
 				}
-				
+
 				corsi.visuCorsi();
 
 				JPanel buttonPanel = new JPanel();

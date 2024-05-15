@@ -33,27 +33,23 @@ public class DBConnection {
 		return conn;
 	}
 
-	public static Connection startConnection(Connection conn, String schema)
-	{
-		if ( isOpen(conn) )
+	public static Connection startConnection(Connection conn, String schema) {
+		if (isOpen(conn))
 			closeConnection(conn);
-	
-		try 
-		{
-			
-			dbURL=String.format(dbURL,schema); 
+
+		try {
+
+			dbURL = String.format(dbURL, schema);
 			conn = DriverManager.getConnection(dbURL, username, password);// Apertura connessione
 
-		}
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
 		return conn;
 	}
-	
+
 	public static boolean isOpen(Connection conn) {
 		if (conn == null)
 			return false;

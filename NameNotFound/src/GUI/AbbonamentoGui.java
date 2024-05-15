@@ -76,7 +76,7 @@ public class AbbonamentoGui extends JFrame {
 
 				pa.abbonaCl(ca);
 				ca.visuClAbb(ca);
-				
+
 				new LatoClienteGui(co, ca, pa);
 				dispose();
 			}
@@ -93,7 +93,7 @@ public class AbbonamentoGui extends JFrame {
 
 				pa.abbonaCl(ca);
 				ca.visuClAbb(ca);
-				
+
 				new LatoClienteGui(co, ca, pa);
 				dispose();
 			}
@@ -110,7 +110,7 @@ public class AbbonamentoGui extends JFrame {
 
 				pa.abbonaCl(ca);
 				ca.visuClAbb(ca);
-				
+
 				new LatoClienteGui(co, ca, pa);
 				dispose();
 			}

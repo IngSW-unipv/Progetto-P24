@@ -30,20 +30,20 @@ import NextFit.Corsi;
 import NextFit.Palestra;
 
 public class SerAgg extends JFrame {
-	private JButton SCAD,RIN,back;
+	private JButton SCAD, RIN, back;
 	private JLabel NEXTFIT;
 	private RinAbb rinabb;
+
 	public SerAgg(ClienteAbbonato clienteAbbonato, Palestra palestra, LatoClienteGui parent) {
 		setTitle("Pagina principale");
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		rinabb = new RinAbb(clienteAbbonato,palestra, SerAgg.this); 
+		rinabb = new RinAbb(clienteAbbonato, palestra, SerAgg.this);
 		rinabb.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
+
 		Color CBACK = new Color(28, 28, 28);
 
 		panel.setBackground(CBACK);
@@ -54,7 +54,7 @@ public class SerAgg extends JFrame {
 		panel.add(NEXTFIT);
 
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
+
 		SCAD = new JButton("SCADENZA ABBONAMENTO");
 
 		Color CBUT = new Color(40, 40, 40);
@@ -63,28 +63,28 @@ public class SerAgg extends JFrame {
 		SCAD.setBackground(CBUT);
 		SCAD.setFont(new Font("Rockwell", Font.BOLD, 20));
 		SCAD.setForeground(Color.white);
-		
-		SCAD.addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		    	LocalDate scad=clienteAbbonato.getDataScadenza();
-		    	String scads=scad.toString();
-		        SCAD.setText(scads);
-		    }
 
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		        SCAD.setText("SCADENZA ABBONAMENTO");
-		    }
+		SCAD.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				LocalDate scad = clienteAbbonato.getDataScadenza();
+				String scads = scad.toString();
+				SCAD.setText(scads);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				SCAD.setText("SCADENZA ABBONAMENTO");
+			}
 		});
 		panel.add(SCAD);
-		
-		RIN=new JButton("RINNOVO ABBONAMENTO");
+
+		RIN = new JButton("RINNOVO ABBONAMENTO");
 		RIN.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 		RIN.setBackground(CBUT);
 		RIN.setFont(new Font("Rockwell", Font.BOLD, 20));
 		RIN.setForeground(Color.white);
-		
+
 		RIN.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -96,8 +96,7 @@ public class SerAgg extends JFrame {
 		});
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(RIN);
-		
-		
+
 		Color or = new Color(250, 140, 0);
 
 		back = new JButton("indietro");
@@ -105,7 +104,7 @@ public class SerAgg extends JFrame {
 		back.setFont(new Font("Arial", Font.BOLD, 13));
 		back.setMaximumSize(new Dimension(100, 30));
 		back.setBorder(BorderFactory.createLineBorder(or, 6, false));
-		
+
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -118,7 +117,7 @@ public class SerAgg extends JFrame {
 		});
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(back);
-		
+
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -126,7 +125,6 @@ public class SerAgg extends JFrame {
 		setSize(480, 640);
 		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
 		setVisible(true);
-		
-	
-}
+
+	}
 }
