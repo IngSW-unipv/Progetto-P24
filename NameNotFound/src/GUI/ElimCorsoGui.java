@@ -29,8 +29,14 @@ public class ElimCorsoGui extends JFrame {
 	private JPanel panel, backpanel;
 	private JButton back;
 	private JLabel CORSI;
+	private Palestra p;
+    private Corsi co;
+    private ProprietarioGui parent;
 
 	public ElimCorsoGui(Corsi co, Palestra p, ProprietarioGui parent) {
+		this.p = p;
+        this.co = co;
+        this.parent = parent;
 		setTitle("Interfaccia Corsi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -90,6 +96,10 @@ public class ElimCorsoGui extends JFrame {
 					panel.remove(button);
 					panel.revalidate();
 					panel.repaint();
+					refresh();
+					panel.add(new JLabel());
+					backpanel.add(back);
+					panel.add(backpanel);
 
 				}
 			});
@@ -119,6 +129,52 @@ public class ElimCorsoGui extends JFrame {
 		setSize(480, 640);
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	private void refresh()
+	{
+		panel.removeAll();
+		panel.add(CORSI);
+		panel.add(new JLabel());
+		for (int i = 0; i <= co.getC() - 1; i++) {
+			final int n = i;
+
+			JButton button = new JButton(co.getCorso(i).getNome());
+			Color CBUT = new Color(40, 40, 40);
+			button.setBackground(CBUT);
+			button.setPreferredSize(new Dimension(200, 100));
+			button.setFont(new Font("Rockwell", Font.BOLD, 20));
+			button.setForeground(Color.white);
+			coursesButtons.add(button);
+			panel.add(button);
+			button.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+
+					IscrittoalcorsoDAO idao = new IscrittoalcorsoDAO();
+					CorsiDAO cdao = new CorsiDAO();
+
+					if (co.iscorsoPresente(co.getCorso(n))) {
+						idao.deleteIscrizione1(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
+								co.getCorso(n).getCorsista().getCognome());
+					}
+					cdao.deleteCorso(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
+							co.getCorso(n).getCorsista().getCognome(), co, p);
+					panel.remove(button);
+					panel.revalidate();
+			        panel.repaint();
+					refresh();
+					panel.add(new JLabel());
+					backpanel.add(back);
+					panel.add(backpanel);
+
+				}
+			});
+
+		}
+		
+
 	}
 
 }

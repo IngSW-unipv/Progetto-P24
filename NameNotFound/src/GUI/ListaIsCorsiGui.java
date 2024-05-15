@@ -41,7 +41,7 @@ public class ListaIsCorsiGui extends JFrame {
 		iscrittiLabels = new ArrayList<>();
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-		titolo = new JLabel("<html><font color='orange'>ISCRITTI</font></html>");
+		titolo = new JLabel("<html><font color='orange'>ISC</font>RITTI</html>");
 		titolo.setFont(new Font("Rockwell", Font.BOLD, 40));
 		panel.add(titolo);
 
