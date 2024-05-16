@@ -24,36 +24,36 @@ INSERT INTO Dipendenti (nome, cognome, mail, eta, password, tipo, stipendio) VAL
 ('Chiara', 'Neri', 'chiara.neri@example.com', 30, 'password456', 'corsista', 1200.00);
 
 
-INSERT INTO corsi (nome_corso, nome_corsista, cognome_corsista, max_iscritti, iscritti) VALUES 
-('Zumba', 'Anna', 'Verdi', 15, 0),
-('Pilates', 'Marco', 'Bianchi', 20, 0),
-('Fitness', 'Chiara', 'Neri', 18, 0),
-('Yoga', 'Maria', 'Rossi', 15, 0);
+INSERT INTO corsi (nome_corso, nome_corsista, cognome_corsista, mail_corsista, max_iscritti, iscritti) VALUES 
+('Zumba', 'Anna', 'Verdi', 'anna.verdi@example.com', 15, 0),
+('Pilates', 'Marco', 'Bianchi', 'marco.bianchi@example.com', 20, 0),
+('Fitness', 'Chiara', 'Neri', 'chiara.neri@example.com', 18, 0),
+('Yoga', 'Maria', 'Rossi', 'maria.rossi@example.com', 15, 0);
 
 
-INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome)
-VALUES ('Mario', 'Rossi', 'mario.rossi@example.com', 'Zumba', 'Anna', 'Verdi');
+INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome, corso_istruttore_mail)
+VALUES ('Mario', 'Rossi', 'mario.rossi@example.com', 'Zumba', 'Anna', 'Verdi', 'anna.verdi@example.com');
 
 -- Incrementa di uno il numero di iscritti al corso di Zumba
 UPDATE corsi SET iscritti = iscritti + 1 WHERE nome_corso = 'Zumba';
 
 
-INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome)
-VALUES ('Luca', 'Bianchi', 'luca.bianchi@example.com', 'Pilates', 'Marco', 'Bianchi');
+INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome, corso_istruttore_mail)
+VALUES ('Luca', 'Bianchi', 'luca.bianchi@example.com', 'Pilates', 'Marco', 'Bianchi', 'marco.bianchi@example.com');
 
 -- Incrementa di uno il numero di iscritti al corso di Pilates
 UPDATE corsi SET iscritti = iscritti + 1 WHERE nome_corso = 'Pilates';
 
 -- Iscrizione di Alessia al corso di Fitness
-INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome)
-VALUES ('Alessia', 'Marroni', 'alessia.marroni@example.com', 'Fitness', 'Chiara', 'Neri');
+INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome, corso_istruttore_mail)
+VALUES ('Alessia', 'Marroni', 'alessia.marroni@example.com', 'Fitness', 'Chiara', 'Neri', 'chiara.neri@example.com');
 
 -- Incrementa di uno il numero di iscritti al corso di Fitness
 UPDATE corsi SET iscritti = iscritti + 1 WHERE nome_corso = 'Fitness';
 
 -- Iscrizione di Alessia al corso di Zumba
-INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome)
-VALUES ('Alessia', 'Marroni', 'alessia.marroni@example.com', 'Zumba', 'Anna', 'Verdi');
+INSERT INTO iscrizioni_corsi (cliente_nome, cliente_cognome, cliente_mail, corso_nome, corso_istruttore_nome, corso_istruttore_cognome, corso_istruttore_mail)
+VALUES ('Alessia', 'Marroni', 'alessia.marroni@example.com', 'Zumba', 'Anna', 'Verdi', 'anna.verdi@example.com');
 
 -- Incrementa di uno il numero di iscritti al corso di Zumba
 UPDATE corsi SET iscritti = iscritti + 1 WHERE nome_corso = 'Zumba';
@@ -63,8 +63,8 @@ INSERT INTO Schede (id_scheda, esercizio1, esercizio2, esercizio3, esercizio4, e
 (2, 'Panca piana', 'Plank', 'Rematore', 'Stacchi da terra', 'Affondi statici'),
 (3, 'Push-up', 'Mountain climbers', 'Curl con bilanciere', 'Stacchi rumeni', 'Crunches');
 
-INSERT INTO richiestePT (nome_pt, cognome_pt, nome_cliente, cognome_cliente, scheda_id) VALUES 
-('Luigi', 'Verdi', 'Mario', 'Rossi', null), 
-('Luigi', 'Verdi', 'Luca', 'Bianchi', 1), 
-('Antonio', 'Marroni', 'Alessia', 'Marroni', 2);
+INSERT INTO richiestePT (nome_pt, cognome_pt, mail_pt, nome_cliente, cognome_cliente, mail_cliente, scheda_id) VALUES 
+('Luigi', 'Verdi', 'luigi.verdi@example.com', 'Mario', 'Rossi', 'mario.rossi@example.com', null), 
+('Luigi', 'Verdi', 'luigi.verdi@example.com', 'Luca', 'Bianchi', 'luca.bianchi@example.com', 1), 
+('Antonio', 'Marroni', 'antonio.marroni@example.com', 'Alessia', 'Marroni', 'alessia.marroni@example.com', 2);
 

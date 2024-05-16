@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS schede;
 -- dipendente = (nome, cognome,mail) PRIMARY KEY, password, tipo
 
 CREATE TABLE clienti (
-    nome VARCHAR(50),
-    cognome VARCHAR(50),
+    nome VARCHAR(100),
+    cognome VARCHAR(100),
     mail VARCHAR(100),
     eta INT,
     password VARCHAR(100),
@@ -33,55 +33,60 @@ CREATE TABLE clienti (
 );
     
 CREATE TABLE dipendenti (
-	nome VARCHAR(50),
-    cognome VARCHAR(50),
+    nome VARCHAR(100),
+    cognome VARCHAR(100),
     mail VARCHAR(100),
     eta INT,
     password VARCHAR(100),
-	tipo CHAR(30),
-    stipendio double,
-	PRIMARY KEY (nome, cognome, mail)
+    tipo CHAR(30),
+    stipendio DOUBLE,
+    PRIMARY KEY (nome, cognome, mail)
 );
 
 CREATE TABLE corsi (
-    nome_corso VARCHAR(255),
-    nome_corsista VARCHAR(255),
-    cognome_corsista VARCHAR(255),
+    nome_corso VARCHAR(100),
+    nome_corsista VARCHAR(100),
+    cognome_corsista VARCHAR(100),
+    mail_corsista VARCHAR(100),
     max_iscritti INT,
     iscritti INT,
-    FOREIGN KEY (nome_corsista, cognome_corsista) REFERENCES dipendenti(nome, cognome),
-    PRIMARY KEY (nome_corso, nome_corsista, cognome_corsista)
+    FOREIGN KEY (nome_corsista, cognome_corsista, mail_corsista) REFERENCES dipendenti(nome, cognome, mail),
+    PRIMARY KEY (nome_corso, nome_corsista, cognome_corsista, mail_corsista)
 );
 
 CREATE TABLE iscrizioni_corsi (
     iscrizione_id INT AUTO_INCREMENT PRIMARY KEY,
-    cliente_nome VARCHAR(50),
-    cliente_cognome VARCHAR(50),
+    cliente_nome VARCHAR(100),
+    cliente_cognome VARCHAR(100),
     cliente_mail VARCHAR(100),
-    corso_nome VARCHAR(255),
-    corso_istruttore_nome VARCHAR(50),
-    corso_istruttore_cognome VARCHAR(50),
+    corso_nome VARCHAR(100),
+    corso_istruttore_nome VARCHAR(100),
+    corso_istruttore_cognome VARCHAR(100),
+    corso_istruttore_mail VARCHAR(100),
     FOREIGN KEY (cliente_nome, cliente_cognome, cliente_mail) REFERENCES clienti(nome, cognome, mail),
-    FOREIGN KEY (corso_nome, corso_istruttore_nome, corso_istruttore_cognome) REFERENCES corsi(nome_corso, nome_corsista, cognome_corsista)
+    FOREIGN KEY (corso_nome, corso_istruttore_nome, corso_istruttore_cognome, corso_istruttore_mail) REFERENCES corsi(nome_corso, nome_corsista, cognome_corsista, mail_corsista)
 );
 
 CREATE TABLE Schede (
     id_scheda INT PRIMARY KEY,
-    esercizio1 VARCHAR(255),
-    esercizio2 VARCHAR(255),
-    esercizio3 VARCHAR(255),
-    esercizio4 VARCHAR(255),
-    esercizio5 VARCHAR(255)
+    esercizio1 VARCHAR(100),
+    esercizio2 VARCHAR(100),
+    esercizio3 VARCHAR(100),
+    esercizio4 VARCHAR(100),
+    esercizio5 VARCHAR(100)
 );
 
 CREATE TABLE richiestePT (
     id_richiesta INT AUTO_INCREMENT PRIMARY KEY,
-    nome_pt VARCHAR(50),
-    cognome_pt VARCHAR(50),
-    nome_cliente VARCHAR(50),
-    cognome_cliente VARCHAR(50),
+    nome_pt VARCHAR(100),
+    cognome_pt VARCHAR(100),
+    mail_pt VARCHAR(100),
+    nome_cliente VARCHAR(100),
+    cognome_cliente VARCHAR(100),
+    mail_cliente VARCHAR(100),
     scheda_id INT,
     FOREIGN KEY (scheda_id) REFERENCES Schede(id_scheda),
-    FOREIGN KEY (nome_pt, cognome_pt) REFERENCES Dipendenti(nome, cognome),
-    FOREIGN KEY (nome_cliente, cognome_cliente) REFERENCES Clienti(nome, cognome)
+    FOREIGN KEY (nome_pt, cognome_pt, mail_pt) REFERENCES Dipendenti(nome, cognome, mail),
+    FOREIGN KEY (nome_cliente, cognome_cliente, mail_cliente) REFERENCES Clienti(nome, cognome, mail)
 );
+
