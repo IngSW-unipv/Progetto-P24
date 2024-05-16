@@ -17,6 +17,14 @@ public class Corsi {
 		this.iscritti = new ArrayList<>();
 	}
 
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
+
 	public Corso getCorso(int i) {
 		Corso corso;
 		corso = corsi[i];
@@ -59,11 +67,9 @@ public class Corsi {
 			// Trovato il corso da eliminare
 			for (int i = 0; i < c; i++) {
 				if (corsoDaEliminare.equals(corsi[i])) {
-					// Sposta gli elementi successivi nel vettore per riempire il vuoto
-					for (int j = i; j < c - 1; j++) {
-						corsi[j] = corsi[j + 1];
-					}
-					// Rimuove l'ultimo elemento del vettore (che ora è duplicato)
+					// Sposta l'ultimo elemento nella posizione del corso da eliminare
+					corsi[i] = corsi[c - 1];
+					// Rimuove l'ultimo elemento del vettore
 					corsi[c - 1] = null;
 					c--; // Decrementa il contatore
 					System.out.println("Corso eliminato con successo.");
@@ -98,7 +104,7 @@ public class Corsi {
 		return null; // Se il corso non è trovato
 	}
 
-	public void iscalCorso(ClienteAbbonato c, Corso co) {
+	public IscrittoalCorso aggIsAlCorso(ClienteAbbonato c, Corso co) {
 		IscrittoalCorso ic = new IscrittoalCorso(co, c);
 
 		if (!iscrittoPresente(c, co)) {
@@ -107,6 +113,8 @@ public class Corsi {
 		} else {
 			System.out.println("Il cliente è già iscritto a questo corso.");
 		}
+
+		return ic;
 	}
 
 	public void elidalCorso(IscrittoalCorso ic) {

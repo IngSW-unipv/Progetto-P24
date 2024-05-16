@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -26,9 +27,9 @@ import NextFit.Dipendente;
 import NextFit.Palestra;
 
 public class RegistraCorso extends JFrame {
-	private JTextField nomeCField, nomeField, cognomeField, maxField;
+	private JTextField nomeCField, nomeField, cognomeField, mailField, maxField;
 	private JButton registraButton;
-	private JLabel nomeC, nome, cognome, maxis, NEXTFIT, errorLabel;
+	private JLabel nomeC, nome, cognome, mail, maxis, NEXTFIT, errorLabel;
 
 	public RegistraCorso(Corsi corsi, Palestra palestra) {
 
@@ -57,6 +58,9 @@ public class RegistraCorso extends JFrame {
 		cognomeField = new JTextField();
 		cognomeField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 		cognomeField.setForeground(Color.white);
+		mailField = new JTextField();
+		mailField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+		mailField.setForeground(Color.white);
 		maxField = new JTextField();
 		maxField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 		maxField.setForeground(Color.white);
@@ -73,6 +77,8 @@ public class RegistraCorso extends JFrame {
 		nomeField.setBackground(CBUT);
 		cognomeField.setBorder(roundedBorder);
 		cognomeField.setBackground(CBUT);
+		mailField.setBorder(roundedBorder);
+		mailField.setBackground(CBUT);
 		maxField.setBorder(roundedBorder);
 		maxField.setBackground(CBUT);
 
@@ -82,6 +88,8 @@ public class RegistraCorso extends JFrame {
 		nome.setForeground(Color.white);
 		cognome = new JLabel("Cognome Corsista:");
 		cognome.setForeground(Color.white);
+		mail = new JLabel("Mail Corsista:");
+		mail.setForeground(Color.white);
 		maxis = new JLabel("Numero max iscritti:");
 		maxis.setForeground(Color.white);
 
@@ -96,6 +104,10 @@ public class RegistraCorso extends JFrame {
 		panel.add(cognome);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(cognomeField);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		panel.add(mail);
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
+		panel.add(mailField);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(maxis);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -123,9 +135,10 @@ public class RegistraCorso extends JFrame {
 				String ncorso = nomeCField.getText();
 				String nome = nomeField.getText();
 				String cognome = cognomeField.getText();
+				String mail = mailField.getText();
 				int max = Integer.parseInt(maxField.getText());
 
-				Dipendente d = palestra.ricercaCorsista(nome, cognome);
+				Dipendente d = palestra.ricercaCorsista(nome, cognome, mail);
 
 				if (d.getTipo().equals("corsista")) {
 					Corso corso = new Corso(ncorso, d, max, 0);

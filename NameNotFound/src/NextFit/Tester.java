@@ -6,6 +6,7 @@ import DB.ClienteAbboDAO;
 import DB.CorsiDAO;
 import DB.DipendenteDAO;
 import DB.IscrittoalcorsoDAO;
+import DB.RichiesteDAO;
 import GUI.PrimaPagina;
 
 public class Tester {
@@ -13,16 +14,19 @@ public class Tester {
 		Palestra NextFit = new Palestra(100, 100);
 		Proprietario proprietario = Proprietario.getInstance();
 		Corsi corsi = new Corsi(20);
+		Richieste r = new Richieste();
 
 		ClienteAbboDAO dao0 = new ClienteAbboDAO();
 		DipendenteDAO dao1 = new DipendenteDAO();
 		CorsiDAO dao2 = new CorsiDAO();
 		IscrittoalcorsoDAO dao3 = new IscrittoalcorsoDAO();
+		RichiesteDAO dao4 = new RichiesteDAO();
 
 		dao0.selectAll(NextFit);
 		dao1.selectAll(NextFit);
 		dao2.selectAll(NextFit, corsi);
 		dao3.selectAll(NextFit, corsi);
+		dao4.selectAll(NextFit, r);
 
 		NextFit.registraDipendente(
 				NextFit.creaDipendente("Pino", "Pino", "pino@tmail.com", "pi123no", 23, 2000, "corsista"));
@@ -42,8 +46,10 @@ public class Tester {
 		NextFit.visuDip("COrsisTA");
 
 		corsi.visuCorsi();
-
+		
 		corsi.visuClisCorsi();
+		
+		r.visualizzaRichieste();
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

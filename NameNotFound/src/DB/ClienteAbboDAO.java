@@ -50,7 +50,7 @@ public class ClienteAbboDAO {
 			e.printStackTrace();
 		}
 
-		connessione.closeConnection(conn);
+		DBConnection.closeConnection(conn);
 		return result;
 	}
 
@@ -97,7 +97,7 @@ public class ClienteAbboDAO {
 			stmt.setString(3, cognome);
 			stmt.setString(4, mail);
 
-			int rowsUpdated = stmt.executeUpdate();
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

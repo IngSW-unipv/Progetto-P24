@@ -102,7 +102,7 @@ public class Login extends JFrame {
 				buttonPanel.add(loginButton);
 				buttonPanel.add(errorlabel);
 
-				if (mail.equals(proprietario.getMail()) && password.equals(proprietario.getPassword())) {
+				if (mail.toLowerCase().equals(proprietario.getMail()) && password.equals(proprietario.getPassword())) {
 					new ProprietarioGui(proprietario, palestra, co);
 					buttonPanel.remove(errorlabel);
 					panel.add(buttonPanel);
@@ -110,23 +110,23 @@ public class Login extends JFrame {
 					panel.repaint();
 				}
 
-				if (palestra.esisteCli(mail, password) == true) {
-					new LatoClienteGui(co, palestra.accessoCli(mail, password), palestra);
+				if (palestra.esisteCli(mail.toLowerCase(), password) == true) {
+					new LatoClienteGui(co, palestra.accessoCli(mail.toLowerCase(), password), palestra);
 					buttonPanel.remove(errorlabel);
 					panel.add(buttonPanel);
 					panel.revalidate();
 					panel.repaint();
 				}
 
-				if (palestra.esisteDip(mail, password) == true) {
-					if (palestra.accessoDip(mail, password).getTipo().equals("personaltrainer")) {
-						new LatoPTGui(palestra.accessoDip(mail, password), palestra);
+				if (palestra.esisteDip(mail.toLowerCase(), password) == true) {
+					if (palestra.accessoDip(mail.toLowerCase(), password).getTipo().equals("personaltrainer")) {
+						new LatoPTGui(palestra.accessoDip(mail.toLowerCase(), password), palestra);
 						buttonPanel.remove(errorlabel);
 						panel.add(buttonPanel);
 						panel.revalidate();
 						panel.repaint();
-					} else if (palestra.accessoDip(mail, password).getTipo().equals("corsista")) {
-						new LatoCorsistaGui(palestra.accessoDip(mail, password), palestra, co);
+					} else if (palestra.accessoDip(mail.toLowerCase(), password).getTipo().equals("corsista")) {
+						new LatoCorsistaGui(palestra.accessoDip(mail.toLowerCase(), password), palestra, co);
 						buttonPanel.remove(errorlabel);
 						panel.add(buttonPanel);
 						panel.revalidate();

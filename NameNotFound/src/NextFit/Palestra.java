@@ -170,11 +170,12 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		return j;
 	}
 
-	public Dipendente ricercaCorsista(String nome, String cognome) {
+	public Dipendente ricercaCorsista(String nome, String cognome, String mail) {
 		Dipendente d = null;
 		for (int i = 0; i < contatoreD; i++) {
 			if (nome.toLowerCase().equals(dipendenti[i].getNome())
-					&& cognome.toLowerCase().equals(dipendenti[i].getCognome())) {
+					&& cognome.toLowerCase().equals(dipendenti[i].getCognome())
+					&& mail.toLowerCase().equals(dipendenti[i].getMail())) {
 				d = dipendenti[i];
 				break;
 			}
@@ -271,6 +272,9 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		for (int i = 0; i < contatoreCA; i++) {
 			if ((dipendenti[i].getMail().equals(mail) && dipendenti[i].getPassword().equals(pass))) {
 				t = true;
+				break;
+			}
+			if (dipendenti[i] == null) {
 				break;
 			}
 		}

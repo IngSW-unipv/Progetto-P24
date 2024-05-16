@@ -1,7 +1,6 @@
 package DB;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import NextFit.Dipendente;
@@ -43,7 +42,7 @@ public class DipendenteDAO {
 			e.printStackTrace();
 		}
 
-		connessione.closeConnection(conn);
+		DBConnection.closeConnection(conn);
 		return result;
 	}
 

@@ -1,121 +1,85 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
+import javax.swing.*;
+import javax.swing.border.*;
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
-import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
+import NextFit.Corso;
 import NextFit.Palestra;
 
 public class ElimCorsoGui extends JFrame {
 
-	private ArrayList<JButton> coursesButtons;
-	private JPanel panel, backpanel;
+	private ArrayList<JButton> courseButtons;
+	private JPanel panel, backPanel;
 	private JButton back;
-	private JLabel CORSI;
-	private Palestra p;
-    private Corsi co;
-    private ProprietarioGui parent;
+	private JLabel coursesLabel;
+	private Palestra palestra;
+	private Corsi corsi;
+	private ProprietarioGui parent;
 
-	public ElimCorsoGui(Corsi co, Palestra p, ProprietarioGui parent) {
-		this.p = p;
-        this.co = co;
-        this.parent = parent;
+	public ElimCorsoGui(Corsi corsi, Palestra palestra, ProprietarioGui parent) {
+		this.palestra = palestra;
+		this.corsi = corsi;
+		this.parent = parent;
+
 		setTitle("Interfaccia Corsi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
-		gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel
+		GridLayout gridLayout = new GridLayout(0, 2);
+		gridLayout.setHgap(10);
 		gridLayout.setVgap(10);
 		panel = new JPanel(gridLayout);
-		Color CBACK = new Color(28, 28, 28);
-		panel.setBackground(CBACK);
-
-		coursesButtons = new ArrayList<>();
+		panel.setBackground(new Color(28, 28, 28));
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-		CORSI = new JLabel("<html><font color='orange'>COR</font><font color='white'>SI</font></html>");
-		CORSI.setFont(new Font("Rockwell", Font.BOLD, 40));
+		courseButtons = new ArrayList<>();
 
-		panel.add(CORSI);
+		coursesLabel = new JLabel("<html><font color='orange'>COR</font><font color='white'>SI</font></html>");
+		coursesLabel.setFont(new Font("Rockwell", Font.BOLD, 30));
+		panel.add(coursesLabel);
 
-		backpanel = new JPanel(new FlowLayout());
-		backpanel.setBackground(CBACK);
-		Color CBUT = new Color(40, 40, 40);
-		Color or = new Color(250, 140, 0);
+		backPanel = new JPanel(new FlowLayout());
+		backPanel.setBackground(new Color(28, 28, 28));
 
-		back = new JButton("indietro");
-		back.setBackground(or);
+		back = new JButton("Indietro");
+		back.setBackground(new Color(250, 140, 0));
 		back.setFont(new Font("Arial", Font.BOLD, 13));
-
-		back.setBorder(BorderFactory.createLineBorder(or, 6, false));
+		back.setBorder(BorderFactory.createLineBorder(new Color(250, 140, 0), 6, false));
 		back.setMaximumSize(new Dimension(100, 30));
-		panel.add(new JLabel());
 
-		for (int i = 0; i <= co.getC() - 1; i++) {
-			final int n = i;
-
-			JButton button = new JButton(co.getCorso(i).getNome());
-
-			button.setBackground(CBUT);
-			button.setPreferredSize(new Dimension(200, 100));
-			button.setFont(new Font("Rockwell", Font.BOLD, 20));
-			button.setForeground(Color.white);
-			coursesButtons.add(button);
-			panel.add(button);
-			button.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-
-					IscrittoalcorsoDAO idao = new IscrittoalcorsoDAO();
-					CorsiDAO cdao = new CorsiDAO();
-
-					if (co.iscorsoPresente(co.getCorso(n))) {
-						idao.deleteIscrizione1(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
-								co.getCorso(n).getCorsista().getCognome());
-					}
-					cdao.deleteCorso(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
-							co.getCorso(n).getCorsista().getCognome(), co, p);
-					panel.remove(button);
-					panel.revalidate();
-					panel.repaint();
-					refresh();
-					panel.add(new JLabel());
-					backpanel.add(back);
-					panel.add(backpanel);
-
-				}
-			});
-
-		}
+		addBackButton();
 
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				parent.setVisible(true);
-				dispose(); // Chiude la finestra corrente
-
+				dispose();
 			}
-
 		});
+
+		for (int i = 0; i < corsi.getC(); i++) {
+			Corso corso = corsi.getCorso(i);
+			if (corso != null) {
+				JButton button = new JButton(corso.getNome());
+				button.setBackground(new Color(40, 40, 40));
+				button.setPreferredSize(new Dimension(200, 100));
+				button.setFont(new Font("Rockwell", Font.BOLD, 20));
+				button.setForeground(Color.white);
+				courseButtons.add(button);
+				panel.add(button);
+				button.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						deleteCorso(courseButtons.indexOf(button));
+						updatePage();
+					}
+				});
+			}
+		}
 
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -123,58 +87,63 @@ public class ElimCorsoGui extends JFrame {
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		panel.add(new JLabel());
-		backpanel.add(back);
-		panel.add(backpanel);
+		backPanel.add(back);
+		panel.add(backPanel);
 
 		setSize(480, 640);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
-	private void refresh()
-	{
-		panel.removeAll();
-		panel.add(CORSI);
+
+	private void addBackButton() {
 		panel.add(new JLabel());
-		for (int i = 0; i <= co.getC() - 1; i++) {
-			final int n = i;
+		backPanel.add(back);
+		panel.add(backPanel);
+	}
 
-			JButton button = new JButton(co.getCorso(i).getNome());
-			Color CBUT = new Color(40, 40, 40);
-			button.setBackground(CBUT);
-			button.setPreferredSize(new Dimension(200, 100));
-			button.setFont(new Font("Rockwell", Font.BOLD, 20));
-			button.setForeground(Color.white);
-			coursesButtons.add(button);
-			panel.add(button);
-			button.addActionListener(new ActionListener() {
+	private void deleteCorso(int index) {
+		IscrittoalcorsoDAO idao = new IscrittoalcorsoDAO();
+		CorsiDAO cdao = new CorsiDAO();
 
-				@Override
-				public void actionPerformed(ActionEvent e) {
+		Corso corso = corsi.getCorso(index);
 
-					IscrittoalcorsoDAO idao = new IscrittoalcorsoDAO();
-					CorsiDAO cdao = new CorsiDAO();
-
-					if (co.iscorsoPresente(co.getCorso(n))) {
-						idao.deleteIscrizione1(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
-								co.getCorso(n).getCorsista().getCognome());
-					}
-					cdao.deleteCorso(co.getCorso(n).getNome(), co.getCorso(n).getCorsista().getNome(),
-							co.getCorso(n).getCorsista().getCognome(), co, p);
-					panel.remove(button);
-					panel.revalidate();
-			        panel.repaint();
-					refresh();
-					panel.add(new JLabel());
-					backpanel.add(back);
-					panel.add(backpanel);
-
-				}
-			});
-
+		if (corso != null && corso.getCorsista() != null) {
+			if (corsi.iscorsoPresente(corso)) {
+				idao.deleteIscrizione1(corso.getNome(), corso.getCorsista().getNome(), corso.getCorsista().getCognome(),
+						corso.getCorsista().getMail());
+			}
+			cdao.deleteCorso(corso.getNome(), corso.getCorsista().getNome(), corso.getCorsista().getCognome(),
+					corso.getCorsista().getMail(), corsi, palestra);
 		}
-		
+	}
 
+	private void updatePage() {
+		panel.removeAll();
+		panel.add(coursesLabel);
+		panel.add(new JLabel());
+		for (int i = 0; i < corsi.getC(); i++) {
+			Corso corso = corsi.getCorso(i);
+			if (corso != null) {
+				final int index = i;
+				JButton button = new JButton(corso.getNome());
+				button.setBackground(new Color(40, 40, 40));
+				button.setPreferredSize(new Dimension(200, 100));
+				button.setFont(new Font("Rockwell", Font.BOLD, 20));
+				button.setForeground(Color.white);
+				courseButtons.add(button);
+				panel.add(button);
+				button.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						deleteCorso(index);
+						updatePage();
+					}
+				});
+			}
+		}
+		addBackButton();
+		panel.revalidate();
+		panel.repaint();
 	}
 
 }

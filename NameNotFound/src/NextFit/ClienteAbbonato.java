@@ -12,7 +12,7 @@ public class ClienteAbbonato {
 		this.abbonamento = abbonamento;
 
 		LocalDate dataOdierna = null;
-		dataOdierna = dataOdierna.now();
+		dataOdierna = LocalDate.now();
 		dataScadenza = dataOdierna.plusMonths(abbonamento.getDurata());
 	}
 

@@ -34,13 +34,13 @@ public class ListaCORSI extends JFrame {
 	private JPanel panel, backpanel;
 	private JButton back;
 	private JLabel CORSI;
-	private Boolean[] isIscritto;
+	private boolean[] isIscritto;
 
 	public ListaCORSI(Corsi co, ClienteAbbonato clienteAbbonato, LatoClienteGui parent) {
 		setTitle("Interfaccia Corsi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		isIscritto = new Boolean[co.getC()];
+		isIscritto = new boolean[co.getC()];
 
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
 		gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel
@@ -97,7 +97,7 @@ public class ListaCORSI extends JFrame {
 						JButton button = (JButton) e.getSource();
 						button.setText(co.getCorso(n).getNome() + " - iscritto");
 
-						co.iscalCorso(clienteAbbonato, co.getCorso(n));
+						co.aggIsAlCorso(clienteAbbonato, co.getCorso(n));
 
 						dao1.insertIscrizione(clienteAbbonato, co.getCorso(n));
 						dao.upIscritti(co.getCorso(n).getNome());
