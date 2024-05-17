@@ -6,21 +6,22 @@ import java.util.List;
 public class Richieste {
 
 	private List<RichiestaAlPT> richieste;
+	private List<Scheda> schede;
 
 	public Richieste() {
 		richieste = new ArrayList<>();
+		schede = new ArrayList<>();
 	}
 
 	public RichiestaAlPT aggRichiesta(PersonalTrainer pt, ClienteAbbonato ca, int i) {
 		RichiestaAlPT rpt = new RichiestaAlPT(pt, ca, i);
-		
+
 		if (!richiestaPresente(ca, pt, i)) {
 			richieste.add(rpt);
-			// System.out.println("Cliente iscritto al corso con successo.");
 		} else {
 			System.out.println("Il cliente ha già fatto la richiesta.");
 		}
-		
+
 		return rpt;
 	}
 
@@ -49,4 +50,48 @@ public class Richieste {
 		}
 		return false;
 	}
+
+	public Scheda aggScheda(Scheda scheda) {
+		if (!schedaPresente(scheda.getCod_Scheda())) {
+			schede.add(scheda);
+		} else {
+			System.out.println("La scheda è già presente.");
+		}
+		return scheda;
+	}
+
+	public void eliminaScheda(Scheda scheda) {
+		schede.remove(scheda);
+	}
+
+	public Scheda getScheda(int cod_scheda) {
+		for (Scheda scheda : schede) {
+			if (scheda.getCod_Scheda() == cod_scheda) {
+				return scheda;
+			}
+		}
+		return null;
+	}
+
+	public boolean schedaPresente(int cod_scheda) {
+		for (Scheda scheda : schede) {
+			if (scheda.getCod_Scheda() == cod_scheda) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void visualizzaSchede() {
+		for (Scheda scheda : schede) {
+			System.out.println("Codice Scheda: " + scheda.getCod_Scheda());
+			System.out.println("Elenco Esercizi: ");
+			for (Esercizio esercizio : scheda.getElencoEsercizi()) {
+				System.out.println(" - " + esercizio.getNome());
+
+			}
+			System.out.println();
+		}
+	}
+
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Scheda {
-	private String nome;
+	private int cod_scheda;
 	private List<Esercizio> elencoEsercizi;
 
-	public Scheda(String nome) {
-		this.nome = nome;
+	public Scheda(int cod_scheda) {
+		this.cod_scheda = cod_scheda;
 		this.elencoEsercizi = new ArrayList<>();
 	}
 
@@ -16,11 +16,19 @@ public class Scheda {
 		elencoEsercizi.add(esercizio);
 	}
 
-	public String getNome() {
-		return nome;
+	public int getCod_Scheda() {
+		return cod_scheda;
 	}
 
 	public List<Esercizio> getElencoEsercizi() {
 		return elencoEsercizi;
 	}
+
+	public String getNomeEsercizio(int posizione) {
+		if (posizione < 0 || posizione >= elencoEsercizi.size()) {
+			throw new IndexOutOfBoundsException("Posizione non valida");
+		}
+		return elencoEsercizi.get(posizione).getNome();
+	}
+
 }

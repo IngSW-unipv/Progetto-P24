@@ -4,15 +4,15 @@ public class Esercizio {
 	private String nome;
 	private int serie;
 	private int ripetizioni;
-	private int peso;
-	private int riposoTraSerie;
+	private int peso; //kg
+	private int riposoTraSerie; //secondi
 
-	public Esercizio(String nome, int serie, int ripetizioni, int peso, int riposoTraSerie) {
+	public Esercizio(String nome) {
 		this.nome = nome;
-		this.serie = serie;
-		this.ripetizioni = ripetizioni;
-		this.peso = peso;
-		this.riposoTraSerie = riposoTraSerie;
+		this.serie = 4;
+		this.ripetizioni = 10;
+		this.peso = 0;
+		this.riposoTraSerie = 30;
 	}
 
 	public String getNome() {

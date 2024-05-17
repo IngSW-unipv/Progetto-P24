@@ -7,6 +7,7 @@ import DB.CorsiDAO;
 import DB.DipendenteDAO;
 import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
+import DB.SchedaDAO;
 import GUI.PrimaPagina;
 
 public class Tester {
@@ -21,12 +22,14 @@ public class Tester {
 		CorsiDAO dao2 = new CorsiDAO();
 		IscrittoalcorsoDAO dao3 = new IscrittoalcorsoDAO();
 		RichiesteDAO dao4 = new RichiesteDAO();
+		SchedaDAO dao5 = new SchedaDAO();
 
 		dao0.selectAll(NextFit);
 		dao1.selectAll(NextFit);
 		dao2.selectAll(NextFit, corsi);
 		dao3.selectAll(NextFit, corsi);
 		dao4.selectAll(NextFit, r);
+		dao5.selectAll(r);
 
 		NextFit.registraDipendente(
 				NextFit.creaDipendente("Pino", "Pino", "pino@tmail.com", "pi123no", 23, 2000, "corsista"));
@@ -50,6 +53,8 @@ public class Tester {
 		corsi.visuClisCorsi();
 		
 		r.visualizzaRichieste();
+		
+		r.visualizzaSchede();
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
