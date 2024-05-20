@@ -52,7 +52,6 @@ public class ElimDipGui extends JFrame {
 		back.setFont(new Font("Arial", Font.BOLD, 13));
 		back.setBorder(BorderFactory.createLineBorder(new Color(250, 140, 0), 6, false));
 		back.setMaximumSize(new Dimension(100, 30));
-		panel.add(new JLabel());
 
 		addBackButton();
 

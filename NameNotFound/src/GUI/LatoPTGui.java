@@ -21,14 +21,23 @@ import NextFit.Corsi;
 import NextFit.Dipendente;
 import NextFit.Palestra;
 import NextFit.PersonalTrainer;
+import NextFit.Richieste;
 
 public class LatoPTGui extends JFrame {
 	private JButton LC;
 	private JLabel NEXTFIT;
-
-	public LatoPTGui(Dipendente dipendente, Palestra palestra) {
+	private PersonalTrainer PT;
+	private LatoPTGui LatoPTGui;
+	private ListaCL ListaCL;
+	
+	public LatoPTGui(Dipendente dipendente, Palestra palestra,Richieste r) {
 		setTitle("Pagina principale");
-
+		PT = (PersonalTrainer) dipendente;
+		
+		LatoPTGui=this;
+		ListaCL=new ListaCL(palestra, r, PT,LatoPTGui);
+		ListaCL.setVisible(false);
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -55,7 +64,8 @@ public class LatoPTGui extends JFrame {
 		LC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				ListaCL.setVisible(true);
+				dispose();
 			}
 		});
 		panel.add(LC);

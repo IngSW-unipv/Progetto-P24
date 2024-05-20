@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
+import NextFit.Richieste;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,7 +20,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JLabel pw, mail, NEXTFIT, errorlabel;
 
-	public Login(Palestra palestra, Proprietario proprietario, Corsi co) {
+	public Login(Palestra palestra, Proprietario proprietario, Corsi co,Richieste r) {
 
 		setTitle("login palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,7 +121,7 @@ public class Login extends JFrame {
 
 				if (palestra.esisteDip(mail.toLowerCase(), password) == true) {
 					if (palestra.accessoDip(mail.toLowerCase(), password).getTipo().equals("personaltrainer")) {
-						new LatoPTGui(palestra.accessoDip(mail.toLowerCase(), password), palestra);
+						new LatoPTGui(palestra.accessoDip(mail.toLowerCase(), password), palestra,r);
 						buttonPanel.remove(errorlabel);
 						panel.add(buttonPanel);
 						panel.revalidate();

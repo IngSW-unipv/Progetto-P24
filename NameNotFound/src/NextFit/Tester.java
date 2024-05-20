@@ -56,11 +56,11 @@ public class Tester {
 		
 		r.visualizzaSchede();
 
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				new PrimaPagina(NextFit, proprietario, corsi);
-			}
-		});
+SwingUtilities.invokeLater(new Runnable() {
+public void run() {
+new PrimaPagina(NextFit, proprietario, corsi,r);
+}
+});
 
-	}
+}
 }

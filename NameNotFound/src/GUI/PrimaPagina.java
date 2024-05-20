@@ -24,12 +24,13 @@ import javax.swing.border.LineBorder;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
+import NextFit.Richieste;
 
 public class PrimaPagina extends JFrame {
 	private JButton LOGIN, REG;
 	private JLabel NEXTFIT;
 
-	public PrimaPagina(Palestra palestra, Proprietario proprietario, Corsi co) {
+	public PrimaPagina(Palestra palestra, Proprietario proprietario, Corsi co,Richieste r) {
 		setTitle("Pagina principale");
 
 		JPanel panel = new JPanel();
@@ -61,7 +62,7 @@ public class PrimaPagina extends JFrame {
 
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						new Login(palestra, proprietario, co);
+						new Login(palestra, proprietario, co,r);
 
 					}
 				});
