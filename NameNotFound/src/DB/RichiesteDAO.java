@@ -55,7 +55,7 @@ public class RichiesteDAO {
 		return result;
 	}
 
-	public boolean insertRichiesta(RichiestaAlPT rpt, int schedaId) {
+	public boolean insertRichiesta(RichiestaAlPT rpt) {
 		conn = DBConnection.startConnection(conn, schema);
 
 		PreparedStatement st1;
@@ -72,7 +72,11 @@ public class RichiesteDAO {
 			st1.setString(4, rpt.getCliente().getCliente().getNome());
 			st1.setString(5, rpt.getCliente().getCliente().getCognome());
 			st1.setString(6, rpt.getCliente().getCliente().getMail());
-			st1.setInt(7, schedaId);
+
+			if (rpt.getCod_scheda() == 0) {
+				st1.setString(7, null);
+			} else
+				st1.setInt(7, rpt.getCod_scheda());
 
 			st1.executeUpdate();
 

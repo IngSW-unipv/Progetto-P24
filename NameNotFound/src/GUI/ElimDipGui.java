@@ -8,9 +8,12 @@ import javax.swing.border.*;
 import DB.CorsiDAO;
 import DB.DipendenteDAO;
 import DB.IscrittoalcorsoDAO;
+import DB.RichiesteDAO;
 import NextFit.Corsi;
 import NextFit.Corso;
 import NextFit.Palestra;
+import NextFit.RichiestaAlPT;
+import NextFit.Richieste;
 import NextFit.Dipendente;
 
 public class ElimDipGui extends JFrame {
@@ -21,12 +24,14 @@ public class ElimDipGui extends JFrame {
 	private JLabel DIPENDENTI;
 	private Palestra p;
 	private Corsi co;
+	private Richieste r;
 	private ProprietarioGui parent;
 
-	public ElimDipGui(Palestra p, Corsi co, ProprietarioGui parent) {
+	public ElimDipGui(Palestra p, Corsi co, ProprietarioGui parent, Richieste r) {
 		this.p = p;
 		this.co = co;
 		this.parent = parent;
+		this.r = r;
 
 		setTitle("Interfaccia dipendenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,7 +67,7 @@ public class ElimDipGui extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		for (int i = 0; i < p.getD(); i++) {
 			JButton button = new JButton(p.getDIP2(i).getNome() + " " + p.getDIP2(i).getCognome());
 			button.setBackground(new Color(40, 40, 40));
@@ -80,7 +85,7 @@ public class ElimDipGui extends JFrame {
 				}
 			});
 		}
-		
+
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -105,6 +110,7 @@ public class ElimDipGui extends JFrame {
 		DipendenteDAO dipdao = new DipendenteDAO();
 		IscrittoalcorsoDAO idao = new IscrittoalcorsoDAO();
 		CorsiDAO cdao = new CorsiDAO();
+		RichiesteDAO rdao = new RichiesteDAO();
 
 		Dipendente dipendente = p.getDIP2(index);
 
@@ -118,6 +124,15 @@ public class ElimDipGui extends JFrame {
 					}
 					cdao.deleteCorso(corso.getNome(), dipendente.getNome(), dipendente.getCognome(),
 							dipendente.getMail(), co, p);
+				}
+			}
+		} else if (dipendente.getTipo().equals("personaltrainer")) {
+			for (int j = 0; j < r.getRichieste().size(); j++) {
+				RichiestaAlPT richiesta = r.getRichiesteI(j);
+				if(dipendente.equals(richiesta.getDipendente())) {
+					if(r.ptRichieste(dipendente)) {
+						rdao.deleteRichiesta(richiesta);
+					}
 				}
 			}
 		}

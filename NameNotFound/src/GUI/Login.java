@@ -20,7 +20,7 @@ public class Login extends JFrame {
 	private JPasswordField passwordField;
 	private JLabel pw, mail, NEXTFIT, errorlabel;
 
-	public Login(Palestra palestra, Proprietario proprietario, Corsi co,Richieste r) {
+	public Login(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 
 		setTitle("login palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,7 +104,7 @@ public class Login extends JFrame {
 				buttonPanel.add(errorlabel);
 
 				if (mail.toLowerCase().equals(proprietario.getMail()) && password.equals(proprietario.getPassword())) {
-					new ProprietarioGui(proprietario, palestra, co);
+					new ProprietarioGui(proprietario, palestra, co, r);
 					buttonPanel.remove(errorlabel);
 					panel.add(buttonPanel);
 					panel.revalidate();
@@ -112,7 +112,7 @@ public class Login extends JFrame {
 				}
 
 				if (palestra.esisteCli(mail.toLowerCase(), password) == true) {
-					new LatoClienteGui(co, palestra.accessoCli(mail.toLowerCase(), password), palestra);
+					new LatoClienteGui(co, palestra.accessoCli(mail.toLowerCase(), password), palestra, r);
 					buttonPanel.remove(errorlabel);
 					panel.add(buttonPanel);
 					panel.revalidate();
@@ -121,7 +121,7 @@ public class Login extends JFrame {
 
 				if (palestra.esisteDip(mail.toLowerCase(), password) == true) {
 					if (palestra.accessoDip(mail.toLowerCase(), password).getTipo().equals("personaltrainer")) {
-						new LatoPTGui(palestra.accessoDip(mail.toLowerCase(), password), palestra,r);
+						new LatoPTGui(palestra.accessoDip(mail.toLowerCase(), password), palestra, r);
 						buttonPanel.remove(errorlabel);
 						panel.add(buttonPanel);
 						panel.revalidate();

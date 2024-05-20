@@ -30,7 +30,7 @@ public class PrimaPagina extends JFrame {
 	private JButton LOGIN, REG;
 	private JLabel NEXTFIT;
 
-	public PrimaPagina(Palestra palestra, Proprietario proprietario, Corsi co,Richieste r) {
+	public PrimaPagina(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 		setTitle("Pagina principale");
 
 		JPanel panel = new JPanel();
@@ -62,7 +62,7 @@ public class PrimaPagina extends JFrame {
 
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						new Login(palestra, proprietario, co,r);
+						new Login(palestra, proprietario, co, r);
 
 					}
 				});
@@ -83,7 +83,7 @@ public class PrimaPagina extends JFrame {
 
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						new PalestraGui(palestra, proprietario, co);
+						new PalestraGui(palestra, proprietario, co, r);
 
 					}
 				});

@@ -36,31 +36,33 @@ public class Tester {
 		NextFit.registraDipendente(
 				NextFit.creaDipendente("Wino", "Wino", "wino@fmai.com", "wi123no", 24, 1800, "Dietista"));
 		NextFit.registraDipendente(
-				NextFit.creaDipendente("Gino", "Gino", "gino@mail.com", "gi1234no", 32, 540, "PersonalTrainer"));
+				NextFit.creaDipendente("Gino", "Gino", "gino@email.com", "gi1234no", 32, 540, "PersonalTrainer"));
 		NextFit.registraDipendente(
 				NextFit.creaDipendente("Cino", "Cino", "cino@smail.com", "ci764no", 19, 675, "Corsista"));
 		NextFit.registraDipendente(
-				NextFit.creaDipendente("Tino", "Tino", "tino@mail.com", "tin233o", 29, 1000, "PersonalTrainer"));
+				NextFit.creaDipendente("Tino", "Tino", "tino@email.com", "tin233o", 29, 1000, "PersonalTrainer"));
 		NextFit.registraDipendente(
-				NextFit.creaDipendente("Sino", "Sino", "Sino@mail.com", "sn233o", 39, 1900, "PersonalTrainer"));
+				NextFit.creaDipendente("Sino", "Sino", "sino@email.com", "aaa", 39, 1900, "PersonalTrainer"));
 
 		NextFit.visuClAbbo();
 		NextFit.visuListaDip();
 		NextFit.visuDip("COrsisTA");
 
 		corsi.visuCorsi();
-		
+
 		corsi.visuClisCorsi();
-		
+
 		r.visualizzaRichieste();
-		
+
 		r.visualizzaSchede();
 
-SwingUtilities.invokeLater(new Runnable() {
-public void run() {
-new PrimaPagina(NextFit, proprietario, corsi,r);
-}
-});
+		NextFit.visuListaDip();
 
-}
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new PrimaPagina(NextFit, proprietario, corsi, r);
+			}
+		});
+
+	}
 }

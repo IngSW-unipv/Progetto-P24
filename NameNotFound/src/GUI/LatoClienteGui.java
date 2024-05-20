@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 import NextFit.Palestra;
+import NextFit.Richieste;
 
 public class LatoClienteGui extends JFrame {
 	private JButton PT, CORSI, SCHEDA, SERVIZI;
@@ -31,19 +32,23 @@ public class LatoClienteGui extends JFrame {
 	private ListaPT listaPT;
 	private SerAgg serAgg;
 	private JLabel NEXTFIT, SCAD;
+	private boolean controlpt, controlcorsi, controlsa;
 
-	public LatoClienteGui(Corsi co, ClienteAbbonato clienteAbbonato, Palestra palestra) {
+	public LatoClienteGui(Corsi co, ClienteAbbonato clienteAbbonato, Palestra palestra, Richieste richieste) {
 		setTitle("Pagina principale");
 
-		listaCORSI = new ListaCORSI(co, clienteAbbonato, LatoClienteGui.this); // creo adesso la gui figlia
-		listaCORSI.setVisible(false);
+		/*
+		 * listaCORSI = new ListaCORSI(co, clienteAbbonato, LatoClienteGui.this); //
+		 * creo adesso la gui figlia listaCORSI.setVisible(false);
+		 * 
+		 * listaPT = new ListaPT(palestra, clienteAbbonato, LatoClienteGui.this,
+		 * richieste); // creo adesso la gui figlia listaPT.setVisible(false);
+		 * setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 * 
+		 * serAgg = new SerAgg(clienteAbbonato, palestra, LatoClienteGui.this);
+		 * serAgg.setVisible(false);
+		 */
 
-		listaPT = new ListaPT(palestra, clienteAbbonato, LatoClienteGui.this); // creo adesso la gui figlia
-		listaPT.setVisible(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		serAgg = new SerAgg(clienteAbbonato, palestra, LatoClienteGui.this);
-		serAgg.setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -77,14 +82,20 @@ public class LatoClienteGui extends JFrame {
 		PT.setFont(new Font("Rockwell", Font.BOLD, 20));
 		PT.setForeground(Color.white);
 
+		controlpt = false;
 		PT.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (controlpt == false) {
+					listaPT = new ListaPT(palestra, clienteAbbonato, LatoClienteGui.this, richieste); // creo adesso la
+																										// gui figlia
+					dispose();
+					controlpt = true;
+				} else {
+					listaPT.setVisible(true); // Riapre la finestra già esistente
 
-				listaPT.setVisible(true); // Riapre la finestra già esistente
-
-				dispose();
-
+					dispose();
+				}
 			}
 		});
 		panel.add(PT);
@@ -96,13 +107,19 @@ public class LatoClienteGui extends JFrame {
 		CORSI.setForeground(Color.white);
 		CORSI.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 		CORSI.setBackground(CBUT);
+		controlcorsi = false;
 		CORSI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (controlcorsi == false) {
+					listaCORSI = new ListaCORSI(co, clienteAbbonato, LatoClienteGui.this); // creo adesso la gui figlia
+					dispose();
+					controlpt = true;
+				} else {
+					listaCORSI.setVisible(true); // Riapre la finestra già esistente
 
-				listaCORSI.setVisible(true); // Riapre la finestra già esistente
-
-				dispose();
+					dispose();
+				}
 
 			}
 		});
@@ -122,14 +139,19 @@ public class LatoClienteGui extends JFrame {
 		SERVIZI.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 		SERVIZI.setBackground(CBUT);
 
+		controlsa = false;
 		SERVIZI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (controlsa == false) {
+					serAgg = new SerAgg(clienteAbbonato, palestra, LatoClienteGui.this);
+					dispose();
+					controlsa = true;
+				} else {
+					serAgg.setVisible(true);
 
-				serAgg.setVisible(true);
-
-				dispose();
-
+					dispose();
+				}
 			}
 		});
 

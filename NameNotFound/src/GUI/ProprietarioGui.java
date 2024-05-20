@@ -22,6 +22,7 @@ import NextFit.Dipendente;
 import NextFit.Palestra;
 import NextFit.PersonalTrainer;
 import NextFit.Proprietario;
+import NextFit.Richieste;
 
 public class ProprietarioGui extends JFrame {
 
@@ -31,7 +32,7 @@ public class ProprietarioGui extends JFrame {
 	private ElimCorsoGui elimc;
 	private ProprietarioGui pg;
 
-	public ProprietarioGui(Proprietario proprietario, Palestra palestra, Corsi corsi) {
+	public ProprietarioGui(Proprietario proprietario, Palestra palestra, Corsi corsi, Richieste richieste) {
 		setTitle("Pagina principale");
 
 		pg = this;
@@ -96,7 +97,7 @@ public class ProprietarioGui extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ElimDipGui(palestra, corsi, pg);
+				new ElimDipGui(palestra, corsi, pg, richieste);
 				dispose(); // Chiude la finestra corrente
 
 			}

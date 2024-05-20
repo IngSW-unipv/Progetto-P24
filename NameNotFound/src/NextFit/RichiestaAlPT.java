@@ -36,5 +36,21 @@ public class RichiestaAlPT {
 	public void setScheda(int scheda) {
 		this.cod_scheda = scheda;
 	}
-	
+
+	public PersonalTrainer getPt() {
+		return pt;
+	}
+
+	public void setPt(PersonalTrainer pt) {
+		this.pt = pt;
+	}
+
+	public int getCod_scheda() {
+		return cod_scheda;
+	}
+
+	public void setCod_scheda(int cod_scheda) {
+		this.cod_scheda = cod_scheda;
+	}
+
 }

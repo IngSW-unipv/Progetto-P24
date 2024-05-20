@@ -22,8 +22,13 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+import DB.CorsiDAO;
+import DB.IscrittoalcorsoDAO;
+import DB.RichiesteDAO;
 import NextFit.ClienteAbbonato;
 import NextFit.Palestra;
+import NextFit.PersonalTrainer;
+import NextFit.Richieste;
 
 public class ListaPT extends JFrame {
 
@@ -31,10 +36,13 @@ public class ListaPT extends JFrame {
 	private JPanel panel, backpanel;
 	private JButton back;
 	private JLabel PT;
+	private boolean[] isIscritto;
 
-	public ListaPT(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteGui parent) {
+	public ListaPT(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteGui parent, Richieste r) {
 		setTitle("Interfaccia Personal Trainer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		isIscritto = new boolean[p.contaDip("personaltrainer")];
 
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
 		gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel
@@ -77,14 +85,56 @@ public class ListaPT extends JFrame {
 
 		// mettere nel for num max PT
 		for (int i = 0; i <= p.contaDip("personaltrainer") - 1; i++) {
+			PersonalTrainer pt = (PersonalTrainer) p.getDIP("Personaltrainer", i);
 			JButton button = new JButton(
 					p.getDIP("Personaltrainer", i).getNome() + " " + p.getDIP("Personaltrainer", i).getCognome());
+			int n = i;
 			button.setBackground(CBUT);
 			button.setPreferredSize(new Dimension(200, 100));
 			button.setFont(new Font("Rockwell", Font.BOLD, 20));
 			button.setForeground(Color.white);
 			trainerButtons.add(button);
 			panel.add(button);
+			isIscritto[n] = false;
+			if (r.richiestaPresente(clienteAbbonato, pt)) {
+				button.setText(p.getDIP("Personaltrainer", i).getNome() + " "
+						+ p.getDIP("Personaltrainer", i).getCognome() + " - richiesto");
+				isIscritto[n] = true;
+			}
+			button.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					RichiesteDAO dao = new RichiesteDAO();
+
+					if (!isIscritto[n]) {
+						r.aggRichiesta(pt, clienteAbbonato, 0);
+						JButton button = (JButton) e.getSource();
+						button.setText(p.getDIP("Personaltrainer", n).getNome() + " "
+								+ p.getDIP("Personaltrainer", n).getCognome() + " - richiesto");
+
+						dao.insertRichiesta(r.ricarcaRichiesta(clienteAbbonato, pt));
+
+						isIscritto[n] = true;
+
+						r.visualizzaRichieste();
+						//aggiungere logica che solo 1 richiesta è possibile
+					} else {
+						
+						JButton button = (JButton) e.getSource();
+						button.setText(p.getDIP("Personaltrainer", n).getNome() + " "
+								+ p.getDIP("Personaltrainer", n).getCognome());
+
+						dao.deleteRichiesta(r.ricarcaRichiesta(clienteAbbonato, pt));
+						r.eliminaRichiesta(r.ricarcaRichiesta(clienteAbbonato, pt));
+
+						isIscritto[n] = false;
+
+						r.visualizzaRichieste();
+					}
+
+				}
+			});
 		}
 
 		JScrollPane scrollPane = new JScrollPane(panel);

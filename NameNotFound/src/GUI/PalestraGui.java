@@ -9,18 +9,21 @@ import NextFit.Cliente;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
+import NextFit.Richieste;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PalestraGui extends JFrame {
 	private JTextField nomeField, cognomeField, mailField, etaField;
 	private JButton registraButton;
 	private JPasswordField passwordField;
-	private JLabel nome, cognome, pw, eta, mail, NEXTFIT, errorLabel;
+	private JLabel nome, cognome, pw, eta, mail, NEXTFIT, errorLabel, errorlabel2;
 
-	public PalestraGui(Palestra palestra, Proprietario proprietario, Corsi co) {
+	public PalestraGui(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 
 		setTitle("Registrazione Cliente Palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,6 +113,9 @@ public class PalestraGui extends JFrame {
 		JLabel errorLabel = new JLabel("*Errore: minorenne o Cliente già presente");
 		errorLabel.setForeground(Color.RED);
 
+		JLabel errorLabel2 = new JLabel("*Errore: I campi devono essere scritti nel modo corretto");
+		errorLabel2.setForeground(Color.RED);
+
 		registraButton = new JButton("Registrati");
 
 		registraButton.setBackground(or);
@@ -133,11 +139,14 @@ public class PalestraGui extends JFrame {
 				buttonPanel.setBackground(CBACK);
 				buttonPanel.add(registraButton);
 				buttonPanel.add(errorLabel);
+				buttonPanel.add(errorLabel2);
 
-				if (palestra.registraCliente(cliente) == true) {
+				if (palestra.registraCliente(cliente) == true && isValidEmail(mail) && isValidnome(nome)
+						&& isValidcognome(cognome)) {
 
 					buttonPanel.add(registraButton);
 					buttonPanel.remove(errorLabel);
+					buttonPanel.remove(errorLabel2);
 					panel.add(buttonPanel);
 					panel.revalidate();
 					panel.repaint();
@@ -145,16 +154,26 @@ public class PalestraGui extends JFrame {
 					SwingUtilities.invokeLater(new Runnable() {
 						public void run() {
 							// new LatoClienteGui(co, cliente, palestra);
-							new AbbonamentoGui(cliente, proprietario, palestra, co);
+							new AbbonamentoGui(cliente, proprietario, palestra, co, r);
 						}
 					});
 				} else {
+					if (palestra.registraCliente(cliente) == false) {
 
-					panel.add(buttonPanel);
+						panel.add(buttonPanel);
+						buttonPanel.remove(errorLabel2);
 
-					// Aggiorna il pannello
-					panel.revalidate();
-					panel.repaint();
+						// Aggiorna il pannello
+						panel.revalidate();
+						panel.repaint();
+					} else if (isValidEmail(mail) == false || isValidnome(nome) == false
+							|| isValidcognome(cognome) == false) {
+						panel.add(buttonPanel);
+						buttonPanel.remove(errorLabel);
+						// Aggiorna il pannello
+						panel.revalidate();
+						panel.repaint();
+					}
 
 				}
 			}
@@ -168,4 +187,25 @@ public class PalestraGui extends JFrame {
 		setVisible(true);
 	}
 
+	public boolean isValidEmail(String email) {
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+		Pattern pattern = Pattern.compile(emailRegex);
+		Matcher matcher = pattern.matcher(email);
+		return matcher.matches();
+
+	}
+
+	public boolean isValidnome(String nome) {
+		String Regex = "^[a-zA-ZàèìòùÀÈÌÒÙ'\\-\\s]{2,}$";
+		Pattern pattern = Pattern.compile(Regex);
+		Matcher matcher = pattern.matcher(nome);
+		return matcher.matches();
+	}
+
+	public boolean isValidcognome(String cognome) {
+		String Regex = "^[a-zA-ZàèìòùÀÈÌÒÙ'\\-\\s]{2,}$";
+		Pattern pattern = Pattern.compile(Regex);
+		Matcher matcher = pattern.matcher(cognome);
+		return matcher.matches();
+	}
 }
