@@ -269,7 +269,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	public boolean esisteDip(String mail, String pass) {
 		boolean t = false;
 
-		for (int i = 0; i < contatoreCA; i++) {
+		for (int i = 0; i < contatoreD; i++) {
 			if ((dipendenti[i].getMail().equals(mail) && dipendenti[i].getPassword().equals(pass))) {
 				t = true;
 				break;

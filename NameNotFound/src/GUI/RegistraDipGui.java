@@ -20,6 +20,7 @@ public class RegistraDipGui extends JFrame {
 	private JButton registraButton;
 	private JPasswordField passwordField;
 	private JLabel nome, cognome, pw, eta, mail, tipo, stipendio, NEXTFIT, errorLabel;
+	private JPanel regPanel;
 
 	public RegistraDipGui(Palestra palestra) {
 
@@ -134,14 +135,13 @@ public class RegistraDipGui extends JFrame {
 		JLabel errorLabel = new JLabel("*Errore: Dipendente già presente");
 		errorLabel.setForeground(Color.RED);
 
-		JPanel regPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		regPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		regPanel.setBackground(CBACK);
 
 		registraButton = new JButton("Registra Dipendente");
 
 		registraButton.setBackground(or);
 		registraButton.setFont(new Font("Arial", Font.BOLD, 13));
-		registraButton.setMaximumSize(new Dimension(30, 30));
 		registraButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
 		registraButton.addActionListener(new ActionListener() {
@@ -159,24 +159,21 @@ public class RegistraDipGui extends JFrame {
 				Dipendente d = palestra.creaDipendente(nome, cognome, mail, password, eta, stipendio, tipo);
 				// palestra.registraDipendente(d);
 
-				JPanel buttonPanel = new JPanel();
-				buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-				buttonPanel.setBackground(CBACK);
-				buttonPanel.add(registraButton);
-				buttonPanel.add(errorLabel);
+
+				regPanel.add(registraButton);
+				regPanel.add(errorLabel);
 
 				if (palestra.registraDipendente(d) == true) {
 
-					buttonPanel.add(registraButton);
-					buttonPanel.remove(errorLabel);
-					panel.add(buttonPanel);
+					regPanel.remove(errorLabel);
+					panel.add(regPanel);
 					panel.revalidate();
 					panel.repaint();
 				}
 
 				else {
 
-					panel.add(buttonPanel);
+					panel.add(regPanel);
 					// Aggiorna il pannello
 					panel.revalidate();
 					panel.repaint();
@@ -186,7 +183,6 @@ public class RegistraDipGui extends JFrame {
 			}
 		});
 
-		panel.add(registraButton);
 
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

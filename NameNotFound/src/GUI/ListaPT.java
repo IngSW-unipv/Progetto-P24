@@ -1,29 +1,11 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.*;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
-
-import DB.CorsiDAO;
-import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
 import NextFit.ClienteAbbonato;
 import NextFit.Palestra;
@@ -37,12 +19,14 @@ public class ListaPT extends JFrame {
 	private JButton back;
 	private JLabel PT;
 	private boolean[] isIscritto;
+	private boolean isRichiestaAttiva;
 
 	public ListaPT(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteGui parent, Richieste r) {
 		setTitle("Interfaccia Personal Trainer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		isIscritto = new boolean[p.contaDip("personaltrainer")];
+		isRichiestaAttiva = false;
 
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
 		gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel
@@ -73,17 +57,14 @@ public class ListaPT extends JFrame {
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
 				parent.setVisible(true);
 				dispose(); // Chiude la finestra corrente
-
 			}
-
 		});
 
 		panel.add(new JLabel());
 
-		// mettere nel for num max PT
+		// Inizializza i pulsanti dei personal trainer
 		for (int i = 0; i <= p.contaDip("personaltrainer") - 1; i++) {
 			PersonalTrainer pt = (PersonalTrainer) p.getDIP("Personaltrainer", i);
 			JButton button = new JButton(
@@ -100,28 +81,25 @@ public class ListaPT extends JFrame {
 				button.setText(p.getDIP("Personaltrainer", i).getNome() + " "
 						+ p.getDIP("Personaltrainer", i).getCognome() + " - richiesto");
 				isIscritto[n] = true;
+				isRichiestaAttiva = true;
 			}
 			button.addActionListener(new ActionListener() {
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					RichiesteDAO dao = new RichiesteDAO();
+					JButton button = (JButton) e.getSource();
 
-					if (!isIscritto[n]) {
+					if (!isIscritto[n] && !isRichiestaAttiva) {
 						r.aggRichiesta(pt, clienteAbbonato, 0);
-						JButton button = (JButton) e.getSource();
 						button.setText(p.getDIP("Personaltrainer", n).getNome() + " "
 								+ p.getDIP("Personaltrainer", n).getCognome() + " - richiesto");
 
 						dao.insertRichiesta(r.ricarcaRichiesta(clienteAbbonato, pt));
 
 						isIscritto[n] = true;
-
+						isRichiestaAttiva = true;
 						r.visualizzaRichieste();
-						//aggiungere logica che solo 1 richiesta è possibile
-					} else {
-						
-						JButton button = (JButton) e.getSource();
+					} else if (isIscritto[n]) {
 						button.setText(p.getDIP("Personaltrainer", n).getNome() + " "
 								+ p.getDIP("Personaltrainer", n).getCognome());
 
@@ -129,10 +107,13 @@ public class ListaPT extends JFrame {
 						r.eliminaRichiesta(r.ricarcaRichiesta(clienteAbbonato, pt));
 
 						isIscritto[n] = false;
-
+						isRichiestaAttiva = false;
 						r.visualizzaRichieste();
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Hai giÃ  una richiesta attiva. Rimuovi la richiesta esistente prima di aggiungerne un'altra.",
+								"Errore", JOptionPane.ERROR_MESSAGE);
 					}
-
 				}
 			});
 		}
@@ -150,5 +131,4 @@ public class ListaPT extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
 }
