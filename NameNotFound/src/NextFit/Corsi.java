@@ -160,6 +160,15 @@ public class Corsi {
 		}
 		return false;
 	}
+	
+	public boolean isclPresente(ClienteAbbonato c) {
+		for (IscrittoalCorso iscritto : iscritti) {
+			if (iscritto.getCliente().equals(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public List<IscrittoalCorso> getIscrittiCorso(Corso corso) {
 		List<IscrittoalCorso> iscrittiCorso = new ArrayList<>();
@@ -170,4 +179,8 @@ public class Corsi {
 		}
 		return iscrittiCorso;
 	}
+	
+	public void eliminaIscrizioniCliente(ClienteAbbonato cliente) {
+        iscritti.removeIf(iscritto -> iscritto.getCliente().equals(cliente));
+    }
 }

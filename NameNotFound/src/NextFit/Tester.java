@@ -31,7 +31,7 @@ public class Tester {
 		dao4.selectAll(NextFit, r);
 		dao5.selectAll(r);
 
-		NextFit.registraDipendente(
+		/*NextFit.registraDipendente(
 				NextFit.creaDipendente("Pino", "Pino", "pino@tmail.com", "pi123no", 23, 2000, "corsista"));
 		NextFit.registraDipendente(
 				NextFit.creaDipendente("Wino", "Wino", "wino@fmai.com", "wi123no", 24, 1800, "Dietista"));
@@ -42,7 +42,7 @@ public class Tester {
 		NextFit.registraDipendente(
 				NextFit.creaDipendente("Tino", "Tino", "tino@email.com", "tin233o", 29, 1000, "PersonalTrainer"));
 		NextFit.registraDipendente(
-				NextFit.creaDipendente("Sino", "Sino", "sino@email.com", "aaa", 39, 1900, "PersonalTrainer"));
+				NextFit.creaDipendente("Sino", "Sino", "sino@email.com", "aaa", 39, 1900, "PersonalTrainer"));*/
 
 		NextFit.visuClAbbo();
 		NextFit.visuListaDip();
@@ -55,8 +55,9 @@ public class Tester {
 		r.visualizzaRichieste();
 
 		r.visualizzaSchede();
-
-		NextFit.visuListaDip();
+		
+		NextFit.eliminaCliente("m", "r", "mr@mr.com", r, corsi);
+		NextFit.eliminaCliente("l", "b", "lb@lb.com", r, corsi);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
