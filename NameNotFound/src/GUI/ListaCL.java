@@ -70,6 +70,7 @@ public class ListaCL extends JFrame{
 		
 		for (int i = 0; i < r.getR(pt); i++) {
 			JButton button = new JButton( r.getNomeCL(i,pt)+ " "+ r.getCognomeCL(i,pt) );
+			final int n=i;
 			button.setBackground(new Color(40, 40, 40));
 			button.setPreferredSize(new Dimension(200, 100));
 			button.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -79,7 +80,7 @@ public class ListaCL extends JFrame{
 			button.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
+					new CreaScheda(p,r.getrichiestapt(pt, n),r);
 				}
 			});
 		}

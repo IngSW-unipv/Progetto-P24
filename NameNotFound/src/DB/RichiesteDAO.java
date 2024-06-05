@@ -90,6 +90,41 @@ public class RichiesteDAO {
 		return esito;
 	}
 
+	public boolean updateSchedaId(RichiestaAlPT richiesta, int cod_scheda) {
+	    conn = DBConnection.startConnection(conn, schema);
+
+	    PreparedStatement st1;
+
+	    boolean esito = true;
+
+	    try {
+	        String query = "UPDATE richiestePT SET scheda_id = ? WHERE nome_pt = ? AND cognome_pt = ? AND mail_pt = ? AND nome_cliente = ? AND cognome_cliente = ? AND mail_cliente = ?";
+	        st1 = conn.prepareStatement(query);
+	        st1.setInt(1, cod_scheda);
+	        st1.setString(2, richiesta.getDipendente().getNome());
+	        st1.setString(3, richiesta.getDipendente().getCognome());
+	        st1.setString(4, richiesta.getDipendente().getMail());
+	        st1.setString(5, richiesta.getCliente().getCliente().getNome());
+	        st1.setString(6, richiesta.getCliente().getCliente().getCognome());
+	        st1.setString(7, richiesta.getCliente().getCliente().getMail());
+
+	        int rowsAffected = st1.executeUpdate();
+	        if (rowsAffected == 0) {
+	            System.out.println("Nessuna riga aggiornata. Potrebbe non esistere una richiesta corrispondente.");
+	            esito = false;
+	        } else {
+	            System.out.println("Richiesta aggiornata con successo.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        esito = false;
+	    } finally {
+	        DBConnection.closeConnection(conn);
+	    }
+
+	    return esito;
+	}
+	
 	public boolean deleteRichiesta(RichiestaAlPT richiesta) {
 		conn = DBConnection.startConnection(conn, schema);
 

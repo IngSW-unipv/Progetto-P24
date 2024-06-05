@@ -114,7 +114,7 @@ public class LatoClienteGui extends JFrame {
 				if (controlcorsi == false) {
 					listaCORSI = new ListaCORSI(co, clienteAbbonato, LatoClienteGui.this); // creo adesso la gui figlia
 					dispose();
-					controlpt = true;
+					controlcorsi = true;
 				} else {
 					listaCORSI.setVisible(true); // Riapre la finestra già esistente
 
@@ -131,6 +131,14 @@ public class LatoClienteGui extends JFrame {
 		SCHEDA.setForeground(Color.white);
 		SCHEDA.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
 		SCHEDA.setBackground(CBUT);
+		SCHEDA.addActionListener(new ActionListener() {
+
+			@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		new VisuScheda(richieste,clienteAbbonato);
+			}
+	});
 		panel.add(SCHEDA);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		SERVIZI = new JButton("SERVIZI AGGIUNTIVI");

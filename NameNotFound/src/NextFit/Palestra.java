@@ -57,27 +57,6 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		return t;
 	}
 
-	public void eliminaCliente(String nome, String cognome, String mail, Richieste r, Corsi c) {
-		ClienteAbbonato ca = ricercaCli(mail.toLowerCase(), nome, cognome);
-		LocalDate dataOdierna = LocalDate.now();
-		ClienteAbboDAO dao = new ClienteAbboDAO();
-		RichiesteDAO dao1 = new RichiesteDAO();
-		IscrittoalcorsoDAO dao2 = new IscrittoalcorsoDAO();
-
-		if (ca != null && ca.getDataScadenza().isBefore(dataOdierna)) {
-			
-			if(c.isclPresente(ca)) {
-				dao2.deleteIscrizione2(ca);
-				c.eliminaIscrizioniCliente(ca);
-			}else if(r.clRichieste(ca)) {
-				dao1.deleteRichiesta(r.ricarcaRichiestaCl(ca));
-				r.eliminaRichiesta(r.ricarcaRichiestaCl(ca));
-			}
-			
-			dao.deleteCliente(nome, cognome, mail);
-		}
-	}
-
 	public Dipendente creaDipendente(String nome, String cognome, String mail, String password, int età,
 			double stipendio, String tipo) {
 		switch (tipo.toLowerCase()) {
@@ -274,6 +253,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		return t;
 	}
 
+	
 	public ClienteAbbonato ricercaCli(String mail, String nome, String cognome) {
 		int j = -1;
 
@@ -336,4 +316,24 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	public String riconosciTipo(Dipendente d) {
 		return d.getTipo();
 	}
+	public void eliminaCliente(String nome, String cognome, String mail, Richieste r, Corsi c) {
+        ClienteAbbonato ca = ricercaCli(mail.toLowerCase(), nome, cognome);
+        LocalDate dataOdierna = LocalDate.now();
+        ClienteAbboDAO dao = new ClienteAbboDAO();
+        RichiesteDAO dao1 = new RichiesteDAO();
+        IscrittoalcorsoDAO dao2 = new IscrittoalcorsoDAO();
+
+        if (ca != null && ca.getDataScadenza().isBefore(dataOdierna)) {
+
+            if(c.isclPresente(ca)) {
+                dao2.deleteIscrizione2(ca);
+                c.eliminaIscrizioniCliente(ca);
+            }else if(r.clRichieste(ca)) {
+                dao1.deleteRichiesta(r.ricarcaRichiestaCl(ca));
+                r.eliminaRichiesta(r.ricarcaRichiestaCl(ca));
+            }
+
+            dao.deleteCliente(nome, cognome, mail);
+        }
+    }
 }

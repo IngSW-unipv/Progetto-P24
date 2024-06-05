@@ -26,6 +26,15 @@ public class Richieste {
 		return scheda;
 	}
 
+	public int getCodiceSchedaCliente(ClienteAbbonato cliente) {
+        for (RichiestaAlPT richiesta : richieste) {
+            if (richiesta.getCliente().equals(cliente)) {
+                return richiesta.getCod_scheda();
+            }
+        }
+        return 0;
+    }
+	
 	public void eliminaScheda(Scheda scheda) {
 		schede.remove(scheda);
 	}
@@ -113,6 +122,13 @@ public class Richieste {
 		return richiesteFiltrate;
 	}
 
+	public RichiestaAlPT getrichiestapt(PersonalTrainer pt, int i)
+	{
+		return getRichiestePerPersonalTrainer(pt).get(i);
+		
+		}
+	
+	
 	public int getR(PersonalTrainer pt) {
 		int i = 0;
 		for (RichiestaAlPT richiesta : richieste) {
@@ -122,45 +138,51 @@ public class Richieste {
 		return i;
 	}
 
-	public boolean richiestaPresente(ClienteAbbonato cliente, Dipendente personalTrainer) {
+	/*public boolean richiestaPresente(ClienteAbbonato cliente, Dipendente personalTrainer, int cod_scheda) {
 		for (RichiestaAlPT richiesta : richieste) {
-			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {
+			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)
+					&& richiesta.getScheda() == cod_scheda) {
 				return true;
 			}
 		}
 		return false;
-	}
+	}*/
 
+	public boolean richiestaPresente(ClienteAbbonato cliente, Dipendente personalTrainer) {
+        for (RichiestaAlPT richiesta : richieste) {    if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {
+                return true;
+            }
+        }
+        return false;}
+	
 	public RichiestaAlPT ricarcaRichiesta(ClienteAbbonato cliente, Dipendente personalTrainer) {
-		for (RichiestaAlPT richiesta : richieste) {
-			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {
-				return richiesta;
-			}
-		}
-		return null;
-	}
-
+        for (RichiestaAlPT richiesta : richieste) {
+            if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {        return richiesta;
+            }
+        }
+return null;
+    }
+	
 	public RichiestaAlPT ricarcaRichiestaCl(ClienteAbbonato cliente) {
-		for (RichiestaAlPT richiesta : richieste) {
-			if (richiesta.getCliente().equals(cliente)) {
-				return richiesta;
-			}
-		}
-		return null;
+        for (RichiestaAlPT richiesta : richieste) {if (richiesta.getCliente().equals(cliente)) {
+                return richiesta;
+            }
+        }
+        return null;
 	}
+	
+	public boolean clRichieste(ClienteAbbonato cliente) {
+        for (RichiestaAlPT richiesta : richieste) {
+            if (richiesta.getCliente().equals(cliente)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 	public boolean ptRichieste(Dipendente personalTrainer) {
 		for (RichiestaAlPT richiesta : richieste) {
 			if (richiesta.getDipendente().equals(personalTrainer)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean clRichieste(ClienteAbbonato cliente) {
-		for (RichiestaAlPT richiesta : richieste) {
-			if (richiesta.getCliente().equals(cliente)) {
 				return true;
 			}
 		}
