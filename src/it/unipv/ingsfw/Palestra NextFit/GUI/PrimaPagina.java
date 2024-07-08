@@ -25,6 +25,7 @@ import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
 import NextFit.Richieste;
+import View.Login;
 
 public class PrimaPagina extends JFrame {
 	private JButton LOGIN, REG;

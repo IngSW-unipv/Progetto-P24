@@ -1,10 +1,12 @@
-package GUI;
+package View;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import Controller.LogController;
+import Exception.NoAccountException;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
@@ -19,8 +21,10 @@ public class Login extends JFrame {
 	private JButton loginButton;
 	private JPasswordField passwordField;
 	private JLabel pw, mail, NEXTFIT, errorlabel;
+	private LogController log;
 
 	public Login(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
+
 
 		setTitle("login palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,58 +93,18 @@ public class Login extends JFrame {
 		loginButton.setMaximumSize(new Dimension(100, 30));
 		loginButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
+		log=new LogController(palestra, proprietario, this, co, r);
 		loginButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				String mail = mailField.getText();
-				String password = new String(passwordField.getPassword());
-
-				JPanel buttonPanel = new JPanel();
-				buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-				buttonPanel.setBackground(CBACK);
-				buttonPanel.add(loginButton);
-				buttonPanel.add(errorlabel);
-
-				if (mail.toLowerCase().equals(proprietario.getMail()) && password.equals(proprietario.getPassword())) {
-					new ProprietarioGui(proprietario, palestra, co, r);
-					buttonPanel.remove(errorlabel);
-					panel.add(buttonPanel);
-					panel.revalidate();
-					panel.repaint();
+				try {
+					log.Login();
+				} catch (NoAccountException e1) {
+					e1.printStackTrace();
 				}
-
-				if (palestra.esisteCli(mail.toLowerCase(), password) == true) {
-					new LatoClienteGui(co, palestra.accessoCli(mail.toLowerCase(), password), palestra, r);
-					buttonPanel.remove(errorlabel);
-					panel.add(buttonPanel);
-					panel.revalidate();
-					panel.repaint();
-				}
-
-				if (palestra.esisteDip(mail.toLowerCase(), password) == true) {
-					if (palestra.accessoDip(mail.toLowerCase(), password).getTipo().equals("personaltrainer")) {
-						new LatoPTGui(palestra.accessoDip(mail.toLowerCase(), password), palestra, r);
-						buttonPanel.remove(errorlabel);
-						panel.add(buttonPanel);
-						panel.revalidate();
-						panel.repaint();
-					} else if (palestra.accessoDip(mail.toLowerCase(), password).getTipo().equals("corsista")) {
-						new LatoCorsistaGui(palestra.accessoDip(mail.toLowerCase(), password), palestra, co);
-						buttonPanel.remove(errorlabel);
-						panel.add(buttonPanel);
-						panel.revalidate();
-						panel.repaint();
-					}
-				} else {
-					panel.add(buttonPanel);
-
-					// Aggiorna il pannello
-					panel.revalidate();
-					panel.repaint();
-				}
-
+			
 			}
 
 		});
@@ -153,4 +117,21 @@ public class Login extends JFrame {
 		setVisible(true);
 	}
 
+	public JTextField getMailField() {
+		return mailField;
+	}
+
+	public JButton getLoginButton() {
+		return loginButton;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public JLabel getErrorlabel() {
+		return errorlabel;
+	}
+	
+	
 }

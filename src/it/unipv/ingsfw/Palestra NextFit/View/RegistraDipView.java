@@ -1,28 +1,28 @@
-package GUI;
+package View;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
-import NextFit.Cliente;
-import NextFit.Corsi;
-import NextFit.Dipendente;
 import NextFit.Palestra;
-import NextFit.Proprietario;
+import Controller.RegistraDipController;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegistraDipGui extends JFrame {
-	private JTextField nomeField, cognomeField, mailField, etaField, tipoField, stipField;
-	private JButton registraButton;
+public class RegistraDipView extends JFrame {
+	private JTextField nomeField, cognomeField, mailField, etaField, stipField;
+	private JButton registraButton, backButton;
 	private JPasswordField passwordField;
 	private JLabel nome, cognome, pw, eta, mail, tipo, stipendio, NEXTFIT, errorLabel;
 	private JPanel regPanel;
+	private JComboBox<String> tipoField;
+	private RegistraDipController controller;
+	private JFrame previousFrame;
 
-	public RegistraDipGui(Palestra palestra) {
+	public RegistraDipView(Palestra palestra, JFrame previousFrame) {
+		this.previousFrame = previousFrame;
 
 		setTitle("Registrazione Dipendente Palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,33 +32,26 @@ public class RegistraDipGui extends JFrame {
 		JPanel panel = new JPanel(gridLayout);
 
 		Color CBACK = new Color(28, 28, 28);
-
 		panel.setBackground(CBACK);
 
 		NEXTFIT = new JLabel("<html><font color='orange'>REGI</font><font color='white'>STRAZIONE</font></html>");
 		NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
-
 		panel.add(NEXTFIT);
 
 		nomeField = new JTextField();
-
 		nomeField.setForeground(Color.white);
 		cognomeField = new JTextField();
-
 		cognomeField.setForeground(Color.white);
 		mailField = new JTextField();
-
 		mailField.setForeground(Color.white);
 		etaField = new JTextField();
-
 		etaField.setForeground(Color.white);
 
 		String[] options = { "PersonalTrainer", "Corsista", "Dietista" };
-		JComboBox<String> tipoField = new JComboBox<>(options);
+		tipoField = new JComboBox<>(options);
 		tipoField.setForeground(Color.white);
 
 		passwordField = new JPasswordField();
-
 		passwordField.setForeground(Color.white);
 		stipField = new JTextField();
 		stipField.setForeground(Color.white);
@@ -66,8 +59,7 @@ public class RegistraDipGui extends JFrame {
 		Color CBUT = new Color(40, 40, 40);
 
 		Border roundedBorder = BorderFactory.createCompoundBorder(new LineBorder(Color.black, 2, true),
-				new EmptyBorder(0, 10, 0, 10) // Margine interno
-		);
+				new EmptyBorder(0, 10, 0, 10));
 
 		nomeField.setBorder(roundedBorder);
 		nomeField.setBackground(CBUT);
@@ -132,20 +124,19 @@ public class RegistraDipGui extends JFrame {
 
 		Color or = new Color(250, 140, 0);
 
-		JLabel errorLabel = new JLabel("*Errore: Dipendente già presente");
+		errorLabel = new JLabel("*Errore: Dipendente già presente");
 		errorLabel.setForeground(Color.RED);
+		errorLabel.setVisible(false);
 
 		regPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		regPanel.setBackground(CBACK);
 
 		registraButton = new JButton("Registra Dipendente");
-
 		registraButton.setBackground(or);
 		registraButton.setFont(new Font("Arial", Font.BOLD, 13));
 		registraButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
 		registraButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nome = nomeField.getText();
@@ -156,43 +147,44 @@ public class RegistraDipGui extends JFrame {
 				int eta = Integer.parseInt(etaField.getText());
 				double stipendio = Double.parseDouble(stipField.getText());
 
-				Dipendente d = palestra.creaDipendente(nome, cognome, mail, password, eta, stipendio, tipo);
-				// palestra.registraDipendente(d);
-
-
-				regPanel.add(registraButton);
-				regPanel.add(errorLabel);
-
-				if (palestra.registraDipendente(d) == true) {
-
-					regPanel.remove(errorLabel);
-					panel.add(regPanel);
-					panel.revalidate();
-					panel.repaint();
-				}
-
-				else {
-
-					panel.add(regPanel);
-					// Aggiorna il pannello
-					panel.revalidate();
-					panel.repaint();
-
-				}
-
+				controller.registraDipendente(nome, cognome, mail, password, eta, stipendio, tipo);
 			}
 		});
 
+		backButton = new JButton("Indietro");
+		backButton.setBackground(or);
+		backButton.setFont(new Font("Arial", Font.BOLD, 13));
+		backButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
-		JScrollPane scrollPane = new JScrollPane(panel);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				previousFrame.setVisible(true);
+				dispose();
+			}
+		});
+
 		regPanel.add(registraButton);
+		regPanel.add(errorLabel);
+		regPanel.add(backButton);
 		panel.add(regPanel);
-		setSize(480, 640); // Impostiamo le dimensioni della finestra
-		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
+
+		getContentPane().add(panel, BorderLayout.CENTER);
+
+		setSize(480, 640);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
+	public void setController(RegistraDipController controller) {
+		this.controller = controller;
+	}
+
+	public void mostraErrore() {
+		errorLabel.setVisible(true);
+	}
+
+	public void mostraSuccesso() {
+		errorLabel.setVisible(false);
+	}
 }

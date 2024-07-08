@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import Controller.RegController;
 import NextFit.Cliente;
 import NextFit.Corsi;
 import NextFit.Palestra;
@@ -22,7 +23,7 @@ public class PalestraGui extends JFrame {
 	private JButton registraButton;
 	private JPasswordField passwordField;
 	private JLabel nome, cognome, pw, eta, mail, NEXTFIT, errorLabel, errorlabel2;
-
+	private RegController reg;
 	public PalestraGui(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 
 		setTitle("Registrazione Cliente Palestra");
@@ -123,11 +124,14 @@ public class PalestraGui extends JFrame {
 		registraButton.setMaximumSize(new Dimension(100, 30));
 		registraButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
+		reg=new RegController(palestra, proprietario, this, co, r);
 		registraButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String nome = nomeField.getText();
+				
+				reg.Registra();
+			/*	String nome = nomeField.getText();
 				String cognome = cognomeField.getText();
 				String mail = mailField.getText();
 				String password = new String(passwordField.getPassword());
@@ -175,7 +179,7 @@ public class PalestraGui extends JFrame {
 						panel.repaint();
 					}
 
-				}
+				}*/
 			}
 		});
 		panel.add(registraButton);
@@ -187,25 +191,44 @@ public class PalestraGui extends JFrame {
 		setVisible(true);
 	}
 
-	public boolean isValidEmail(String email) {
-		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-		Pattern pattern = Pattern.compile(emailRegex);
-		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
-
+	public JTextField getNomeField() {
+		return nomeField;
 	}
 
-	public boolean isValidnome(String nome) {
-		String Regex = "^[a-zA-ZàèìòùÀÈÌÒÙ'\\-\\s]{2,}$";
-		Pattern pattern = Pattern.compile(Regex);
-		Matcher matcher = pattern.matcher(nome);
-		return matcher.matches();
+	public void setNomeField(JTextField nomeField) {
+		this.nomeField = nomeField;
 	}
 
-	public boolean isValidcognome(String cognome) {
-		String Regex = "^[a-zA-ZàèìòùÀÈÌÒÙ'\\-\\s]{2,}$";
-		Pattern pattern = Pattern.compile(Regex);
-		Matcher matcher = pattern.matcher(cognome);
-		return matcher.matches();
+	public JTextField getCognomeField() {
+		return cognomeField;
 	}
+
+	public void setCognomeField(JTextField cognomeField) {
+		this.cognomeField = cognomeField;
+	}
+
+	public JTextField getMailField() {
+		return mailField;
+	}
+
+	public void setMailField(JTextField mailField) {
+		this.mailField = mailField;
+	}
+
+	public JTextField getEtaField() {
+		return etaField;
+	}
+
+	public void setEtaField(JTextField etaField) {
+		this.etaField = etaField;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public void setPasswordField(JPasswordField passwordField) {
+		this.passwordField = passwordField;
+	}
+	
 }
