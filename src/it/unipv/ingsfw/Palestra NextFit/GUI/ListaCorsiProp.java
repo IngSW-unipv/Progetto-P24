@@ -26,6 +26,7 @@ import NextFit.Corsi;
 import NextFit.Corso;
 import NextFit.Dipendente;
 import NextFit.Palestra;
+import View.LatoCorsistaGui;
 
 public class ListaCorsiProp extends JFrame {
 

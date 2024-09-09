@@ -8,7 +8,7 @@ import DB.DipendenteDAO;
 import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
 import DB.SchedaDAO;
-import GUI.PrimaPagina;
+import View.PrimaPagina;
 
 public class Tester {
 	public static void main(String[] args) {

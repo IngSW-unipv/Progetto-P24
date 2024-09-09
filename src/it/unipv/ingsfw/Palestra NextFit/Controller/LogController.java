@@ -6,16 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import GUI.PalestraGui;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
 import NextFit.Richieste;
+import View.LatoCorsistaGui;
+import View.LatoPTGui;
 import View.Login;
 import View.ProprietarioView;
 import GUI.LatoClienteGui;
-import GUI.LatoCorsistaGui;
-import GUI.LatoPTGui;
 public class LogController {
 	private Palestra palestra;
     private Proprietario proprietario;

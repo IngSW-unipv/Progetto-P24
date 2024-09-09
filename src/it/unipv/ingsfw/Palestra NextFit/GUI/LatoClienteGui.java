@@ -25,6 +25,7 @@ import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Richieste;
+import View.ListaPT;
 
 public class LatoClienteGui extends JFrame {
 	private JButton PT, CORSI, SCHEDA, SERVIZI;

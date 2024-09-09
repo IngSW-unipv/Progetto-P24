@@ -8,21 +8,21 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import GUI.AbbonamentoGui;
-import GUI.PalestraGui;
 import NextFit.Cliente;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
 import NextFit.Richieste;
 import View.Login;
+import View.RegView;
 
 public class RegController {
 	private Palestra palestra;
     private Proprietario proprietario;
-    private PalestraGui view;
+    private RegView view;
 	private Corsi co;
 	private Richieste r;
-	public RegController(Palestra palestra, Proprietario proprietario,PalestraGui view, Corsi co, Richieste r)
+	public RegController(Palestra palestra, Proprietario proprietario,RegView view, Corsi co, Richieste r)
 	{
 		this.palestra = palestra;
         this.proprietario = proprietario;
