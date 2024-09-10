@@ -8,7 +8,7 @@ import DB.DipendenteDAO;
 import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
 import DB.SchedaDAO;
-import View.PrimaPagina;
+import View.PrimaPaginaView;
 
 public class Tester {
 	public static void main(String[] args) {
@@ -61,7 +61,7 @@ public class Tester {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new PrimaPagina(NextFit, proprietario, corsi, r);
+				new PrimaPaginaView(NextFit, proprietario, corsi, r);
 			}
 		});
 

@@ -26,7 +26,7 @@ import NextFit.Corsi;
 import NextFit.Corso;
 import NextFit.Dipendente;
 import NextFit.Palestra;
-import View.LatoCorsistaGui;
+import View.LatoCorsistaView;
 
 public class ListaCorsiProp extends JFrame {
 
@@ -36,7 +36,7 @@ public class ListaCorsiProp extends JFrame {
 	private JLabel CORSI;
 	private ListaCorsiProp lcp;
 
-	public ListaCorsiProp(Corsi corsi, Dipendente dipendente, LatoCorsistaGui parent) {
+	public ListaCorsiProp(Corsi corsi, Dipendente dipendente, LatoCorsistaView parent) {
 		lcp = this;
 
 		setTitle("Interfaccia Corsi");

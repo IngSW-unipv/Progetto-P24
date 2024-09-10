@@ -14,7 +14,7 @@ import NextFit.Palestra;
 import NextFit.PersonalTrainer;
 import NextFit.Richieste;
 
-public class ListaPT extends JFrame {
+public class ListaPTView extends JFrame {
 
 	private ArrayList<JButton> trainerButtons;
 	private JPanel panel, backpanel;
@@ -24,7 +24,7 @@ public class ListaPT extends JFrame {
 	private boolean isRichiestaAttiva;
 	private SceltaPTController scpt;
 
-	public ListaPT(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteGui parent, Richieste r) {
+	public ListaPTView(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteGui parent, Richieste r) {
 		setTitle("Interfaccia Personal Trainer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -93,7 +93,7 @@ public class ListaPT extends JFrame {
 					Boolean isi=isIscritto[n];
 					scpt.scelta(e, r, pt, clienteAbbonato, n, p, isi, isRichiestaAttiva);
 					dispose();
-					new ListaPT(p, clienteAbbonato, parent, r);
+					new ListaPTView(p, clienteAbbonato, parent, r);
 				}
 			});
 		}

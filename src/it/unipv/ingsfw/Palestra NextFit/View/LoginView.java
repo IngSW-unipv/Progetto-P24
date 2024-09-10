@@ -16,15 +16,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login extends JFrame {
+public class LoginView extends JFrame {
 	private JTextField mailField;
 	private JButton loginButton;
 	private JPasswordField passwordField;
 	private JLabel pw, mail, NEXTFIT, errorlabel;
 	private LogController log;
 
-	public Login(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
-
+	public LoginView(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 
 		setTitle("login palestra");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +92,7 @@ public class Login extends JFrame {
 		loginButton.setMaximumSize(new Dimension(100, 30));
 		loginButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
-		log=new LogController(palestra, proprietario, this, co, r);
+		log = new LogController(palestra, proprietario, this, co, r);
 		loginButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -104,7 +103,7 @@ public class Login extends JFrame {
 				} catch (NoAccountException e1) {
 					e1.printStackTrace();
 				}
-			
+
 			}
 
 		});
@@ -132,6 +131,5 @@ public class Login extends JFrame {
 	public JLabel getErrorlabel() {
 		return errorlabel;
 	}
-	
-	
+
 }

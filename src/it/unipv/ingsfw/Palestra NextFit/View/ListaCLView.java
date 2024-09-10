@@ -23,14 +23,14 @@ import NextFit.PersonalTrainer;
 import NextFit.RichiestaAlPT;
 import NextFit.Richieste;
 
-public class ListaCL extends JFrame{
+public class ListaCLView extends JFrame{
 	private ArrayList<JButton> dipButtons;
 	private JPanel panel, backpanel;
 	private JButton back;
 	private JLabel CLIENTI;
 	private Palestra p;
 	private Corsi co;
-	public ListaCL(Palestra p,Richieste r,PersonalTrainer pt,LatoPTGui parent) {
+	public ListaCLView(Palestra p,Richieste r,PersonalTrainer pt,LatoPTView parent) {
 
 
 		setTitle("Interfaccia dipendenti");

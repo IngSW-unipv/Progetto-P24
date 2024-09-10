@@ -3,9 +3,7 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,22 +15,29 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
+import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
+import NextFit.Dipendente;
 import NextFit.Palestra;
-import NextFit.Proprietario;
+import NextFit.PersonalTrainer;
 import NextFit.Richieste;
 
-public class PrimaPagina extends JFrame {
-	private JButton LOGIN, REG;
+public class LatoPTView extends JFrame {
+	private JButton LC;
 	private JLabel NEXTFIT;
-
-	public PrimaPagina(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
+	private PersonalTrainer PT;
+	private LatoPTView LatoPTGui;
+	private ListaCLView ListaCL;
+	
+	public LatoPTView(Dipendente dipendente, Palestra palestra,Richieste r) {
 		setTitle("Pagina principale");
-
+		PT = (PersonalTrainer) dipendente;
+		
+		LatoPTGui=this;
+		ListaCL=new ListaCLView(palestra, r, PT,LatoPTGui);
+		ListaCL.setVisible(false);
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -45,53 +50,28 @@ public class PrimaPagina extends JFrame {
 
 		panel.add(NEXTFIT);
 
-		panel.add(Box.createRigidArea(new Dimension(0, 200)));
+		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		LOGIN = new JButton("LOGIN");
+		LC = new JButton("Lista clienti");
 
 		Color CBUT = new Color(40, 40, 40);
 
-		LOGIN.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
-		LOGIN.setBackground(CBUT);
-		LOGIN.setFont(new Font("Rockwell", Font.BOLD, 20));
-		LOGIN.setForeground(Color.white);
+		LC.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+		LC.setBackground(CBUT);
+		LC.setFont(new Font("Rockwell", Font.BOLD, 20));
+		LC.setForeground(Color.white);
 
-		LOGIN.addActionListener(new ActionListener() {
+		LC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						new Login(palestra, proprietario, co, r);
-
-					}
-				});
+				ListaCL.setVisible(true);
+				dispose();
 			}
 		});
-		panel.add(LOGIN);
+		panel.add(LC);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		getContentPane().add(panel, BorderLayout.CENTER);
-		REG = new JButton("REGISTRAZIONE");
-		REG.setFont(new Font("Rockwell", Font.BOLD, 20));
-		REG.setForeground(Color.white);
-		REG.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
-		REG.setBackground(CBUT);
-		REG.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						new RegView(palestra, proprietario, co, r);
-
-					}
-				});
-
-			}
-		});
-
-		panel.add(REG);
 
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -101,4 +81,5 @@ public class PrimaPagina extends JFrame {
 		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
 		setVisible(true);
 	}
+
 }

@@ -25,12 +25,12 @@ import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Richieste;
-import View.ListaPT;
+import View.ListaPTView;
 
 public class LatoClienteGui extends JFrame {
 	private JButton PT, CORSI, SCHEDA, SERVIZI;
 	private ListaCORSI listaCORSI;
-	private ListaPT listaPT;
+	private ListaPTView listaPT;
 	private SerAgg serAgg;
 	private JLabel NEXTFIT, SCAD;
 	private boolean controlpt, controlcorsi, controlsa;
@@ -88,8 +88,10 @@ public class LatoClienteGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controlpt == false) {
-					listaPT = new ListaPT(palestra, clienteAbbonato, LatoClienteGui.this, richieste); // creo adesso la
-																										// gui figlia
+					listaPT = new ListaPTView(palestra, clienteAbbonato, LatoClienteGui.this, richieste); // creo adesso
+																											// la
+																											// gui
+																											// figlia
 					dispose();
 					controlpt = true;
 				} else {
@@ -135,11 +137,11 @@ public class LatoClienteGui extends JFrame {
 		SCHEDA.addActionListener(new ActionListener() {
 
 			@Override
-		public void actionPerformed(ActionEvent e) {
-			
-		new VisuScheda(richieste,clienteAbbonato);
+			public void actionPerformed(ActionEvent e) {
+
+				new VisuScheda(richieste, clienteAbbonato);
 			}
-	});
+		});
 		panel.add(SCHEDA);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		SERVIZI = new JButton("SERVIZI AGGIUNTIVI");

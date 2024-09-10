@@ -14,30 +14,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
+import GUI.ListaCorsiProp;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 import NextFit.Dipendente;
 import NextFit.Palestra;
 import NextFit.PersonalTrainer;
-import NextFit.Richieste;
 
-public class LatoPTGui extends JFrame {
-	private JButton LC;
+public class LatoCorsistaView extends JFrame {
+	private JButton LC, LP;
 	private JLabel NEXTFIT;
-	private PersonalTrainer PT;
-	private LatoPTGui LatoPTGui;
-	private ListaCL ListaCL;
-	
-	public LatoPTGui(Dipendente dipendente, Palestra palestra,Richieste r) {
-		setTitle("Pagina principale");
-		PT = (PersonalTrainer) dipendente;
-		
-		LatoPTGui=this;
-		ListaCL=new ListaCL(palestra, r, PT,LatoPTGui);
-		ListaCL.setVisible(false);
-		
+	private LatoCorsistaView lcg;
+
+	public LatoCorsistaView(Dipendente dipendente, Palestra palestra, Corsi corsi) {
+		lcg = this;
+
+		setTitle("Pagina principale Corsista");
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -45,14 +39,14 @@ public class LatoPTGui extends JFrame {
 
 		panel.setBackground(CBACK);
 
-		NEXTFIT = new JLabel("<html><font color='orange'>NEXT</font><font color='white'>FIT</font></html>");
+		NEXTFIT = new JLabel("<html><font color='orange'>CORS</font><font color='white'>ISTA</font></html>");
 		NEXTFIT.setFont(new Font("Rockwell", Font.BOLD, 40));
 
 		panel.add(NEXTFIT);
 
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		LC = new JButton("Lista clienti");
+		LC = new JButton("Lista corsi");
 
 		Color CBUT = new Color(40, 40, 40);
 
@@ -64,8 +58,7 @@ public class LatoPTGui extends JFrame {
 		LC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ListaCL.setVisible(true);
-				dispose();
+				new ListaCorsiProp(corsi, dipendente, lcg);
 			}
 		});
 		panel.add(LC);
