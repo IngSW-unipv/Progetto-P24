@@ -26,12 +26,14 @@ import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Richieste;
 import View.ListaPTView;
+import View.SerAggView;
+import View.VisuSchedaView;
 
 public class LatoClienteGui extends JFrame {
 	private JButton PT, CORSI, SCHEDA, SERVIZI;
 	private ListaCORSI listaCORSI;
 	private ListaPTView listaPT;
-	private SerAgg serAgg;
+	private SerAggView serAgg;
 	private JLabel NEXTFIT, SCAD;
 	private boolean controlpt, controlcorsi, controlsa;
 
@@ -139,7 +141,7 @@ public class LatoClienteGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				new VisuScheda(richieste, clienteAbbonato);
+				new VisuSchedaView(richieste, clienteAbbonato, LatoClienteGui.this);
 			}
 		});
 		panel.add(SCHEDA);
@@ -155,7 +157,7 @@ public class LatoClienteGui extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controlsa == false) {
-					serAgg = new SerAgg(clienteAbbonato, palestra, LatoClienteGui.this);
+					serAgg = new SerAggView(clienteAbbonato, palestra, LatoClienteGui.this);
 					dispose();
 					controlsa = true;
 				} else {
