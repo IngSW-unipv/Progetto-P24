@@ -25,6 +25,7 @@ import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Richieste;
+import View.ListaCORSI;
 import View.ListaPTView;
 import View.SerAggView;
 import View.VisuSchedaView;

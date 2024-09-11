@@ -1,4 +1,4 @@
-package GUI;
+package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,8 +23,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+import Controller.SceltaCorsoController;
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
+import GUI.LatoClienteGui;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 
@@ -35,11 +37,14 @@ public class ListaCORSI extends JFrame {
 	private JButton back;
 	private JLabel CORSI;
 	private boolean[] isIscritto;
-
+	private SceltaCorsoController scs;
+	
 	public ListaCORSI(Corsi co, ClienteAbbonato clienteAbbonato, LatoClienteGui parent) {
 		setTitle("Interfaccia Corsi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		scs=new SceltaCorsoController(this);
+		
 		isIscritto = new boolean[co.getC()];
 
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
@@ -88,39 +93,8 @@ public class ListaCORSI extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					CorsiDAO dao = new CorsiDAO();
-					IscrittoalcorsoDAO dao1 = new IscrittoalcorsoDAO();
-
-					if (!isIscritto[n]) {
-						co.getCorso(n).aggPalCorso();
-						System.out.println(co.getCorso(n).getNp());
-						JButton button = (JButton) e.getSource();
-						button.setText(co.getCorso(n).getNome() + " - iscritto");
-
-						co.aggIsAlCorso(clienteAbbonato, co.getCorso(n));
-
-						dao1.insertIscrizione(clienteAbbonato, co.getCorso(n));
-						dao.upIscritti(co.getCorso(n).getNome());
-
-						isIscritto[n] = true;
-
-						co.visuClisCorsi();
-					} else {
-						co.getCorso(n).eliPdalCorso();
-						System.out.println(co.getCorso(n).getNp());
-						JButton button = (JButton) e.getSource();
-						button.setText(co.getCorso(n).getNome());
-
-						co.elidalCorso(co.trovaIscritto(clienteAbbonato, co.getCorso(n)));
-
-						dao1.deleteIscrizione(clienteAbbonato, co.getCorso(n));
-						dao.dwIscritti(co.getCorso(n).getNome());
-
-						isIscritto[n] = false;
-
-						co.visuClisCorsi();
-					}
-
+					
+					scs.scelta(e,n,co,clienteAbbonato);
 				}
 			});
 
@@ -149,6 +123,14 @@ public class ListaCORSI extends JFrame {
 		setSize(480, 640);
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+
+	public boolean[] getIsIscritto() {
+		return isIscritto;
+	}
+
+	public void setIsIscritto(boolean[] isIscritto) {
+		this.isIscritto = isIscritto;
 	}
 
 }

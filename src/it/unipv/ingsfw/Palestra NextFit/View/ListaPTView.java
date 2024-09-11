@@ -90,7 +90,6 @@ public class ListaPTView extends JFrame {
 			button.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Boolean isi=isIscritto[n];
 					scpt.scelta(e, r, pt, clienteAbbonato, n, p);
 				}
 			});
