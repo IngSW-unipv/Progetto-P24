@@ -7,7 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import GUI.AbbonamentoGui;
+import View.AbbonamentiView;
 import NextFit.Cliente;
 import NextFit.Corsi;
 import NextFit.Palestra;
@@ -45,7 +45,7 @@ public class RegController {
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					// new LatoClienteGui(co, cliente, palestra);
-					new AbbonamentoGui(cliente, proprietario, palestra, co, r);
+					new AbbonamentiView(cliente, proprietario, palestra, co, r);
 				}
 			});
 		} else {
