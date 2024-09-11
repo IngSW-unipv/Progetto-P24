@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
+import Controller.NavigationController;
 import Controller.SceltaPTController;
 import DB.RichiesteDAO;
 import GUI.LatoClienteGui;
@@ -58,11 +59,14 @@ public class ListaPTView extends JFrame {
 		back.setBorder(BorderFactory.createLineBorder(or, 6, false));
 		back.setMaximumSize(new Dimension(100, 30));
 
+		NavigationController nc = new NavigationController();
+		
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				parent.setVisible(true);
-				dispose(); // Chiude la finestra corrente
+				
+				nc.indietro(parent);
+				
 			}
 		});
 
