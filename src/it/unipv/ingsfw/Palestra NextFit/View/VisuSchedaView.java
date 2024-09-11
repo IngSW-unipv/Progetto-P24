@@ -20,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controller.NavigationController;
-import GUI.LatoClienteGui;
 import NextFit.ClienteAbbonato;
 import NextFit.Esercizio;
 import NextFit.Palestra;
@@ -32,7 +31,7 @@ public class VisuSchedaView extends JFrame {
 	private JLabel SCHEDA, PT, ES1, ES2, ES3, ES4, ES5;
 	private JButton back;
 
-	public VisuSchedaView(Richieste ri, ClienteAbbonato ca, LatoClienteGui parent) {
+	public VisuSchedaView(Richieste ri, ClienteAbbonato ca, LatoClienteView parent) {
 		setTitle("schede");
 
 		int cod = ri.getCodiceSchedaCliente(ca);

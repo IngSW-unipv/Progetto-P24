@@ -71,7 +71,7 @@ public class RinAbbView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				rc.aggMensile();
+				rc.aggMensile(dao);
 
 			}
 		});
@@ -80,7 +80,7 @@ public class RinAbbView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				rc.aggSemestrale();
+				rc.aggSemestrale(dao);
 
 			}
 		});
@@ -89,7 +89,7 @@ public class RinAbbView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				rc.aggAnnuale();
+				rc.aggAnnuale(dao);
 				
 			}
 		});

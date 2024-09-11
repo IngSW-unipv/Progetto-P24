@@ -8,13 +8,13 @@ import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
-import View.ListaCORSI;
+import View.ListaCorsiView;
 
 public class SceltaCorsoController {
 
-	private ListaCORSI view;
+	private ListaCorsiView view;
 	
-	public SceltaCorsoController(ListaCORSI view) {
+	public SceltaCorsoController(ListaCorsiView view) {
 		this.view=view;
 	}
 	

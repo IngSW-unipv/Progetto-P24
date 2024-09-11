@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import GUI.ListaCorsiProp;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 import NextFit.Dipendente;
@@ -58,7 +57,7 @@ public class LatoCorsistaView extends JFrame {
 		LC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ListaCorsiProp(corsi, dipendente, lcg);
+				new ListaCorsiPropView(corsi, dipendente, lcg);
 			}
 		});
 		panel.add(LC);

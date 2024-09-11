@@ -6,14 +6,12 @@ import NextFit.ClienteAbbonato;
 public class RinAbbController {
 
 	private ClienteAbbonato clienteAbbonato;
-	private ClienteAbboDAO dao;
 
 	public RinAbbController(ClienteAbbonato clienteAbbonato) {
 		this.clienteAbbonato = clienteAbbonato;
-		ClienteAbboDAO dao = new ClienteAbboDAO();
 	}
 
-	public void aggMensile() {
+	public void aggMensile(ClienteAbboDAO dao) {
 
 		clienteAbbonato.aggScad(1);
 		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(), clienteAbbonato.getCliente().getCognome(),
@@ -21,7 +19,7 @@ public class RinAbbController {
 
 	}
 
-	public void aggSemestrale() {
+	public void aggSemestrale(ClienteAbboDAO dao) {
 
 		clienteAbbonato.aggScad(6);
 		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(), clienteAbbonato.getCliente().getCognome(),
@@ -29,7 +27,7 @@ public class RinAbbController {
 
 	}
 
-	public void aggAnnuale() {
+	public void aggAnnuale(ClienteAbboDAO dao) {
 
 		clienteAbbonato.aggScad(12);
 		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(),

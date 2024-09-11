@@ -26,11 +26,10 @@ import javax.swing.SwingUtilities;
 import Controller.SceltaCorsoController;
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
-import GUI.LatoClienteGui;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 
-public class ListaCORSI extends JFrame {
+public class ListaCorsiView extends JFrame {
 
 	private ArrayList<JButton> coursesButtons;
 	private JPanel panel, backpanel;
@@ -39,7 +38,7 @@ public class ListaCORSI extends JFrame {
 	private boolean[] isIscritto;
 	private SceltaCorsoController scs;
 	
-	public ListaCORSI(Corsi co, ClienteAbbonato clienteAbbonato, LatoClienteGui parent) {
+	public ListaCorsiView(Corsi co, ClienteAbbonato clienteAbbonato, LatoClienteView parent) {
 		setTitle("Interfaccia Corsi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

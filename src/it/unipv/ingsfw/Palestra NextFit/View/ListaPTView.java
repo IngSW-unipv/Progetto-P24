@@ -9,7 +9,6 @@ import javax.swing.*;
 import Controller.NavigationController;
 import Controller.SceltaPTController;
 import DB.RichiesteDAO;
-import GUI.LatoClienteGui;
 import NextFit.ClienteAbbonato;
 import NextFit.Palestra;
 import NextFit.PersonalTrainer;
@@ -25,7 +24,7 @@ public class ListaPTView extends JFrame {
 	private boolean isRichiestaAttiva;
 	private SceltaPTController scpt;
 
-	public ListaPTView(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteGui parent, Richieste r) {
+	public ListaPTView(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteView parent, Richieste r) {
 		setTitle("Interfaccia Personal Trainer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

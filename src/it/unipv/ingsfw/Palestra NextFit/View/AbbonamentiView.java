@@ -20,7 +20,6 @@ import javax.swing.SwingUtilities;
 
 import Controller.AbbonamentiController;
 import DB.ClienteAbboDAO;
-import GUI.LatoClienteGui;
 import NextFit.Cliente;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
@@ -76,7 +75,7 @@ public class AbbonamentiView extends JFrame {
 
 				ca = av.mensile();
 
-				new LatoClienteGui(co, ca, pa, r);
+				new LatoClienteView(co, ca, pa, r);
 				dispose();
 			}
 		});
@@ -87,7 +86,7 @@ public class AbbonamentiView extends JFrame {
 
 				ca = av.semestrale();
 
-				new LatoClienteGui(co, ca, pa, r);
+				new LatoClienteView(co, ca, pa, r);
 				dispose();
 			}
 		});
@@ -98,7 +97,7 @@ public class AbbonamentiView extends JFrame {
 
 				ca = av.annuale();
 
-				new LatoClienteGui(co, ca, pa, r);
+				new LatoClienteView(co, ca, pa, r);
 				dispose();
 			}
 		});

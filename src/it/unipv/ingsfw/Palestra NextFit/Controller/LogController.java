@@ -11,11 +11,11 @@ import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
 import NextFit.Richieste;
+import View.LatoClienteView;
 import View.LatoCorsistaView;
 import View.LatoPTView;
 import View.LoginView;
 import View.ProprietarioView;
-import GUI.LatoClienteGui;
 
 public class LogController {
 	private Palestra palestra;
@@ -41,7 +41,7 @@ public class LogController {
 			new ProprietarioView(proprietario, palestra, co, r);
 
 		} else if (palestra.esisteCli(mail.toLowerCase(), password)) {
-			new LatoClienteGui(co, palestra.accessoCli(mail.toLowerCase(), password), palestra, r);
+			new LatoClienteView(co, palestra.accessoCli(mail.toLowerCase(), password), palestra, r);
 
 		} else if (palestra.esisteDip(mail.toLowerCase(), password)) {
 			String tipo = palestra.accessoDip(mail.toLowerCase(), password).getTipo();

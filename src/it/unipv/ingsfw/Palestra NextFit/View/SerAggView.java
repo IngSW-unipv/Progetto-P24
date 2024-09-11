@@ -22,7 +22,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controller.NavigationController;
-import GUI.LatoClienteGui;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,7 +36,7 @@ public class SerAggView extends JFrame {
 	private JLabel NEXTFIT;
 	private RinAbbView rinabb;
 
-	public SerAggView(ClienteAbbonato clienteAbbonato, Palestra palestra, LatoClienteGui parent) {
+	public SerAggView(ClienteAbbonato clienteAbbonato, Palestra palestra, LatoClienteView parent) {
 		setTitle("Pagina principale");
 
 		JPanel panel = new JPanel();
