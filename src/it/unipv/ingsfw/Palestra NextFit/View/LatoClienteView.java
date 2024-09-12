@@ -1,6 +1,5 @@
 package View;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
@@ -88,7 +88,8 @@ public class LatoClienteView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controlpt == false) {
-					listaPT = new ListaPTView(palestra, clienteAbbonato, LatoClienteView.this, richieste); // creo adesso
+					listaPT = new ListaPTView(palestra, clienteAbbonato, LatoClienteView.this, richieste); // creo
+																											// adesso
 																											// la
 																											// gui
 																											// figlia
@@ -115,7 +116,8 @@ public class LatoClienteView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controlcorsi == false) {
-					listaCORSI = new ListaCorsiView(co, clienteAbbonato, LatoClienteView.this); // creo adesso la gui figlia
+					listaCORSI = new ListaCorsiView(co, clienteAbbonato, LatoClienteView.this); // creo adesso la gui
+																								// figlia
 					dispose();
 					controlcorsi = true;
 				} else {
@@ -139,7 +141,14 @@ public class LatoClienteView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				new VisuSchedaView(richieste, clienteAbbonato, LatoClienteView.this);
+				try {
+					new VisuSchedaView(richieste, clienteAbbonato, LatoClienteView.this);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Scheda non ancora creata", "Errore",
+							JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		panel.add(SCHEDA);
@@ -177,8 +186,4 @@ public class LatoClienteView extends JFrame {
 		setVisible(true);
 	}
 
-	/*
-	 * public static void main(String[] args) { SwingUtilities.invokeLater(new
-	 * Runnable() { public void run() { new LatoClienteGui(); } }); }
-	 */
 }

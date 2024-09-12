@@ -26,6 +26,7 @@ public class RegView extends JFrame {
 	private JPasswordField passwordField;
 	private JLabel nome, cognome, pw, eta, mail, NEXTFIT, errorLabel, errorlabel2;
 	private RegController reg;
+
 	public RegView(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 
 		setTitle("Registrazione Cliente Palestra");
@@ -126,12 +127,12 @@ public class RegView extends JFrame {
 		registraButton.setMaximumSize(new Dimension(100, 30));
 		registraButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
 
-		reg=new RegController(palestra, proprietario, this, co, r);
+		reg = new RegController(palestra, proprietario, this, co, r);
 		registraButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
 					try {
 						reg.Registra();
@@ -194,5 +195,5 @@ public class RegView extends JFrame {
 	public void setPasswordField(JPasswordField passwordField) {
 		this.passwordField = passwordField;
 	}
-	
+
 }

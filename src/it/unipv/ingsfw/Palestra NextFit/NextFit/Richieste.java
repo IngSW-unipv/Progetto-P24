@@ -93,7 +93,8 @@ public class Richieste {
 		for (RichiestaAlPT richiesta : richieste) {
 			System.out.println("Cliente: " + richiesta.getCliente().getCliente().getNome() + " "
 					+ richiesta.getCliente().getCliente().getCognome() + " - Personal Trainer: "
-					+ richiesta.getDipendente().getNome() + " " + richiesta.getDipendente().getCognome());
+					+ richiesta.getDipendente().getNome() + " " + richiesta.getDipendente().getCognome()
+					/*+richiesta.getScheda()*/);
 		}
 	}
 
