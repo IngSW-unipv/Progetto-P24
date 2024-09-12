@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controller.RegController;
+import Exception.AccountAlreadyExists;
 import NextFit.Cliente;
 import NextFit.Corsi;
 import NextFit.Palestra;
@@ -130,7 +131,12 @@ public class RegView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				reg.Registra();
+				try {
+					reg.Registra();
+				} catch (AccountAlreadyExists e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			/*	String nome = nomeField.getText();
 				String cognome = cognomeField.getText();
 				String mail = mailField.getText();

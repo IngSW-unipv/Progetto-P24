@@ -4,9 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Exception.AccountAlreadyExists;
+import Exception.NoAccountException;
 import View.AbbonamentiView;
 import NextFit.Cliente;
 import NextFit.Corsi;
@@ -31,12 +34,14 @@ public class RegController {
 		this.r = r;
 	}
 
-	public void Registra() {
+	public void Registra() throws AccountAlreadyExists {
 		String nome = view.getNomeField().getText();
 		String cognome = view.getCognomeField().getText();
 		String mail = view.getMailField().getText();
 		String password = new String(view.getPasswordField().getPassword());
 		int eta = Integer.parseInt(view.getEtaField().getText());
+		if(palestra.esisteCliMail(mail)==false)
+		{
 		Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
 
 		if (palestra.registraCliente(cliente) == true && isValidEmail(mail) && isValidnome(nome)
@@ -55,6 +60,11 @@ public class RegController {
 
 			}
 		}
+	}else
+	{
+		JOptionPane.showMessageDialog(null, "Mail già in uso", "Errore", JOptionPane.ERROR_MESSAGE);
+		throw new AccountAlreadyExists("Mail già in uso.");
+	}
 	}
 
 	public boolean isValidEmail(String email) {
