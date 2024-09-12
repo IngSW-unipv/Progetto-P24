@@ -33,9 +33,9 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		boolean t = false;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if (cliente.getNome().equals(clientiAbbo[i].getCliente().getNome())
+			if (/*cliente.getNome().equals(clientiAbbo[i].getCliente().getNome()) // da non fare controllo su nome e cognome perchè si potrebbe creare con la stessa mail 2 account
 					&& cliente.getCognome().equals(clientiAbbo[i].getCliente().getCognome())
-					&& cliente.getMail().equals(clientiAbbo[i].getCliente().getMail())) {
+					&&*/ cliente.getMail().equals(clientiAbbo[i].getCliente().getMail())) {
 				System.out.println("Il cliente è già presente nel database.");
 				clientePresente = true; // Imposta il flag a true se il cliente è già presente
 				break;
@@ -80,9 +80,9 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		boolean presenteNelDatabase = false;
 
 		for (int i = 0; i < contatoreD; i++) {
-			if (dipendente.getNome().equals(dipendenti[i].getNome())
+			if (/*dipendente.getNome().equals(dipendenti[i].getNome())
 					&& dipendente.getCognome().equals(dipendenti[i].getCognome())
-					&& dipendente.getMail().equals(dipendenti[i].getMail())) {
+					&&*/ dipendente.getMail().equals(dipendenti[i].getMail())) {
 				presenteNelDatabase = true;
 				System.out.println("Il dipendente è già presente nel database. ");
 				return false;
@@ -252,7 +252,19 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return t;
 	}
+	
+	public boolean esisteCliMail(String mail) {
+        boolean t = false;
 
+        for (int i = 0; i < contatoreCA; i++) {
+            if (clientiAbbo[i].getCliente().getMail().equals(mail)) {
+                t = true;
+                break;
+            }
+        }
+
+        return t;
+    }
 	
 	public ClienteAbbonato ricercaCli(String mail, String nome, String cognome) {
 		int j = -1;
