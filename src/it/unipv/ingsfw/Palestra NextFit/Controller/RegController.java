@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Exception.AccountAlreadyExists;
+import Exception.InvalidCredentialsException;
 import Exception.NoAccountException;
 import View.AbbonamentiView;
 import NextFit.Cliente;
@@ -34,37 +35,37 @@ public class RegController {
 		this.r = r;
 	}
 
-	public void Registra() throws AccountAlreadyExists {
+	public void Registra() throws AccountAlreadyExists, InvalidCredentialsException {
 		String nome = view.getNomeField().getText();
 		String cognome = view.getCognomeField().getText();
 		String mail = view.getMailField().getText();
 		String password = new String(view.getPasswordField().getPassword());
 		int eta = Integer.parseInt(view.getEtaField().getText());
-		if(palestra.esisteCliMail(mail)==false)
-		{
-		Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
+		if (palestra.esisteCliMail(mail) == false) {
+			Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
 
-		if (palestra.registraCliente(cliente) == true && isValidEmail(mail) && isValidnome(nome)
-				&& isValidcognome(cognome)) {
+			if (palestra.registraCliente(cliente) == true && isValidEmail(mail) && isValidnome(nome)
+					&& isValidcognome(cognome) && eta > 18) {
 
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					// new LatoClienteGui(co, cliente, palestra);
-					new AbbonamentiView(cliente, proprietario, palestra, co, r);
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						// new LatoClienteGui(co, cliente, palestra);
+						new AbbonamentiView(cliente, proprietario, palestra, co, r);
+					}
+				});
+			} else {
+				if (palestra.registraCliente(cliente) == false) {
+
+				} else if (isValidEmail(mail) == false || isValidnome(nome) == false || isValidcognome(cognome) == false
+						|| eta < 18) {
+					JOptionPane.showMessageDialog(null, "Credenziali non valide", "Errore", JOptionPane.ERROR_MESSAGE);
+					throw new InvalidCredentialsException("Credenziali non valide.");
 				}
-			});
-		} else {
-			if (palestra.registraCliente(cliente) == false) {
-
-			} else if (isValidEmail(mail) == false || isValidnome(nome) == false || isValidcognome(cognome) == false) {
-
 			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Mail già in uso", "Errore", JOptionPane.ERROR_MESSAGE);
+			throw new AccountAlreadyExists("Mail già in uso.");
 		}
-	}else
-	{
-		JOptionPane.showMessageDialog(null, "Mail già in uso", "Errore", JOptionPane.ERROR_MESSAGE);
-		throw new AccountAlreadyExists("Mail già in uso.");
-	}
 	}
 
 	public boolean isValidEmail(String email) {

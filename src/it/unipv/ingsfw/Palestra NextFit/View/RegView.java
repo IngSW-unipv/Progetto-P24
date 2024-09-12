@@ -7,6 +7,7 @@ import javax.swing.border.LineBorder;
 
 import Controller.RegController;
 import Exception.AccountAlreadyExists;
+import Exception.InvalidCredentialsException;
 import NextFit.Cliente;
 import NextFit.Corsi;
 import NextFit.Palestra;
@@ -132,60 +133,17 @@ public class RegView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					reg.Registra();
+					try {
+						reg.Registra();
+					} catch (InvalidCredentialsException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} catch (AccountAlreadyExists e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			/*	String nome = nomeField.getText();
-				String cognome = cognomeField.getText();
-				String mail = mailField.getText();
-				String password = new String(passwordField.getPassword());
-				int eta = Integer.parseInt(etaField.getText());
-				Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
 
-				JPanel buttonPanel = new JPanel();
-				buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-				buttonPanel.setBackground(CBACK);
-				buttonPanel.add(registraButton);
-				buttonPanel.add(errorLabel);
-				buttonPanel.add(errorLabel2);
-
-				if (palestra.registraCliente(cliente) == true && isValidEmail(mail) && isValidnome(nome)
-						&& isValidcognome(cognome)) {
-
-					buttonPanel.add(registraButton);
-					buttonPanel.remove(errorLabel);
-					buttonPanel.remove(errorLabel2);
-					panel.add(buttonPanel);
-					panel.revalidate();
-					panel.repaint();
-
-					SwingUtilities.invokeLater(new Runnable() {
-						public void run() {
-							// new LatoClienteGui(co, cliente, palestra);
-							new AbbonamentoGui(cliente, proprietario, palestra, co, r);
-						}
-					});
-				} else {
-					if (palestra.registraCliente(cliente) == false) {
-
-						panel.add(buttonPanel);
-						buttonPanel.remove(errorLabel2);
-
-						// Aggiorna il pannello
-						panel.revalidate();
-						panel.repaint();
-					} else if (isValidEmail(mail) == false || isValidnome(nome) == false
-							|| isValidcognome(cognome) == false) {
-						panel.add(buttonPanel);
-						buttonPanel.remove(errorLabel);
-						// Aggiorna il pannello
-						panel.revalidate();
-						panel.repaint();
-					}
-
-				}*/
 			}
 		});
 		panel.add(registraButton);
