@@ -40,7 +40,7 @@ public class ListaCorsiPropView extends JFrame {
 		lcp = this;
 
 		setTitle("Interfaccia Corsi");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
 		gridLayout.setHgap(10); // Imposta lo spazio orizzontale tra i bottoni a 10 pixel

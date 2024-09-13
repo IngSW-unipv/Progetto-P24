@@ -26,7 +26,7 @@ public class RegistraDipView extends JFrame {
 		this.previousFrame = previousFrame;
 
 		setTitle("Registrazione Dipendente Palestra");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		GridLayout gridLayout = new GridLayout(0, 1);
 		gridLayout.setHgap(10);

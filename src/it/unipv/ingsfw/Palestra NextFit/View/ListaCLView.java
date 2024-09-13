@@ -35,7 +35,7 @@ public class ListaCLView extends JFrame {
 	public ListaCLView(Palestra p, Richieste r, PersonalTrainer pt, LatoPTView parent) {
 
 		setTitle("Interfaccia dipendenti");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // comando per chiudere tutte le altre schede
 
 		GridLayout gridLayout = new GridLayout(0, 2);
 		gridLayout.setHgap(10);

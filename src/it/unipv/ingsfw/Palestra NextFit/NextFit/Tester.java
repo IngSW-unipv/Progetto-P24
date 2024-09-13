@@ -43,7 +43,7 @@ public class Tester {
 				NextFit.creaDipendente("Tino", "Tino", "tino@email.com", "tin233o", 29, 1000, "PersonalTrainer"));
 		NextFit.registraDipendente(
 				NextFit.creaDipendente("Sino", "Sino", "sino@email.com", "aaa", 39, 1900, "PersonalTrainer"));*/
-
+		
 		NextFit.visuClAbbo();
 		NextFit.visuListaDip();
 		NextFit.visuDip("COrsisTA");

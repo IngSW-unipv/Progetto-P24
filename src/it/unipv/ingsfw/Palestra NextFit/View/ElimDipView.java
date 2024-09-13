@@ -30,7 +30,7 @@ public class ElimDipView extends JFrame {
 		this.r = r;
 
 		setTitle("Interfaccia dipendenti");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		GridLayout gridLayout = new GridLayout(0, 2);
 		gridLayout.setHgap(10);

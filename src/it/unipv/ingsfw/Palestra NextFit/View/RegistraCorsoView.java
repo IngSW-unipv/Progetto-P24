@@ -7,6 +7,7 @@ import javax.swing.border.*;
 import NextFit.Corsi;
 import NextFit.Dipendente;
 import NextFit.Palestra;
+import Controller.NavigationController;
 import Controller.RegistraCorsoController;
 
 public class RegistraCorsoView extends JFrame {
@@ -16,8 +17,12 @@ public class RegistraCorsoView extends JFrame {
 	private JComboBox<String> tipoField;
 	private JPanel regPanel;
 	private RegistraCorsoController controller;
+	private JButton backButton;
+	private JFrame previousFrame;
 
-	public RegistraCorsoView(Corsi corsi, Palestra palestra) {
+	public RegistraCorsoView(Corsi corsi, Palestra palestra, JFrame previousFrame) {
+		this.previousFrame = previousFrame;
+		
 		setTitle("Registrazione Corso");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -109,9 +114,25 @@ public class RegistraCorsoView extends JFrame {
 				controller.registraCorso(nomeCorso, nome, cognome, mail, maxIscritti);
 			}
 		});
+		
+		backButton = new JButton("Indietro");
+		backButton.setBackground(or);
+		backButton.setFont(new Font("Arial", Font.BOLD, 13));
+		backButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
+		NavigationController nc = new NavigationController();
+
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nc.indietro(previousFrame);
+				dispose();
+			}
+		});
+
 
 		regPanel.add(registraButton);
 		regPanel.add(errorLabel);
+		regPanel.add(backButton);
 		panel.add(regPanel);
 
 		getContentPane().add(panel, BorderLayout.CENTER);

@@ -27,7 +27,7 @@ public class ElimCorsoView extends JFrame {
 		this.parent = parent;
 
 		setTitle("Interfaccia Corsi");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		GridLayout gridLayout = new GridLayout(0, 2);
 		gridLayout.setHgap(10);

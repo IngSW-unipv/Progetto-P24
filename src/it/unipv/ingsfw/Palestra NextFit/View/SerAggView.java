@@ -44,7 +44,7 @@ public class SerAggView extends JFrame {
 
 		rinabb = new RinAbbView(clienteAbbonato, palestra, SerAggView.this);
 		rinabb.setVisible(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Color CBACK = new Color(28, 28, 28);
 

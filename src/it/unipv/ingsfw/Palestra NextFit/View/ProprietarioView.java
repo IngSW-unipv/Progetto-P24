@@ -70,7 +70,7 @@ public class ProprietarioView extends JFrame {
 		RC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RegistraCorsoView regCorsoView = new RegistraCorsoView(corsi, palestra);
+				RegistraCorsoView regCorsoView = new RegistraCorsoView(corsi, palestra, pg);
 				RegistraCorsoController regCorsoController = new RegistraCorsoController(corsi, palestra, regCorsoView);
 				dispose();
 			}

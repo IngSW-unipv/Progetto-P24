@@ -41,7 +41,7 @@ public class ListaCorsiView extends JFrame {
 	
 	public ListaCorsiView(Corsi co, ClienteAbbonato clienteAbbonato, LatoClienteView parent) {
 		setTitle("Interfaccia Corsi");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		scs=new SceltaCorsoController(this);
 		
