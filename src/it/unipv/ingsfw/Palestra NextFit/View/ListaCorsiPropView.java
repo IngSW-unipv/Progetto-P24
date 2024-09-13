@@ -99,6 +99,7 @@ public class ListaCorsiPropView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				nc.indietro(parent);
+				dispose();
 
 			}
 

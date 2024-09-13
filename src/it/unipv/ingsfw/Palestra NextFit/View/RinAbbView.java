@@ -115,6 +115,7 @@ public class RinAbbView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				nc.indietro(parent);
+				dispose();
 
 			}
 

@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
+import Controller.NavigationController;
 import Controller.SceltaCorsoController;
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
@@ -99,12 +100,13 @@ public class ListaCorsiView extends JFrame {
 
 		}
 
+		NavigationController nc = new NavigationController();
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				parent.setVisible(true);
-				dispose(); // Chiude la finestra corrente
+				nc.indietro(parent);
+				dispose();
 
 			}
 

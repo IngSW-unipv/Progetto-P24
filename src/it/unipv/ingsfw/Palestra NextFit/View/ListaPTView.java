@@ -27,7 +27,7 @@ public class ListaPTView extends JFrame {
 	public ListaPTView(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteView parent, Richieste r) {
 		setTitle("Interfaccia Personal Trainer");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		scpt = new SceltaPTController(this);
 		isIscritto = new boolean[p.contaDip("personaltrainer")];
 		isRichiestaAttiva = false;
@@ -59,13 +59,14 @@ public class ListaPTView extends JFrame {
 		back.setMaximumSize(new Dimension(100, 30));
 
 		NavigationController nc = new NavigationController();
-		
+
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				nc.indietro(parent);
-				
+				dispose();
+
 			}
 		});
 
@@ -111,15 +112,16 @@ public class ListaPTView extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	public boolean[] getIsIscritto() {
-        return isIscritto;
-    }
 
-    public boolean getIsRichiestaAttiva() {
-        return isRichiestaAttiva;
-    }
-    
-    public void setIsRichiestaAttiva(boolean isRichiestaAttiva) {
-        this.isRichiestaAttiva = isRichiestaAttiva;
-    }
+	public boolean[] getIsIscritto() {
+		return isIscritto;
+	}
+
+	public boolean getIsRichiestaAttiva() {
+		return isRichiestaAttiva;
+	}
+
+	public void setIsRichiestaAttiva(boolean isRichiestaAttiva) {
+		this.isRichiestaAttiva = isRichiestaAttiva;
+	}
 }

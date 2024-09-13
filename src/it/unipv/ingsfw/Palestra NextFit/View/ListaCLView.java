@@ -17,21 +17,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import Controller.NavigationController;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.PersonalTrainer;
 import NextFit.RichiestaAlPT;
 import NextFit.Richieste;
 
-public class ListaCLView extends JFrame{
+public class ListaCLView extends JFrame {
 	private ArrayList<JButton> dipButtons;
 	private JPanel panel, backpanel;
 	private JButton back;
 	private JLabel CLIENTI;
 	private Palestra p;
 	private Corsi co;
-	public ListaCLView(Palestra p,Richieste r,PersonalTrainer pt,LatoPTView parent) {
 
+	public ListaCLView(Palestra p, Richieste r, PersonalTrainer pt, LatoPTView parent) {
 
 		setTitle("Interfaccia dipendenti");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,20 +58,21 @@ public class ListaCLView extends JFrame{
 		back.setFont(new Font("Arial", Font.BOLD, 13));
 		back.setBorder(BorderFactory.createLineBorder(new Color(250, 140, 0), 6, false));
 		back.setMaximumSize(new Dimension(100, 30));
+		NavigationController nc = new NavigationController();
 
 		addBackButton();
 
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				parent.setVisible(true);
+				nc.indietro(parent);
 				dispose();
 			}
 		});
-		
+
 		for (int i = 0; i < r.getR(pt); i++) {
-			JButton button = new JButton( r.getNomeCL(i,pt)+ " "+ r.getCognomeCL(i,pt) );
-			final int n=i;
+			JButton button = new JButton(r.getNomeCL(i, pt) + " " + r.getCognomeCL(i, pt));
+			final int n = i;
 			button.setBackground(new Color(40, 40, 40));
 			button.setPreferredSize(new Dimension(200, 100));
 			button.setFont(new Font("Rockwell", Font.BOLD, 20));
@@ -80,11 +82,11 @@ public class ListaCLView extends JFrame{
 			button.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					new CreaSchedaView(p,r.getrichiestapt(pt, n),r);
+					new CreaSchedaView(p, r.getrichiestapt(pt, n), r);
 				}
 			});
 		}
-		
+
 		JScrollPane scrollPane = new JScrollPane(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -98,6 +100,7 @@ public class ListaCLView extends JFrame{
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+
 	private void addBackButton() {
 		panel.add(new JLabel());
 		backpanel.add(back);

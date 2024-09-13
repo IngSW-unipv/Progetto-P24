@@ -9,6 +9,7 @@ import NextFit.Corsi;
 import NextFit.Corso;
 import NextFit.Palestra;
 import Controller.ElimCorsoController;
+import Controller.NavigationController;
 
 public class ElimCorsoView extends JFrame {
 	private ArrayList<JButton> courseButtons;
@@ -49,13 +50,14 @@ public class ElimCorsoView extends JFrame {
 		back.setFont(new Font("Arial", Font.BOLD, 13));
 		back.setBorder(BorderFactory.createLineBorder(new Color(250, 140, 0), 6, false));
 		back.setMaximumSize(new Dimension(100, 30));
+		NavigationController nc = new NavigationController();
 
 		addBackButton();
 
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				parent.setVisible(true);
+				nc.indietro(parent);
 				dispose();
 			}
 		});

@@ -73,7 +73,7 @@ public class VisuSchedaView extends JFrame {
 		panel.add(ES4);
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
 		panel.add(ES5);
-		
+
 		Color or = new Color(250, 140, 0);
 		back = new JButton("indietro");
 		back.setBackground(or);
@@ -87,6 +87,7 @@ public class VisuSchedaView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				nc.indietro(parent);
+				dispose();
 
 			}
 
@@ -100,8 +101,7 @@ public class VisuSchedaView extends JFrame {
 		setSize(480, 640); // Impostiamo le dimensioni della finestra
 		setLocationRelativeTo(null); // Posizioniamo la finestra al centro dello schermo
 		setVisible(true);
-		
-		
+
 	}
 
 }

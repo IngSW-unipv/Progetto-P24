@@ -100,6 +100,7 @@ public class LoginView extends JFrame {
 
 				try {
 					log.Login();
+					dispose();
 				} catch (NoAccountException e1) {
 					e1.printStackTrace();
 				}

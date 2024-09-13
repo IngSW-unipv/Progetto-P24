@@ -10,6 +10,7 @@ import NextFit.Dipendente;
 import NextFit.Palestra;
 import NextFit.Richieste;
 import Controller.ElimDipController;
+import Controller.NavigationController;
 
 public class ElimDipView extends JFrame {
 	private ArrayList<JButton> dipButtons;
@@ -52,11 +53,12 @@ public class ElimDipView extends JFrame {
 		back.setFont(new Font("Arial", Font.BOLD, 13));
 		back.setBorder(BorderFactory.createLineBorder(new Color(250, 140, 0), 6, false));
 		back.setMaximumSize(new Dimension(100, 30));
+		NavigationController nc = new NavigationController();
 
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				parent.setVisible(true);
+				nc.indietro(parent);
 				dispose();
 			}
 		});
@@ -67,11 +69,11 @@ public class ElimDipView extends JFrame {
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		panel.add(new JLabel());
-		
+
 		setSize(480, 640);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		
+
 	}
 
 	public void setController(ElimDipController controller) {
@@ -98,7 +100,7 @@ public class ElimDipView extends JFrame {
 		}
 		addBackButton();
 	}
-	
+
 	private void addBackButton() {
 		panel.add(new JLabel());
 		backpanel.add(back);

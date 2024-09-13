@@ -63,6 +63,7 @@ public class ListaIsCorsiView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				nc.indietro(parent);
+				dispose();
 
 			}
 		});

@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import NextFit.Palestra;
+import Controller.NavigationController;
 import Controller.RegistraDipController;
 
 import java.awt.*;
@@ -155,11 +156,12 @@ public class RegistraDipView extends JFrame {
 		backButton.setBackground(or);
 		backButton.setFont(new Font("Arial", Font.BOLD, 13));
 		backButton.setBorder(BorderFactory.createLineBorder(or, 6, false));
+		NavigationController nc = new NavigationController();
 
 		backButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				previousFrame.setVisible(true);
+				nc.indietro(previousFrame);
 				dispose();
 			}
 		});

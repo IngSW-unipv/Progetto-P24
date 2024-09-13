@@ -92,8 +92,8 @@ public class SerAggView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				rinabb.setVisible(true); // Riapre la finestra già esistente
-
 				dispose();
+
 			}
 		});
 		panel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -113,6 +113,7 @@ public class SerAggView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				nc.indietro(parent);
+				dispose();
 
 			}
 
