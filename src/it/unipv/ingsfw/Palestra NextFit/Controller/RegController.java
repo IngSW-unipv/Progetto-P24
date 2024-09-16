@@ -54,13 +54,9 @@ public class RegController {
 					}
 				});
 			} else {
-				if (palestra.registraCliente(cliente) == false) {
 
-				} else if (isValidEmail(mail) == false || isValidnome(nome) == false || isValidcognome(cognome) == false
-						|| eta < 18) {
-					JOptionPane.showMessageDialog(null, "Credenziali non valide", "Errore", JOptionPane.ERROR_MESSAGE);
-					throw new InvalidCredentialsException("Credenziali non valide.");
-				}
+				JOptionPane.showMessageDialog(null, "Credenziali non valide", "Errore", JOptionPane.ERROR_MESSAGE);
+				throw new InvalidCredentialsException("Credenziali non valide.");
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Mail già in uso", "Errore", JOptionPane.ERROR_MESSAGE);

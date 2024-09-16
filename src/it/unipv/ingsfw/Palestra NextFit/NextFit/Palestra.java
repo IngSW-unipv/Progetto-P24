@@ -43,13 +43,13 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 
 		if (!clientePresente) {
-			if (contatoreC < maxC /*&& cliente.getEtà() > 17*/) {
+			if (contatoreC < maxC && cliente.getEtà() > 17) {
 				clienti[contatoreC] = cliente;
 				contatoreC++;
 				t = true;
-			} /*else if (cliente.getEtà() < 18) {
+			} else if (cliente.getEtà() < 18) {
 				System.out.println("La palestra non può iscrivere minorenni.");
-			}*/ else{
+			} else{
 				System.out.println("La palestra non può iscrivere più di " + maxC + " clienti.");
 			}
 		}
