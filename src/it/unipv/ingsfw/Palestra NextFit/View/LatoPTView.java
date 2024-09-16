@@ -29,15 +29,15 @@ public class LatoPTView extends JFrame {
 	private PersonalTrainer PT;
 	private LatoPTView LatoPTGui;
 	private ListaCLView ListaCL;
-	
-	public LatoPTView(Dipendente dipendente, Palestra palestra,Richieste r) {
+
+	public LatoPTView(Dipendente dipendente, Palestra palestra, Richieste r) {
 		setTitle("Pagina principale");
 		PT = (PersonalTrainer) dipendente;
-		
-		LatoPTGui=this;
-		ListaCL=new ListaCLView(palestra, r, PT,LatoPTGui);
+
+		LatoPTGui = this;
+		ListaCL = new ListaCLView(palestra, r, PT, LatoPTGui);
 		ListaCL.setVisible(false);
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 

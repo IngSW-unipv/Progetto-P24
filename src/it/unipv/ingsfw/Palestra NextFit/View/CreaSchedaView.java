@@ -13,6 +13,7 @@ import NextFit.Corsi;
 import NextFit.Dipendente;
 import NextFit.Esercizio;
 import NextFit.Palestra;
+import NextFit.PersonalTrainer;
 import NextFit.Proprietario;
 import NextFit.RichiestaAlPT;
 import NextFit.Richieste;
@@ -28,7 +29,7 @@ public class CreaSchedaView extends JFrame {
 	private JTextField es01, es02, es03, es04, es05;
 	private JButton invia;
 
-	public CreaSchedaView(Palestra palestra, RichiestaAlPT r, Richieste ri) {
+	public CreaSchedaView(Palestra palestra, RichiestaAlPT r, Richieste ri, PersonalTrainer pt, LatoPTView parent , int index) {
 		setTitle("schede");
 
 		JPanel panel = new JPanel();
@@ -117,13 +118,15 @@ public class CreaSchedaView extends JFrame {
 		invia.setFont(new Font("Rockwell", Font.BOLD, 20));
 		invia.setForeground(Color.white);
 		
-		CreaSchedaController contr = new CreaSchedaController(ri, r, this);
+		CreaSchedaController contr = new CreaSchedaController(ri, r, this, index);
 
 		invia.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				contr.creaScheda();
+				new ListaCLView(palestra, ri, pt, parent);
+				dispose();
 				
 			}
 		});

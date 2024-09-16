@@ -35,7 +35,8 @@ public class ListaCLView extends JFrame {
 	public ListaCLView(Palestra p, Richieste r, PersonalTrainer pt, LatoPTView parent) {
 
 		setTitle("Interfaccia dipendenti");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // comando per chiudere tutte le altre schede
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // comando per chiudere tutte
+		// le altre schede
 
 		GridLayout gridLayout = new GridLayout(0, 2);
 		gridLayout.setHgap(10);
@@ -71,20 +72,23 @@ public class ListaCLView extends JFrame {
 		});
 
 		for (int i = 0; i < r.getR(pt); i++) {
-			JButton button = new JButton(r.getNomeCL(i, pt) + " " + r.getCognomeCL(i, pt));
-			final int n = i;
-			button.setBackground(new Color(40, 40, 40));
-			button.setPreferredSize(new Dimension(200, 100));
-			button.setFont(new Font("Rockwell", Font.BOLD, 20));
-			button.setForeground(Color.white);
-			dipButtons.add(button);
-			panel.add(button);
-			button.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new CreaSchedaView(p, r.getrichiestapt(pt, n), r);
-				}
-			});
+			if (r.getCodiceSchedaCliente(r.getrichiestapt(pt, i).getCliente()) == 0) {
+				JButton button = new JButton(r.getNomeCL(i, pt) + " " + r.getCognomeCL(i, pt));
+				final int n = i;
+				button.setBackground(new Color(40, 40, 40));
+				button.setPreferredSize(new Dimension(200, 100));
+				button.setFont(new Font("Rockwell", Font.BOLD, 20));
+				button.setForeground(Color.white);
+				dipButtons.add(button);
+				panel.add(button);
+				button.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						new CreaSchedaView(p, r.getrichiestapt(pt, n), r, pt, parent, n);
+						dispose();
+					}
+				});
+			}
 		}
 
 		JScrollPane scrollPane = new JScrollPane(panel);

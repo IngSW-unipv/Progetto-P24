@@ -27,14 +27,14 @@ public class Richieste {
 	}
 
 	public int getCodiceSchedaCliente(ClienteAbbonato cliente) {
-        for (RichiestaAlPT richiesta : richieste) {
-            if (richiesta.getCliente().equals(cliente)) {
-                return richiesta.getCod_scheda();
-            }
-        }
-        return 0;
-    }
-	
+		for (RichiestaAlPT richiesta : richieste) {
+			if (richiesta.getCliente().equals(cliente)) {
+				return richiesta.getCod_scheda();
+			}
+		}
+		return 0;
+	}
+
 	public void eliminaScheda(Scheda scheda) {
 		schede.remove(scheda);
 	}
@@ -80,6 +80,14 @@ public class Richieste {
 
 		return rpt;
 	}
+	
+	public void modSchedaId(ClienteAbbonato cliente, Dipendente personalTrainer, int i) {
+		for (RichiestaAlPT richiesta : richieste) {
+			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {
+				richiesta.setScheda(i);
+			}
+		}
+	}
 
 	public void eliminaRichiesta(RichiestaAlPT richiesta) {
 		richieste.remove(richiesta);
@@ -94,7 +102,7 @@ public class Richieste {
 			System.out.println("Cliente: " + richiesta.getCliente().getCliente().getNome() + " "
 					+ richiesta.getCliente().getCliente().getCognome() + " - Personal Trainer: "
 					+ richiesta.getDipendente().getNome() + " " + richiesta.getDipendente().getCognome()
-					/*+richiesta.getScheda()*/);
+			/* +richiesta.getScheda() */);
 		}
 	}
 
@@ -123,13 +131,11 @@ public class Richieste {
 		return richiesteFiltrate;
 	}
 
-	public RichiestaAlPT getrichiestapt(PersonalTrainer pt, int i)
-	{
+	public RichiestaAlPT getrichiestapt(PersonalTrainer pt, int i) {
 		return getRichiestePerPersonalTrainer(pt).get(i);
-		
-		}
-	
-	
+
+	}
+
 	public int getR(PersonalTrainer pt) {
 		int i = 0;
 		for (RichiestaAlPT richiesta : richieste) {
@@ -139,47 +145,49 @@ public class Richieste {
 		return i;
 	}
 
-	/*public boolean richiestaPresente(ClienteAbbonato cliente, Dipendente personalTrainer, int cod_scheda) {
+	/*
+	 * public boolean richiestaPresente(ClienteAbbonato cliente, Dipendente
+	 * personalTrainer, int cod_scheda) { for (RichiestaAlPT richiesta : richieste)
+	 * { if (richiesta.getCliente().equals(cliente) &&
+	 * richiesta.getDipendente().equals(personalTrainer) && richiesta.getScheda() ==
+	 * cod_scheda) { return true; } } return false; }
+	 */
+
+	public boolean richiestaPresente(ClienteAbbonato cliente, Dipendente personalTrainer) {
 		for (RichiestaAlPT richiesta : richieste) {
-			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)
-					&& richiesta.getScheda() == cod_scheda) {
+			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {
 				return true;
 			}
 		}
 		return false;
-	}*/
-
-	public boolean richiestaPresente(ClienteAbbonato cliente, Dipendente personalTrainer) {
-        for (RichiestaAlPT richiesta : richieste) {    if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {
-                return true;
-            }
-        }
-        return false;}
-	
-	public RichiestaAlPT ricarcaRichiesta(ClienteAbbonato cliente, Dipendente personalTrainer) {
-        for (RichiestaAlPT richiesta : richieste) {
-            if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {        return richiesta;
-            }
-        }
-return null;
-    }
-	
-	public RichiestaAlPT ricarcaRichiestaCl(ClienteAbbonato cliente) {
-        for (RichiestaAlPT richiesta : richieste) {if (richiesta.getCliente().equals(cliente)) {
-                return richiesta;
-            }
-        }
-        return null;
 	}
-	
+
+	public RichiestaAlPT ricarcaRichiesta(ClienteAbbonato cliente, Dipendente personalTrainer) {
+		for (RichiestaAlPT richiesta : richieste) {
+			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {
+				return richiesta;
+			}
+		}
+		return null;
+	}
+
+	public RichiestaAlPT ricarcaRichiestaCl(ClienteAbbonato cliente) {
+		for (RichiestaAlPT richiesta : richieste) {
+			if (richiesta.getCliente().equals(cliente)) {
+				return richiesta;
+			}
+		}
+		return null;
+	}
+
 	public boolean clRichieste(ClienteAbbonato cliente) {
-        for (RichiestaAlPT richiesta : richieste) {
-            if (richiesta.getCliente().equals(cliente)) {
-                return true;
-            }
-        }
-        return false;
-    }
+		for (RichiestaAlPT richiesta : richieste) {
+			if (richiesta.getCliente().equals(cliente)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public boolean ptRichieste(Dipendente personalTrainer) {
 		for (RichiestaAlPT richiesta : richieste) {

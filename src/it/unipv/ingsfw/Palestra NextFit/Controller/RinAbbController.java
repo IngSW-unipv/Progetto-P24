@@ -1,5 +1,7 @@
 package Controller;
 
+import javax.swing.JOptionPane;
+
 import DB.ClienteAbboDAO;
 import NextFit.ClienteAbbonato;
 
@@ -16,6 +18,7 @@ public class RinAbbController {
 		clienteAbbonato.aggScad(1);
 		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(), clienteAbbonato.getCliente().getCognome(),
 				clienteAbbonato.getCliente().getMail(), clienteAbbonato.getDataScadenza());
+		JOptionPane.showMessageDialog(null, "Abbonamento Rinnovato", "Op Riuscita", JOptionPane.INFORMATION_MESSAGE);
 
 	}
 
@@ -24,6 +27,7 @@ public class RinAbbController {
 		clienteAbbonato.aggScad(6);
 		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(), clienteAbbonato.getCliente().getCognome(),
 				clienteAbbonato.getCliente().getMail(), clienteAbbonato.getDataScadenza());
+		JOptionPane.showMessageDialog(null, "Abbonamento Rinnovato", "Op Riuscita", JOptionPane.INFORMATION_MESSAGE);
 
 	}
 
@@ -33,6 +37,7 @@ public class RinAbbController {
 		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(),
 				clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(),
 				clienteAbbonato.getDataScadenza());
+		JOptionPane.showMessageDialog(null, "Abbonamento Rinnovato", "Op Riuscita", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 }

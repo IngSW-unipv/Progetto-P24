@@ -13,38 +13,36 @@ import NextFit.Palestra;
 class RegistrationTest {
 
 	private Palestra p = new Palestra(20, 20);
-	private ClienteAbboDAO cdao=new ClienteAbboDAO();
+	private ClienteAbboDAO cdao = new ClienteAbboDAO();
 
 	@Test
 	public void testRegistrationTrue() {
 		Cliente c1 = new Cliente("Matteo", "Grigio", "Paolo@gmail.com", "password", 22);
 		boolean result = true;
-		if(p.registraCliente(c1)==true) { 
-		
-		Abbonamenti a1=new Abbonamenti("Mensile",50.0);
-		ClienteAbbonato c2= new ClienteAbbonato(c1,a1);
+		if (p.registraCliente(c1) == true) {
+			Abbonamenti a1 = new Abbonamenti("Mensile", 50.0);
+			ClienteAbbonato c2 = new ClienteAbbonato(c1, a1);
 
-		cdao.selectAll(p);
-		
-		result=cdao.insertCliente(c1, c2);
-		assertTrue(result);
+			cdao.selectAll(p);
+
+			result = cdao.insertCliente(c1, c2);
+			assertTrue(result);
 		}
 	}
+
 	@Test
 	public void testRegistrationFalse() {
 		Cliente c1 = new Cliente("Matteo", "Grigio", "Matteo@gmail.com", "password", 15);
 		boolean result1 = true;
-		if(p.registraCliente(c1)==true) {
-		
-		
-		Abbonamenti a1=new Abbonamenti("Mensile",50.0);
-		ClienteAbbonato c2= new ClienteAbbonato(c1,a1);
+		if (p.registraCliente(c1) == true) {
 
-		cdao.selectAll(p);
-		
-		
-		result1=cdao.insertCliente(c1, c2);
-		assertFalse(result1);
+			Abbonamenti a1 = new Abbonamenti("Mensile", 50.0);
+			ClienteAbbonato c2 = new ClienteAbbonato(c1, a1);
+
+			cdao.selectAll(p);
+
+			result1 = cdao.insertCliente(c1, c2);
+			assertFalse(result1);
 		}
 	}
 

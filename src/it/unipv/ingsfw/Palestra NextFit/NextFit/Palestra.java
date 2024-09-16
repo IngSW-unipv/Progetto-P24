@@ -270,8 +270,8 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		int j = -1;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if (clientiAbbo[i].getCliente().getMail().equals(mail.toLowerCase())
-					&& clientiAbbo[i].getCliente().getNome().equals(nome.toLowerCase())
+			if (/*clientiAbbo[i].getCliente().getMail().equals(mail.toLowerCase())
+					&&*/ clientiAbbo[i].getCliente().getNome().equals(nome.toLowerCase())
 					&& clientiAbbo[i].getCliente().getCognome().equals(cognome.toLowerCase())) {
 				j = i;
 				break;
