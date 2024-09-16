@@ -30,19 +30,6 @@ public class Tester {
 		dao3.selectAll(NextFit, corsi);
 		dao4.selectAll(NextFit, r);
 		dao5.selectAll(r);
-
-		/*NextFit.registraDipendente(
-				NextFit.creaDipendente("Pino", "Pino", "pino@tmail.com", "pi123no", 23, 2000, "corsista"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("Wino", "Wino", "wino@fmai.com", "wi123no", 24, 1800, "Dietista"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("Gino", "Gino", "gino@email.com", "gi1234no", 32, 540, "PersonalTrainer"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("Cino", "Cino", "cino@smail.com", "ci764no", 19, 675, "Corsista"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("Tino", "Tino", "tino@email.com", "tin233o", 29, 1000, "PersonalTrainer"));
-		NextFit.registraDipendente(
-				NextFit.creaDipendente("Sino", "Sino", "sino@email.com", "aaa", 39, 1900, "PersonalTrainer"));*/
 		
 		NextFit.visuClAbbo();
 		NextFit.visuListaDip();
