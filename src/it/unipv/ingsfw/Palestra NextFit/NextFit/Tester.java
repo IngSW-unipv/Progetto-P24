@@ -42,9 +42,6 @@ public class Tester {
 		r.visualizzaRichieste();
 
 		r.visualizzaSchede();
-		
-		NextFit.eliminaCliente("m", "r", "mr@mr.com", r, corsi);
-		NextFit.eliminaCliente("l", "b", "lb@lb.com", r, corsi);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

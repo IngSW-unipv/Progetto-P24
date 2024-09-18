@@ -33,9 +33,12 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		boolean t = false;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if (/*cliente.getNome().equals(clientiAbbo[i].getCliente().getNome()) // da non fare controllo su nome e cognome perchè si potrebbe creare con la stessa mail 2 account
-					&& cliente.getCognome().equals(clientiAbbo[i].getCliente().getCognome())
-					&&*/ cliente.getMail().equals(clientiAbbo[i].getCliente().getMail())) {
+			if (/*
+				 * cliente.getNome().equals(clientiAbbo[i].getCliente().getNome()) // da non
+				 * fare controllo su nome e cognome perchè si potrebbe creare con la stessa mail
+				 * 2 account &&
+				 * cliente.getCognome().equals(clientiAbbo[i].getCliente().getCognome()) &&
+				 */ cliente.getMail().equals(clientiAbbo[i].getCliente().getMail())) {
 				System.out.println("Il cliente è già presente nel database.");
 				clientePresente = true; // Imposta il flag a true se il cliente è già presente
 				break;
@@ -49,7 +52,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 				t = true;
 			} else if (cliente.getEtà() < 18) {
 				System.out.println("La palestra non può iscrivere minorenni.");
-			} else{
+			} else {
 				System.out.println("La palestra non può iscrivere più di " + maxC + " clienti.");
 			}
 		}
@@ -80,9 +83,10 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		boolean presenteNelDatabase = false;
 
 		for (int i = 0; i < contatoreD; i++) {
-			if (/*dipendente.getNome().equals(dipendenti[i].getNome())
-					&& dipendente.getCognome().equals(dipendenti[i].getCognome())
-					&&*/ dipendente.getMail().equals(dipendenti[i].getMail())) {
+			if (/*
+				 * dipendente.getNome().equals(dipendenti[i].getNome()) &&
+				 * dipendente.getCognome().equals(dipendenti[i].getCognome()) &&
+				 */ dipendente.getMail().equals(dipendenti[i].getMail())) {
 				presenteNelDatabase = true;
 				System.out.println("Il dipendente è già presente nel database. ");
 				return false;
@@ -252,26 +256,27 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 
 		return t;
 	}
-	
+
 	public boolean esisteCliMail(String mail) {
-        boolean t = false;
+		boolean t = false;
 
-        for (int i = 0; i < contatoreCA; i++) {
-            if (clientiAbbo[i].getCliente().getMail().equals(mail)) {
-                t = true;
-                break;
-            }
-        }
+		for (int i = 0; i < contatoreCA; i++) {
+			if (clientiAbbo[i].getCliente().getMail().equals(mail)) {
+				t = true;
+				break;
+			}
+		}
 
-        return t;
-    }
-	
+		return t;
+	}
+
 	public ClienteAbbonato ricercaCli(String mail, String nome, String cognome) {
 		int j = -1;
 
 		for (int i = 0; i < contatoreCA; i++) {
-			if (/*clientiAbbo[i].getCliente().getMail().equals(mail.toLowerCase())
-					&&*/ clientiAbbo[i].getCliente().getNome().equals(nome.toLowerCase())
+			if (/*
+				 * clientiAbbo[i].getCliente().getMail().equals(mail.toLowerCase()) &&
+				 */ clientiAbbo[i].getCliente().getNome().equals(nome.toLowerCase())
 					&& clientiAbbo[i].getCliente().getCognome().equals(cognome.toLowerCase())) {
 				j = i;
 				break;
@@ -328,24 +333,25 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 	public String riconosciTipo(Dipendente d) {
 		return d.getTipo();
 	}
-	public void eliminaCliente(String nome, String cognome, String mail, Richieste r, Corsi c) {
-        ClienteAbbonato ca = ricercaCli(mail.toLowerCase(), nome, cognome);
-        LocalDate dataOdierna = LocalDate.now();
-        ClienteAbboDAO dao = new ClienteAbboDAO();
-        RichiesteDAO dao1 = new RichiesteDAO();
-        IscrittoalcorsoDAO dao2 = new IscrittoalcorsoDAO();
 
-        if (ca != null && ca.getDataScadenza().isBefore(dataOdierna)) {
+	public void eliminaClienteAbbScaduto(String nome, String cognome, String mail, Richieste r, Corsi c) {
+		ClienteAbbonato ca = ricercaCli(mail.toLowerCase(), nome, cognome);
+		LocalDate dataOdierna = LocalDate.now();
+		ClienteAbboDAO dao = new ClienteAbboDAO();
+		RichiesteDAO dao1 = new RichiesteDAO();
+		IscrittoalcorsoDAO dao2 = new IscrittoalcorsoDAO();
 
-            if(c.isclPresente(ca)) {
-                dao2.deleteIscrizione2(ca);
-                c.eliminaIscrizioniCliente(ca);
-            }else if(r.clRichieste(ca)) {
-                dao1.deleteRichiesta(r.ricarcaRichiestaCl(ca));
-                r.eliminaRichiesta(r.ricarcaRichiestaCl(ca));
-            }
+		if (ca != null && ca.getDataScadenza().isBefore(dataOdierna)) {
 
-            dao.deleteCliente(nome, cognome, mail);
-        }
-    }
+			if (c.isclPresente(ca)) {
+				dao2.deleteIscrizione2(ca);
+				c.eliminaIscrizioniCliente(ca);
+			} else if (r.clRichieste(ca)) {
+				dao1.deleteRichiesta(r.ricarcaRichiestaCl(ca));
+				r.eliminaRichiesta(r.ricarcaRichiestaCl(ca));
+			}
+
+			dao.deleteCliente(nome, cognome, mail);
+		}
+	}
 }

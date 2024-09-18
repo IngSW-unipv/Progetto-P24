@@ -26,7 +26,7 @@ public class LoginView extends JFrame {
 	public LoginView(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 
 		setTitle("login palestra");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));

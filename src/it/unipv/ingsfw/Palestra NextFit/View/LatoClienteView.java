@@ -25,6 +25,7 @@ import javax.swing.border.LineBorder;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
 import NextFit.Palestra;
+import NextFit.Proprietario;
 import NextFit.Richieste;
 
 public class LatoClienteView extends JFrame {
@@ -35,7 +36,8 @@ public class LatoClienteView extends JFrame {
 	private JLabel NEXTFIT, SCAD;
 	private boolean controlpt, controlcorsi, controlsa;
 
-	public LatoClienteView(Corsi co, ClienteAbbonato clienteAbbonato, Palestra palestra, Richieste richieste) {
+	public LatoClienteView(Corsi co, ClienteAbbonato clienteAbbonato, Palestra palestra, Richieste richieste,
+			Proprietario prop) {
 		setTitle("Pagina principale");
 
 		/*
@@ -50,7 +52,7 @@ public class LatoClienteView extends JFrame {
 		 * serAgg.setVisible(false);
 		 */
 
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -164,7 +166,7 @@ public class LatoClienteView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controlsa == false) {
-					serAgg = new SerAggView(clienteAbbonato, palestra, LatoClienteView.this);
+					serAgg = new SerAggView(clienteAbbonato, palestra, LatoClienteView.this, prop, co, richieste);
 					dispose();
 					controlsa = true;
 				} else {

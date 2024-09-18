@@ -3,21 +3,17 @@ package Controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import Exception.AccountAlreadyExists;
 import Exception.InvalidCredentialsException;
-import Exception.NoAccountException;
 import View.AbbonamentiView;
 import NextFit.Cliente;
 import NextFit.Corsi;
 import NextFit.Palestra;
 import NextFit.Proprietario;
 import NextFit.Richieste;
-import View.LoginView;
 import View.RegView;
 
 public class RegController {

@@ -75,7 +75,7 @@ public class AbbonamentiView extends JFrame {
 
 				ca = av.mensile();
 
-				new LatoClienteView(co, ca, pa, r);
+				new LatoClienteView(co, ca, pa, r, p);
 				dispose();
 			}
 		});
@@ -86,7 +86,7 @@ public class AbbonamentiView extends JFrame {
 
 				ca = av.semestrale();
 
-				new LatoClienteView(co, ca, pa, r);
+				new LatoClienteView(co, ca, pa, r, p);
 				dispose();
 			}
 		});
@@ -97,7 +97,7 @@ public class AbbonamentiView extends JFrame {
 
 				ca = av.annuale();
 
-				new LatoClienteView(co, ca, pa, r);
+				new LatoClienteView(co, ca, pa, r, p);
 				dispose();
 			}
 		});

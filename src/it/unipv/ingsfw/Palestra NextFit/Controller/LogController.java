@@ -1,11 +1,8 @@
 package Controller;
 
 import Exception.NoAccountException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import NextFit.Corsi;
 import NextFit.Palestra;
@@ -41,7 +38,7 @@ public class LogController {
 			new ProprietarioView(proprietario, palestra, co, r);
 
 		} else if (palestra.esisteCli(mail.toLowerCase(), password)) {
-			new LatoClienteView(co, palestra.accessoCli(mail.toLowerCase(), password), palestra, r);
+			new LatoClienteView(co, palestra.accessoCli(mail.toLowerCase(), password), palestra, r, proprietario);
 
 		} else if (palestra.esisteDip(mail.toLowerCase(), password)) {
 			String tipo = palestra.accessoDip(mail.toLowerCase(), password).getTipo();

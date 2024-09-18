@@ -16,29 +16,29 @@ import NextFit.PersonalTrainer;
 import NextFit.Richieste;
 
 class SceltaPTTest {
-	
+
 	private Palestra p = new Palestra(20, 20);
-	private ClienteAbboDAO cdao=new ClienteAbboDAO();
+	private ClienteAbboDAO cdao = new ClienteAbboDAO();
 	private RichiesteDAO rdao = new RichiesteDAO();
-	private DipendenteDAO ddao= new DipendenteDAO();
+	private DipendenteDAO ddao = new DipendenteDAO();
 	private Richieste r = new Richieste();
+
 	@Test
-	void testscelta() 
-	{
-		
+	void testscelta() {
+
 		cdao.selectAll(p);
 		ddao.selectAll(p);
 		rdao.selectAll(p, r);
-		
-		ClienteAbbonato c1=p.accessoCli("marco.blu@example.com", "password789");
-		PersonalTrainer pt=(PersonalTrainer) p.accessoDip("antonio.marroni@example.com", "topsecret");
-		
+
+		ClienteAbbonato c1 = p.accessoCli("marco.blu@example.com", "password789");
+		PersonalTrainer pt = (PersonalTrainer) p.accessoDip("antonio.marroni@example.com", "topsecret");
+
 		r.aggRichiesta(pt, c1, 0);
-		
-		boolean result=true;
-		
-		result=rdao.insertRichiesta(r.ricarcaRichiesta(c1, pt));
-		
+
+		boolean result = true;
+
+		result = rdao.insertRichiesta(r.ricarcaRichiesta(c1, pt));
+
 		assertTrue(result);
 	}
 

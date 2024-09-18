@@ -3,7 +3,6 @@ package Controller;
 import DB.RichiesteDAO;
 import DB.SchedaDAO;
 import NextFit.Esercizio;
-import NextFit.Palestra;
 import NextFit.RichiestaAlPT;
 import NextFit.Richieste;
 import NextFit.Scheda;
