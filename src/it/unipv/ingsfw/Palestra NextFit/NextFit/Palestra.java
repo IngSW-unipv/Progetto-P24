@@ -226,6 +226,27 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 		}
 	}
 
+	public void eliCli(String nome, String cognome, String mail) {
+		ClienteAbbonato cliToDelete = ricercaCli(nome, cognome, mail);
+		if (cliToDelete != null) {
+			for (int i = 0; i < contatoreCA; i++) {
+				if (clientiAbbo[i] == cliToDelete) {
+					// Rimuovi il dipendente spostando gli elementi successivi
+					for (int j = i; j < contatoreCA - 1; j++) {
+						clientiAbbo[j] = clientiAbbo[j + 1];
+					}
+					// Rimuovi l'ultimo elemento e decrementa il contatore
+					clientiAbbo[contatoreCA - 1] = null;
+					contatoreCA--;
+					System.out.println("Cliente abbonato eliminato: " + nome + " " + cognome);
+					return;
+				}
+			}
+		} else {
+			System.out.println("Il Cliente abbonato " + nome + " " + cognome + " non è presente nella lista.");
+		}
+	}
+
 	public void abbonaCl(ClienteAbbonato ca) {
 		if (contatoreCA < maxCA) {
 			clientiAbbo[contatoreCA] = ca;
@@ -350,7 +371,7 @@ public class Palestra // classe di tipo pure fabbrication -> pattern factory per
 				dao1.deleteRichiesta(r.ricarcaRichiestaCl(ca));
 				r.eliminaRichiesta(r.ricarcaRichiestaCl(ca));
 			}
-
+			eliCli(nome, cognome, mail);
 			dao.deleteCliente(nome, cognome, mail);
 		}
 	}

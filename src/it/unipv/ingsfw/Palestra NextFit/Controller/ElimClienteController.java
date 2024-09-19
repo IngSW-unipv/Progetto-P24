@@ -5,11 +5,12 @@ import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
 import NextFit.ClienteAbbonato;
 import NextFit.Corsi;
+import NextFit.Palestra;
 import NextFit.Richieste;
 
 public class ElimClienteController {
 
-	public void eliminaCliente(Richieste r, Corsi c, ClienteAbbonato ca) {
+	public void eliminaCliente(Richieste r, Corsi c, ClienteAbbonato ca, Palestra p) {
 
 		ClienteAbboDAO dao = new ClienteAbboDAO();
 		RichiesteDAO dao1 = new RichiesteDAO();
@@ -23,6 +24,7 @@ public class ElimClienteController {
 			r.eliminaRichiesta(r.ricarcaRichiestaCl(ca));
 		}
 
+		p.eliCli(ca.getCliente().getNome(), ca.getCliente().getCognome(), ca.getCliente().getMail());
 		dao.deleteCliente(ca.getCliente().getNome(), ca.getCliente().getCognome(), ca.getCliente().getMail());
 
 	}

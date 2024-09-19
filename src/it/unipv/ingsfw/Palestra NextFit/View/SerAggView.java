@@ -123,7 +123,7 @@ public class SerAggView extends JFrame {
 						JOptionPane.YES_NO_OPTION);
 
 				if (result == JOptionPane.YES_OPTION) {
-					ec.eliminaCliente(richieste, corsi, clienteAbbonato);
+					ec.eliminaCliente(richieste, corsi, clienteAbbonato, palestra);
 					pp.setVisible(true); // Riapre la finestra già esistente
 					dispose();
 				}
