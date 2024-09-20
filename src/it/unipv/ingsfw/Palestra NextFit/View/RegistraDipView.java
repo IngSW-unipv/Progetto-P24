@@ -147,6 +147,8 @@ public class RegistraDipView extends JFrame {
 				String password = new String(passwordField.getPassword());
 				int eta = Integer.parseInt(etaField.getText());
 				double stipendio = Double.parseDouble(stipField.getText());
+				if (stipField.getText() == null || stipField.getText() == "")
+					stipendio = 0;
 
 				controller.registraDipendente(nome, cognome, mail, password, eta, stipendio, tipo);
 			}
@@ -183,10 +185,12 @@ public class RegistraDipView extends JFrame {
 	}
 
 	public void mostraErrore() {
-		errorLabel.setVisible(true);
+		JOptionPane.showMessageDialog(null, "Dipendente già esistente/dipendente minorenne", "Errore", JOptionPane.ERROR_MESSAGE);
+		//errorLabel.setVisible(true);
 	}
 
 	public void mostraSuccesso() {
-		errorLabel.setVisible(false);
+		JOptionPane.showMessageDialog(null, "Dipendente aggiunto", "Successo", JOptionPane.INFORMATION_MESSAGE);
+		//errorLabel.setVisible(false);
 	}
 }

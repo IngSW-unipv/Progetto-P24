@@ -54,7 +54,7 @@ public class Corsi {
         iscritti.removeIf(iscritto -> iscritto.getCliente().equals(cliente));
     }
 	
-	public void aggCorsi(Corso corso) {
+	public boolean aggCorsi(Corso corso) {
 		boolean corsoEsistente = false;
 		for (int i = 0; i < c; i++) {
 			if (corso.getNome().equals(corsi[i].getNome()) && corso.getCorsista().equals(corsi[i].getCorsista())) {
@@ -71,6 +71,7 @@ public class Corsi {
 			CorsiDAO dao2 = new CorsiDAO();
 			dao2.insertCorso(corso);
 		}
+		return corsoEsistente;
 	}
 
 	public void eliminaCorso(String nomeCorso, Dipendente dip) {

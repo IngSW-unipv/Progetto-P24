@@ -22,7 +22,7 @@ public class RegistraCorsoView extends JFrame {
 
 	public RegistraCorsoView(Corsi corsi, Palestra palestra, JFrame previousFrame) {
 		this.previousFrame = previousFrame;
-		
+
 		setTitle("Registrazione Corso");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -109,12 +109,15 @@ public class RegistraCorsoView extends JFrame {
 				String nome = parts[0];
 				String cognome = parts[1];
 				String mail = parts[2];
-				int maxIscritti = Integer.parseInt(maxField.getText());
+				Integer maxIscritti = Integer.parseInt(maxField.getText());
+				if (maxField.getText() == "") {
+					maxIscritti = 0;
+				}
 
 				controller.registraCorso(nomeCorso, nome, cognome, mail, maxIscritti);
 			}
 		});
-		
+
 		backButton = new JButton("Indietro");
 		backButton.setBackground(or);
 		backButton.setFont(new Font("Arial", Font.BOLD, 13));
@@ -128,7 +131,6 @@ public class RegistraCorsoView extends JFrame {
 				dispose();
 			}
 		});
-
 
 		regPanel.add(registraButton);
 		regPanel.add(errorLabel);
@@ -147,10 +149,12 @@ public class RegistraCorsoView extends JFrame {
 	}
 
 	public void mostraErrore() {
-		errorLabel.setVisible(true);
+		JOptionPane.showMessageDialog(null, "Corso già esistente", "Errore", JOptionPane.ERROR_MESSAGE);
+		//errorLabel.setVisible(true);
 	}
 
 	public void mostraSuccesso() {
-		errorLabel.setVisible(false);
+		JOptionPane.showMessageDialog(null, "Corso aggiunto", "Successo", JOptionPane.INFORMATION_MESSAGE);
+		//errorLabel.setVisible(false);
 	}
 }
