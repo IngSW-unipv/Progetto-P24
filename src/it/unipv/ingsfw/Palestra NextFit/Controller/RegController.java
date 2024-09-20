@@ -37,11 +37,28 @@ public class RegController {
 		String mail = view.getMailField().getText();
 		String password = new String(view.getPasswordField().getPassword());
 		int eta = Integer.parseInt(view.getEtaField().getText());
+
+		if (nome.length() <= 0) {
+			JOptionPane.showMessageDialog(null, "Nome non inserito", "Errore", JOptionPane.ERROR_MESSAGE);
+			throw new IllegalAccessError("Campo Nome vuoto");
+		}
+
+
+		if (cognome.length() <= 0) {
+			JOptionPane.showMessageDialog(null, "Cognome non inserito", "Errore", JOptionPane.ERROR_MESSAGE);
+			throw new IllegalAccessError("Campo Nome vuoto");
+		}
+		
+		if (password.length() <= 0) {
+			JOptionPane.showMessageDialog(null, "Password non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+			throw new IllegalAccessError("Campo Nome vuoto");
+		}
+		
 		if (palestra.esisteCliMail(mail) == false) {
 			Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
 
 			if (palestra.registraCliente(cliente) == true && isValidEmail(mail) && isValidnome(nome)
-					&& isValidcognome(cognome) && eta > 18) {
+					&& isValidcognome(cognome) && eta >= 18) {
 
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
@@ -51,7 +68,7 @@ public class RegController {
 				});
 			} else {
 
-				JOptionPane.showMessageDialog(null, "Credenziali non valide", "Errore", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Impossibile iscrivere minori/mail non valida", "Errore", JOptionPane.ERROR_MESSAGE);
 				throw new InvalidCredentialsException("Credenziali non valide.");
 			}
 		} else {
