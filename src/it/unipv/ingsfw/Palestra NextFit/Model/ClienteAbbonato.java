@@ -36,11 +36,10 @@ public class ClienteAbbonato {
 		return dataScadenza;
 	}
 
-	public void aggScad(int n) {	//aggiungere scadenza anche in database
-        dataScadenza = dataScadenza.plusMonths(n);
-    }
-	
-	
+	public void aggScad(int n) {
+		dataScadenza = dataScadenza.plusMonths(n);
+	}
+
 	public void setDataScadenza(LocalDate dataScadenza) {
 		this.dataScadenza = dataScadenza;
 	}
@@ -49,5 +48,5 @@ public class ClienteAbbonato {
 		System.out.println("Il cliente: " + ca.getCliente() + " ha l'abbonamento: " + ca.getAbbonamento()
 				+ " con scadenza: " + ca.getDataScadenza());
 	}
-	
+
 }

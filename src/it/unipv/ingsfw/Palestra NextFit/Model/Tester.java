@@ -30,7 +30,7 @@ public class Tester {
 		dao3.selectAll(NextFit, corsi);
 		dao4.selectAll(NextFit, r);
 		dao5.selectAll(r);
-		
+
 		NextFit.visuClAbbo();
 		NextFit.visuListaDip();
 		NextFit.visuDip("COrsisTA");

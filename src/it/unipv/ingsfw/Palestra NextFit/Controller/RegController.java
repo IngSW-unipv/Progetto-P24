@@ -43,17 +43,16 @@ public class RegController {
 			throw new IllegalAccessError("Campo Nome vuoto");
 		}
 
-
 		if (cognome.length() <= 0) {
 			JOptionPane.showMessageDialog(null, "Cognome non inserito", "Errore", JOptionPane.ERROR_MESSAGE);
 			throw new IllegalAccessError("Campo Nome vuoto");
 		}
-		
+
 		if (password.length() <= 0) {
 			JOptionPane.showMessageDialog(null, "Password non valida", "Errore", JOptionPane.ERROR_MESSAGE);
 			throw new IllegalAccessError("Campo Nome vuoto");
 		}
-		
+
 		if (palestra.esisteCliMail(mail) == false) {
 			Cliente cliente = new Cliente(nome, cognome, mail, password, eta);
 
@@ -68,7 +67,8 @@ public class RegController {
 				});
 			} else {
 
-				JOptionPane.showMessageDialog(null, "Impossibile iscrivere minori/mail non valida", "Errore", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Impossibile iscrivere minori/mail non valida", "Errore",
+						JOptionPane.ERROR_MESSAGE);
 				throw new InvalidCredentialsException("Credenziali non valide.");
 			}
 		} else {

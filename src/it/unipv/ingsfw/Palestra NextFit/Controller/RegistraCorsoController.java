@@ -27,7 +27,7 @@ public class RegistraCorsoController {
 			JOptionPane.showMessageDialog(null, "Nome corso non inserito", "Errore", JOptionPane.ERROR_MESSAGE);
 			throw new IllegalAccessError("Campo Nome vuoto");
 		}
-		
+
 		if (maxIscritti <= 0 || maxIscritti == null) {
 			JOptionPane.showMessageDialog(null, "Numero iscritti non inserito", "Errore", JOptionPane.ERROR_MESSAGE);
 			throw new IllegalAccessError("Campo Nome vuoto");

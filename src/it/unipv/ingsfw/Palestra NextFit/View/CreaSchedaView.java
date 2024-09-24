@@ -29,7 +29,8 @@ public class CreaSchedaView extends JFrame {
 	private JTextField es01, es02, es03, es04, es05;
 	private JButton invia;
 
-	public CreaSchedaView(Palestra palestra, RichiestaAlPT r, Richieste ri, PersonalTrainer pt, LatoPTView parent , int index) {
+	public CreaSchedaView(Palestra palestra, RichiestaAlPT r, Richieste ri, PersonalTrainer pt, LatoPTView parent,
+			int index) {
 		setTitle("schede");
 
 		JPanel panel = new JPanel();
@@ -117,17 +118,17 @@ public class CreaSchedaView extends JFrame {
 		invia.setBackground(CBUT);
 		invia.setFont(new Font("Rockwell", Font.BOLD, 20));
 		invia.setForeground(Color.white);
-		
+
 		CreaSchedaController contr = new CreaSchedaController(ri, r, this, index);
 
 		invia.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				contr.creaScheda();
 				new ListaCLView(palestra, ri, pt, parent);
 				dispose();
-				
+
 			}
 		});
 		panel.add(invia);
@@ -159,5 +160,5 @@ public class CreaSchedaView extends JFrame {
 	public JTextField getEs05() {
 		return es05;
 	}
-	
+
 }

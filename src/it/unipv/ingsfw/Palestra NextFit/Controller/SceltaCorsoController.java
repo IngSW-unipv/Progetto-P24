@@ -13,20 +13,18 @@ import View.ListaCorsiView;
 public class SceltaCorsoController {
 
 	private ListaCorsiView view;
-	
+
 	public SceltaCorsoController(ListaCorsiView view) {
-		this.view=view;
+		this.view = view;
 	}
-	
-	public void scelta(ActionEvent e,int n,Corsi co, ClienteAbbonato clienteAbbonato)
-	{
+
+	public void scelta(ActionEvent e, int n, Corsi co, ClienteAbbonato clienteAbbonato) {
 		CorsiDAO dao = new CorsiDAO();
 		IscrittoalcorsoDAO dao1 = new IscrittoalcorsoDAO();
 		JButton button = (JButton) e.getSource();
-		
-		
+
 		boolean isIscritto = view.getIsIscritto()[n];
-		
+
 		if (!isIscritto) {
 			co.getCorso(n).aggPalCorso();
 			System.out.println(co.getCorso(n).getNp());
@@ -55,8 +53,5 @@ public class SceltaCorsoController {
 			co.visuClisCorsi();
 		}
 	}
-	
-	
-	
-	
+
 }

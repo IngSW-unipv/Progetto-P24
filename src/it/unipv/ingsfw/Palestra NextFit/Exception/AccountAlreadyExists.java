@@ -1,9 +1,9 @@
 package Exception;
 
-public class AccountAlreadyExists extends Exception{
+public class AccountAlreadyExists extends Exception {
 
-	 public AccountAlreadyExists(String message) {
-	        super(message);
-	    }
-	
+	public AccountAlreadyExists(String message) {
+		super(message);
+	}
+
 }

@@ -110,28 +110,28 @@ public class ClienteAbboDAO {
 	}
 
 	public boolean deleteCliente(String nome, String cognome, String mail) {
-        conn = DBConnection.startConnection(conn, schema);
+		conn = DBConnection.startConnection(conn, schema);
 
-        PreparedStatement stmt = null;
-        boolean esito = true;
+		PreparedStatement stmt = null;
+		boolean esito = true;
 
-        try {
-            String query = "DELETE FROM clienti WHERE nome = ? AND cognome = ? AND mail = ?";
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, nome);
-            stmt.setString(2, cognome);
-            stmt.setString(3, mail);
+		try {
+			String query = "DELETE FROM clienti WHERE nome = ? AND cognome = ? AND mail = ?";
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, nome);
+			stmt.setString(2, cognome);
+			stmt.setString(3, mail);
 
-            stmt.executeUpdate();
+			stmt.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            esito = false;
-        } finally {
-            DBConnection.closeConnection(conn);
-        }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			esito = false;
+		} finally {
+			DBConnection.closeConnection(conn);
+		}
 
-        return esito;
-    }
-	
+		return esito;
+	}
+
 }
