@@ -4,10 +4,10 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import NextFit.Abbonamenti;
-import NextFit.Cliente;
-import NextFit.ClienteAbbonato;
-import NextFit.Palestra;
+import Model.Abbonamenti;
+import Model.Cliente;
+import Model.ClienteAbbonato;
+import Model.Palestra;
 
 public class ClienteAbboDAO {
 

@@ -1,4 +1,4 @@
-package NextFit;
+package Model;
 
 public abstract class Dipendente {
 	protected String nome, cognome, mail, password, tipo;

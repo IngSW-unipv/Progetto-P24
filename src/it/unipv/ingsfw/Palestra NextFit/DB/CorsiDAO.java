@@ -3,10 +3,10 @@ package DB;
 import java.sql.*;
 import java.util.ArrayList;
 
-import NextFit.Corsi;
-import NextFit.Corso;
-import NextFit.Dipendente;
-import NextFit.Palestra;
+import Model.Corsi;
+import Model.Corso;
+import Model.Dipendente;
+import Model.Palestra;
 
 public class CorsiDAO {
 

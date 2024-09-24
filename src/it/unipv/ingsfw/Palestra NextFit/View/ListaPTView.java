@@ -9,10 +9,10 @@ import javax.swing.*;
 import Controller.NavigationController;
 import Controller.SceltaPTController;
 import DB.RichiesteDAO;
-import NextFit.ClienteAbbonato;
-import NextFit.Palestra;
-import NextFit.PersonalTrainer;
-import NextFit.Richieste;
+import Model.ClienteAbbonato;
+import Model.Palestra;
+import Model.PersonalTrainer;
+import Model.Richieste;
 
 public class ListaPTView extends JFrame {
 

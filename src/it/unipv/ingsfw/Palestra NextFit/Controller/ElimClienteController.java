@@ -3,10 +3,10 @@ package Controller;
 import DB.ClienteAbboDAO;
 import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Richieste;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Richieste;
 
 public class ElimClienteController {
 

@@ -1,4 +1,4 @@
-package NextFit;
+package Model;
 
 public class Cliente {
 	private String nome, cognome, mail, password;

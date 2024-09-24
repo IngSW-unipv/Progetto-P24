@@ -16,12 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Dipendente;
-import NextFit.Palestra;
-import NextFit.PersonalTrainer;
-import NextFit.Richieste;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Dipendente;
+import Model.Palestra;
+import Model.PersonalTrainer;
+import Model.Richieste;
 
 public class LatoPTView extends JFrame {
 	private JButton LC;

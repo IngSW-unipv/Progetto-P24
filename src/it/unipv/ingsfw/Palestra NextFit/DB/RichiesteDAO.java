@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import NextFit.ClienteAbbonato;
-import NextFit.Palestra;
-import NextFit.PersonalTrainer;
-import NextFit.RichiestaAlPT;
-import NextFit.Richieste;
+import Model.ClienteAbbonato;
+import Model.Palestra;
+import Model.PersonalTrainer;
+import Model.RichiestaAlPT;
+import Model.Richieste;
 
 public class RichiesteDAO {
 

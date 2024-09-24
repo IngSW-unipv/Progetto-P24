@@ -8,12 +8,12 @@ import javax.swing.SwingUtilities;
 
 import Exception.AccountAlreadyExists;
 import Exception.InvalidCredentialsException;
+import Model.Cliente;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 import View.AbbonamentiView;
-import NextFit.Cliente;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
 import View.RegView;
 
 public class RegController {

@@ -22,11 +22,11 @@ import javax.swing.JScrollPane;
 import Controller.NavigationController;
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Corso;
-import NextFit.Dipendente;
-import NextFit.Palestra;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Corso;
+import Model.Dipendente;
+import Model.Palestra;
 
 public class ListaCorsiPropView extends JFrame {
 

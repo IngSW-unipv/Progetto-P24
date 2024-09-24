@@ -5,12 +5,13 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
-import NextFit.Corsi;
-import NextFit.Dipendente;
-import NextFit.Palestra;
-import NextFit.Richieste;
+
 import Controller.ElimDipController;
 import Controller.NavigationController;
+import Model.Corsi;
+import Model.Dipendente;
+import Model.Palestra;
+import Model.Richieste;
 
 public class ElimDipView extends JFrame {
 	private ArrayList<JButton> dipButtons;

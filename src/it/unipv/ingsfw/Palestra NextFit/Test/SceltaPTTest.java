@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 import DB.ClienteAbboDAO;
 import DB.DipendenteDAO;
 import DB.RichiesteDAO;
-import NextFit.Abbonamenti;
-import NextFit.Cliente;
-import NextFit.ClienteAbbonato;
-import NextFit.Dipendente;
-import NextFit.Palestra;
-import NextFit.PersonalTrainer;
-import NextFit.Richieste;
+import Model.Abbonamenti;
+import Model.Cliente;
+import Model.ClienteAbbonato;
+import Model.Dipendente;
+import Model.Palestra;
+import Model.PersonalTrainer;
+import Model.Richieste;
 
 class SceltaPTTest {
 

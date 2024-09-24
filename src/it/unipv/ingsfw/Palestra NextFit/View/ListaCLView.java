@@ -18,11 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Controller.NavigationController;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.PersonalTrainer;
-import NextFit.RichiestaAlPT;
-import NextFit.Richieste;
+import Model.Corsi;
+import Model.Palestra;
+import Model.PersonalTrainer;
+import Model.RichiestaAlPT;
+import Model.Richieste;
 
 public class ListaCLView extends JFrame {
 	private ArrayList<JButton> dipButtons;

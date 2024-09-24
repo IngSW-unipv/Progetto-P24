@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
-import NextFit.Dipendente;
-import NextFit.Palestra;
+import Model.Dipendente;
+import Model.Palestra;
 import View.RegistraDipView;
 
 public class RegistraDipController {

@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Corsista;
-import NextFit.Corso;
-import NextFit.IscrittoalCorso;
-import NextFit.Palestra;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Corsista;
+import Model.Corso;
+import Model.IscrittoalCorso;
+import Model.Palestra;
 
 public class IscrittoalcorsoDAO {
 

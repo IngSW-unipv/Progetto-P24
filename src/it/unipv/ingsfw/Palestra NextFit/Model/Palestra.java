@@ -1,4 +1,4 @@
-package NextFit;
+package Model;
 
 import java.time.LocalDate;
 
@@ -7,9 +7,7 @@ import DB.DipendenteDAO;
 import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
 
-public class Palestra // classe di tipo pure fabbrication -> pattern factory per la creazione dei
-						// dipendenti e clienti
-{
+public class Palestra {
 	private Cliente[] clienti;
 	private Dipendente[] dipendenti;
 	private ClienteAbbonato[] clientiAbbo;

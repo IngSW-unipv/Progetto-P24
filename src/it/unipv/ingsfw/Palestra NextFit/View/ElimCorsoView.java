@@ -5,11 +5,12 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
-import NextFit.Corsi;
-import NextFit.Corso;
-import NextFit.Palestra;
+
 import Controller.ElimCorsoController;
 import Controller.NavigationController;
+import Model.Corsi;
+import Model.Corso;
+import Model.Palestra;
 
 public class ElimCorsoView extends JFrame {
 	private ArrayList<JButton> courseButtons;

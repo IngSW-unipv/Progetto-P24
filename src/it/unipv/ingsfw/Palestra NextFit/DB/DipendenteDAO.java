@@ -3,8 +3,8 @@ package DB;
 import java.sql.*;
 import java.util.ArrayList;
 
-import NextFit.Dipendente;
-import NextFit.Palestra;
+import Model.Dipendente;
+import Model.Palestra;
 
 public class DipendenteDAO {
 

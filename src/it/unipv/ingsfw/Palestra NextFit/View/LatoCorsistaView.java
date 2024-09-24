@@ -15,11 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Dipendente;
-import NextFit.Palestra;
-import NextFit.PersonalTrainer;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Dipendente;
+import Model.Palestra;
+import Model.PersonalTrainer;
 
 public class LatoCorsistaView extends JFrame {
 	private JButton LC, LP;

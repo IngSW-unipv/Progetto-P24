@@ -1,13 +1,13 @@
 package Controller;
 
 import Exception.NoAccountException;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 
 import javax.swing.JOptionPane;
 
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
 import View.LatoClienteView;
 import View.LatoCorsistaView;
 import View.LatoPTView;

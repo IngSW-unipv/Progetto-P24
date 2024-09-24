@@ -21,8 +21,8 @@ import javax.swing.SwingUtilities;
 import Controller.NavigationController;
 import Controller.RinAbbController;
 import DB.ClienteAbboDAO;
-import NextFit.ClienteAbbonato;
-import NextFit.Palestra;
+import Model.ClienteAbbonato;
+import Model.Palestra;
 
 public class RinAbbView extends JFrame {
 	private JButton mensile, semestrale, annuale, back;

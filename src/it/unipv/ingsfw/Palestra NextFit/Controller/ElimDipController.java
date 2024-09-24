@@ -1,15 +1,15 @@
 package Controller;
 
-import NextFit.Corsi;
-import NextFit.Corso;
-import NextFit.Dipendente;
 import DB.DipendenteDAO;
 import DB.IscrittoalcorsoDAO;
 import DB.CorsiDAO;
-import NextFit.RichiestaAlPT;
-import NextFit.Richieste;
 import DB.RichiesteDAO;
-import NextFit.Palestra;
+import Model.Corsi;
+import Model.Corso;
+import Model.Dipendente;
+import Model.Palestra;
+import Model.RichiestaAlPT;
+import Model.Richieste;
 import View.ElimDipView;
 
 public class ElimDipController {

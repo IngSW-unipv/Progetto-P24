@@ -3,7 +3,7 @@ package Controller;
 import javax.swing.JOptionPane;
 
 import DB.ClienteAbboDAO;
-import NextFit.ClienteAbbonato;
+import Model.ClienteAbbonato;
 
 public class RinAbbController {
 

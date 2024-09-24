@@ -1,10 +1,10 @@
 package Controller;
 
 import DB.ClienteAbboDAO;
-import NextFit.Cliente;
-import NextFit.ClienteAbbonato;
-import NextFit.Palestra;
-import NextFit.Proprietario;
+import Model.Cliente;
+import Model.ClienteAbbonato;
+import Model.Palestra;
+import Model.Proprietario;
 
 public class AbbonamentiController {
 

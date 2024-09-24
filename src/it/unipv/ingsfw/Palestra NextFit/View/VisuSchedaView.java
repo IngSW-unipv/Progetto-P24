@@ -20,12 +20,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controller.NavigationController;
-import NextFit.ClienteAbbonato;
-import NextFit.Esercizio;
-import NextFit.Palestra;
-import NextFit.RichiestaAlPT;
-import NextFit.Richieste;
-import NextFit.Scheda;
+import Model.ClienteAbbonato;
+import Model.Esercizio;
+import Model.Palestra;
+import Model.RichiestaAlPT;
+import Model.Richieste;
+import Model.Scheda;
 
 public class VisuSchedaView extends JFrame {
 	private JLabel SCHEDA, PT, ES1, ES2, ES3, ES4, ES5;

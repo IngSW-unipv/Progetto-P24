@@ -2,10 +2,10 @@ package Controller;
 
 import DB.RichiesteDAO;
 import DB.SchedaDAO;
-import NextFit.Esercizio;
-import NextFit.RichiestaAlPT;
-import NextFit.Richieste;
-import NextFit.Scheda;
+import Model.Esercizio;
+import Model.RichiestaAlPT;
+import Model.Richieste;
+import Model.Scheda;
 import View.CreaSchedaView;
 
 public class CreaSchedaController {

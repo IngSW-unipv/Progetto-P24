@@ -18,11 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Controller.NavigationController;
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Corso;
-import NextFit.Dipendente;
-import NextFit.IscrittoalCorso;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Corso;
+import Model.Dipendente;
+import Model.IscrittoalCorso;
 
 public class ListaIsCorsiView extends JFrame {
 

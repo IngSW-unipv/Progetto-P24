@@ -6,8 +6,8 @@ import javax.swing.JButton;
 
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
+import Model.ClienteAbbonato;
+import Model.Corsi;
 import View.ListaCorsiView;
 
 public class SceltaCorsoController {

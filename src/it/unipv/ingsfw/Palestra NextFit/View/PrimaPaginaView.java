@@ -21,10 +21,10 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 
 public class PrimaPaginaView extends JFrame {
 	private JButton LOGIN, REG;

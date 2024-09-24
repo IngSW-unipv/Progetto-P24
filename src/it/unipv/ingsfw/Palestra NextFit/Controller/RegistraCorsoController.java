@@ -2,10 +2,10 @@ package Controller;
 
 import javax.swing.JOptionPane;
 
-import NextFit.Corsi;
-import NextFit.Corso;
-import NextFit.Dipendente;
-import NextFit.Palestra;
+import Model.Corsi;
+import Model.Corso;
+import Model.Dipendente;
+import Model.Palestra;
 import View.RegistraCorsoView;
 
 public class RegistraCorsoController {

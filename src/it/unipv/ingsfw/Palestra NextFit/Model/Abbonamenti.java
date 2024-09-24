@@ -1,4 +1,4 @@
-package NextFit;
+package Model;
 
 public class Abbonamenti {
 	public String tipo;

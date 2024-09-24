@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import NextFit.Esercizio;
-import NextFit.Richieste;
-import NextFit.Scheda;
+import Model.Esercizio;
+import Model.Richieste;
+import Model.Scheda;
 
 public class SchedaDAO {
 

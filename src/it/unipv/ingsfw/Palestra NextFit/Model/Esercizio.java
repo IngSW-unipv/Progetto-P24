@@ -1,4 +1,4 @@
-package NextFit;
+package Model;
 
 public class Esercizio {
     private String nome;

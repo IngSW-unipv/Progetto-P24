@@ -24,16 +24,15 @@ import javax.swing.border.LineBorder;
 
 import Controller.ElimClienteController;
 import Controller.NavigationController;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
-
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
 
 public class SerAggView extends JFrame {
 	private JButton SCAD, RIN, DIS, back;

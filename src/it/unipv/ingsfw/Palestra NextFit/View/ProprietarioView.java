@@ -17,11 +17,11 @@ import javax.swing.JPanel;
 import Controller.ElimDipController;
 import Controller.RegistraCorsoController;
 import Controller.RegistraDipController;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 import Controller.ElimCorsoController;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
 
 public class ProprietarioView extends JFrame {
 

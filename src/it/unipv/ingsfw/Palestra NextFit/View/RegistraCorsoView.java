@@ -4,11 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import NextFit.Corsi;
-import NextFit.Dipendente;
-import NextFit.Palestra;
+
 import Controller.NavigationController;
 import Controller.RegistraCorsoController;
+import Model.Corsi;
+import Model.Dipendente;
+import Model.Palestra;
 
 public class RegistraCorsoView extends JFrame {
 	private JTextField nomeCField, maxField;

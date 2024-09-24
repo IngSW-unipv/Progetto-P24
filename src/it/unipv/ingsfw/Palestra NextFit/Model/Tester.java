@@ -1,4 +1,4 @@
-package NextFit;
+package Model;
 
 import javax.swing.SwingUtilities;
 

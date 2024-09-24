@@ -27,8 +27,8 @@ import Controller.NavigationController;
 import Controller.SceltaCorsoController;
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
+import Model.ClienteAbbonato;
+import Model.Corsi;
 
 public class ListaCorsiView extends JFrame {
 

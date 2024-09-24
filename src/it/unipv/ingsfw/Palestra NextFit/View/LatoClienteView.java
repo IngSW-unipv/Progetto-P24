@@ -22,11 +22,11 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 
 public class LatoClienteView extends JFrame {
 	private JButton PT, CORSI, SCHEDA, SERVIZI;

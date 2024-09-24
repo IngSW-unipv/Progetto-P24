@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import DB.ClienteAbboDAO;
-import NextFit.Abbonamenti;
-import NextFit.Cliente;
-import NextFit.ClienteAbbonato;
-import NextFit.Palestra;
+import Model.Abbonamenti;
+import Model.Cliente;
+import Model.ClienteAbbonato;
+import Model.Palestra;
 
 class RegistrationTest {
 

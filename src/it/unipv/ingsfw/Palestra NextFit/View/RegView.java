@@ -8,11 +8,11 @@ import javax.swing.border.LineBorder;
 import Controller.RegController;
 import Exception.AccountAlreadyExists;
 import Exception.InvalidCredentialsException;
-import NextFit.Cliente;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
+import Model.Cliente;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -20,12 +20,12 @@ import javax.swing.SwingUtilities;
 
 import Controller.AbbonamentiController;
 import DB.ClienteAbboDAO;
-import NextFit.Cliente;
-import NextFit.ClienteAbbonato;
-import NextFit.Corsi;
-import NextFit.Palestra;
-import NextFit.Proprietario;
-import NextFit.Richieste;
+import Model.Cliente;
+import Model.ClienteAbbonato;
+import Model.Corsi;
+import Model.Palestra;
+import Model.Proprietario;
+import Model.Richieste;
 
 public class AbbonamentiView extends JFrame {
 	private JButton mensile, semestrale, annuale;

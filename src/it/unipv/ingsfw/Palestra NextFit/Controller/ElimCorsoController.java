@@ -2,9 +2,9 @@ package Controller;
 
 import DB.CorsiDAO;
 import DB.IscrittoalcorsoDAO;
-import NextFit.Corsi;
-import NextFit.Corso;
-import NextFit.Palestra;
+import Model.Corsi;
+import Model.Corso;
+import Model.Palestra;
 import View.ElimCorsoView;
 
 public class ElimCorsoController {
