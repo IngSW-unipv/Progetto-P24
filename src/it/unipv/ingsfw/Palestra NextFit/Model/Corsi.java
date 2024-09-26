@@ -56,9 +56,12 @@ public class Corsi {
 	
 	public boolean aggCorsi(Corso corso) {
 		boolean corsoEsistente = false;
+		boolean corsoinserito = false;
+		
 		for (int i = 0; i < c; i++) {
 			if (corso.getNome().equals(corsi[i].getNome()) && corso.getCorsista().equals(corsi[i].getCorsista())) {
 				corsoEsistente = true;
+				corsoinserito = false;
 				System.out.println("Il corso già esiste.");
 				break;
 			}
@@ -70,8 +73,10 @@ public class Corsi {
 
 			CorsiDAO dao2 = new CorsiDAO();
 			dao2.insertCorso(corso);
+			
+			corsoinserito=true;
 		}
-		return corsoEsistente;
+		return corsoinserito;
 	}
 
 	public void eliminaCorso(String nomeCorso, Dipendente dip) {

@@ -35,7 +35,7 @@ public class RegistraCorsoController {
 
 		if (d != null && d.getTipo().equals("corsista")) {
 			Corso corso = new Corso(nomeCorso, d, maxIscritti, 0);
-			if (corsi.aggCorsi(corso) == false)
+			if (corsi.aggCorsi(corso) == true)
 				view.mostraSuccesso();
 			else
 				view.mostraErrore();

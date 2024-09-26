@@ -18,7 +18,7 @@ public class DBConnection {
 
 		dbURL = "jdbc:mysql://localhost/palestra";
 		username = "root";
-		password = "Giubeagio3"; //@Riccardo18 //Giubeagio3
+		password = "@Riccardo18"; //@Riccardo18 //Giubeagio3
 
 		try {
 			conn = DriverManager.getConnection(dbURL, username, password);
