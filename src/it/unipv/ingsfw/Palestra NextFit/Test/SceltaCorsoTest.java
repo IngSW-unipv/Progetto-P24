@@ -15,7 +15,7 @@ import Model.Palestra;
 
 class SceltaCorsoTest {
 
-	private Palestra p = new Palestra(20, 20);
+	private Palestra p =  Palestra.getInstance();
 	private ClienteAbboDAO cdao = new ClienteAbboDAO();
 	private DipendenteDAO ddao = new DipendenteDAO();
 	private CorsiDAO ccdao = new CorsiDAO();

@@ -8,12 +8,13 @@ import DB.IscrittoalcorsoDAO;
 import DB.RichiesteDAO;
 
 public class Palestra {
+	private static Palestra instance;
 	private Cliente[] clienti;
 	private Dipendente[] dipendenti;
 	private ClienteAbbonato[] clientiAbbo;
 	private int contatoreC, contatoreD, contatoreCA, maxC, maxD, maxCA;
 
-	public Palestra(int maxC, int maxD) {
+	private Palestra(int maxC, int maxD) {
 		this.maxC = maxC;
 		this.maxCA = maxC;
 		this.maxD = maxD;
@@ -23,6 +24,13 @@ public class Palestra {
 		contatoreC = 0;
 		contatoreCA = 0;
 		contatoreD = 0;
+	}
+	
+	public static Palestra getInstance() {
+		if (instance == null) {
+			instance = new Palestra(100, 100);
+		}
+		return instance;
 	}
 
 	public boolean registraCliente(Cliente cliente) {

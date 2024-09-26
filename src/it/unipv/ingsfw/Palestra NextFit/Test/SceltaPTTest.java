@@ -17,7 +17,7 @@ import Model.Richieste;
 
 class SceltaPTTest {
 
-	private Palestra p = new Palestra(20, 20);
+	private Palestra p =  Palestra.getInstance();
 	private ClienteAbboDAO cdao = new ClienteAbboDAO();
 	private RichiesteDAO rdao = new RichiesteDAO();
 	private DipendenteDAO ddao = new DipendenteDAO();

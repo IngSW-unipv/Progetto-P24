@@ -15,7 +15,7 @@ import Model.Palestra;
 
 class CreaeElimCorsoTest {
 
-	private Palestra p = new Palestra(20, 20);
+	private Palestra p =  Palestra.getInstance();
 	private CorsiDAO cdao = new CorsiDAO();
 	private Corsi c = new Corsi(20);
 	private DipendenteDAO ddao = new DipendenteDAO();

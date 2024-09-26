@@ -12,7 +12,7 @@ import View.PrimaPaginaView;
 
 public class Tester {
 	public static void main(String[] args) {
-		Palestra NextFit = new Palestra(100, 100);
+		Palestra NextFit = Palestra.getInstance();
 		Proprietario proprietario = Proprietario.getInstance();
 		Corsi corsi = new Corsi(20);
 		Richieste r = new Richieste();
