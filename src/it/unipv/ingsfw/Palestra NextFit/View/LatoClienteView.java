@@ -40,20 +40,6 @@ public class LatoClienteView extends JFrame {
 			Proprietario prop) {
 		setTitle("Pagina principale");
 
-		/*
-		 * listaCORSI = new ListaCORSI(co, clienteAbbonato, LatoClienteGui.this); //
-		 * creo adesso la gui figlia listaCORSI.setVisible(false);
-		 * 
-		 * listaPT = new ListaPT(palestra, clienteAbbonato, LatoClienteGui.this,
-		 * richieste); // creo adesso la gui figlia listaPT.setVisible(false);
-		 * setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 * 
-		 * serAgg = new SerAgg(clienteAbbonato, palestra, LatoClienteGui.this);
-		 * serAgg.setVisible(false);
-		 */
-
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 

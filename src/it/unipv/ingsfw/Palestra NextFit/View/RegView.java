@@ -30,7 +30,7 @@ public class RegView extends JFrame {
 	public RegView(Palestra palestra, Proprietario proprietario, Corsi co, Richieste r) {
 
 		setTitle("Registrazione Cliente Palestra");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));

@@ -151,11 +151,11 @@ public class RegistraCorsoView extends JFrame {
 
 	public void mostraErrore() {
 		JOptionPane.showMessageDialog(null, "Corso già esistente", "Errore", JOptionPane.ERROR_MESSAGE);
-		//errorLabel.setVisible(true);
+		// errorLabel.setVisible(true);
 	}
 
 	public void mostraSuccesso() {
 		JOptionPane.showMessageDialog(null, "Corso aggiunto", "Successo", JOptionPane.INFORMATION_MESSAGE);
-		//errorLabel.setVisible(false);
+		// errorLabel.setVisible(false);
 	}
 }

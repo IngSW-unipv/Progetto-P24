@@ -30,7 +30,7 @@ public class RinAbbView extends JFrame {
 
 	public RinAbbView(ClienteAbbonato clienteAbbonato, Palestra palestra, SerAggView parent) {
 		setTitle("scelta abbonamenti");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -90,7 +90,7 @@ public class RinAbbView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				rc.aggAnnuale(dao);
-				
+
 			}
 		});
 

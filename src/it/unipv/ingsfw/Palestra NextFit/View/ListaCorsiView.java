@@ -38,13 +38,13 @@ public class ListaCorsiView extends JFrame {
 	private JLabel CORSI;
 	private boolean[] isIscritto;
 	private SceltaCorsoController scs;
-	
+
 	public ListaCorsiView(Corsi co, ClienteAbbonato clienteAbbonato, LatoClienteView parent) {
 		setTitle("Interfaccia Corsi");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		scs=new SceltaCorsoController(this);
-		
+		scs = new SceltaCorsoController(this);
+
 		isIscritto = new boolean[co.getC()];
 
 		GridLayout gridLayout = new GridLayout(0, 2); // Imposta un layout a due colonne
@@ -93,8 +93,8 @@ public class ListaCorsiView extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					scs.scelta(e,n,co,clienteAbbonato);
+
+					scs.scelta(e, n, co, clienteAbbonato);
 				}
 			});
 

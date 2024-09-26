@@ -42,18 +42,18 @@ public class Corsi {
 	}
 
 	public boolean isclPresente(ClienteAbbonato c) {
-        for (IscrittoalCorso iscritto : iscritti) {
-            if (iscritto.getCliente().equals(c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-	
+		for (IscrittoalCorso iscritto : iscritti) {
+			if (iscritto.getCliente().equals(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void eliminaIscrizioniCliente(ClienteAbbonato cliente) {
-        iscritti.removeIf(iscritto -> iscritto.getCliente().equals(cliente));
-    }
-	
+		iscritti.removeIf(iscritto -> iscritto.getCliente().equals(cliente));
+	}
+
 	public boolean aggCorsi(Corso corso) {
 		boolean corsoEsistente = false;
 		boolean corsoinserito = false;

@@ -80,7 +80,7 @@ public class Richieste {
 
 		return rpt;
 	}
-	
+
 	public void modSchedaId(ClienteAbbonato cliente, Dipendente personalTrainer, int i) {
 		for (RichiestaAlPT richiesta : richieste) {
 			if (richiesta.getCliente().equals(cliente) && richiesta.getDipendente().equals(personalTrainer)) {

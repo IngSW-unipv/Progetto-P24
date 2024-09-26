@@ -119,7 +119,8 @@ public class IscrittoalcorsoDAO {
 		return esito;
 	}
 
-	public boolean deleteIscrizione1(String nomeCorso, String nomeCorsista, String cognomeCorsista, String mailCorsista) {
+	public boolean deleteIscrizione1(String nomeCorso, String nomeCorsista, String cognomeCorsista,
+			String mailCorsista) {
 		conn = DBConnection.startConnection(conn, schema);
 
 		PreparedStatement st1;
@@ -151,33 +152,33 @@ public class IscrittoalcorsoDAO {
 	}
 
 	public boolean deleteIscrizione2(ClienteAbbonato ca) {
-        conn = DBConnection.startConnection(conn, schema);
+		conn = DBConnection.startConnection(conn, schema);
 
-        PreparedStatement st1;
+		PreparedStatement st1;
 
-        boolean esito = true;
+		boolean esito = true;
 
-        try {
-            String query = "DELETE FROM iscrizioni_corsi WHERE cliente_nome = ? AND cliente_cognome = ? AND cliente_mail = ?";
-            st1 = conn.prepareStatement(query);
-            st1.setString(1, ca.getCliente().getNome());
-            st1.setString(2, ca.getCliente().getCognome());
-            st1.setString(3, ca.getCliente().getMail());
+		try {
+			String query = "DELETE FROM iscrizioni_corsi WHERE cliente_nome = ? AND cliente_cognome = ? AND cliente_mail = ?";
+			st1 = conn.prepareStatement(query);
+			st1.setString(1, ca.getCliente().getNome());
+			st1.setString(2, ca.getCliente().getCognome());
+			st1.setString(3, ca.getCliente().getMail());
 
-            int rowsAffected = st1.executeUpdate();
-            if (rowsAffected == 0) {
-                System.out.println("Nessuna riga eliminata. Potrebbe non esistere un'iscrizione corrispondente.");
-            } else {
-                System.out.println("Iscrizione eliminata con successo.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            esito = false;
-        } finally {
-            DBConnection.closeConnection(conn);
-        }
+			int rowsAffected = st1.executeUpdate();
+			if (rowsAffected == 0) {
+				System.out.println("Nessuna riga eliminata. Potrebbe non esistere un'iscrizione corrispondente.");
+			} else {
+				System.out.println("Iscrizione eliminata con successo.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			esito = false;
+		} finally {
+			DBConnection.closeConnection(conn);
+		}
 
-        return esito;
-    }
-	
+		return esito;
+	}
+
 }

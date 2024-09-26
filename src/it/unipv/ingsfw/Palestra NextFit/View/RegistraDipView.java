@@ -27,7 +27,7 @@ public class RegistraDipView extends JFrame {
 		this.previousFrame = previousFrame;
 
 		setTitle("Registrazione Dipendente Palestra");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		GridLayout gridLayout = new GridLayout(0, 1);
 		gridLayout.setHgap(10);
@@ -186,12 +186,13 @@ public class RegistraDipView extends JFrame {
 	}
 
 	public void mostraErrore() {
-		JOptionPane.showMessageDialog(null, "Dipendente già esistente/dipendente minorenne", "Errore", JOptionPane.ERROR_MESSAGE);
-		//errorLabel.setVisible(true);
+		JOptionPane.showMessageDialog(null, "Dipendente già esistente/dipendente minorenne", "Errore",
+				JOptionPane.ERROR_MESSAGE);
+		// errorLabel.setVisible(true);
 	}
 
 	public void mostraSuccesso() {
 		JOptionPane.showMessageDialog(null, "Dipendente aggiunto", "Successo", JOptionPane.INFORMATION_MESSAGE);
-		//errorLabel.setVisible(false);
+		// errorLabel.setVisible(false);
 	}
 }

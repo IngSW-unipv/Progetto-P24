@@ -33,7 +33,7 @@ public class ListaIsCorsiView extends JFrame {
 
 	public ListaIsCorsiView(Dipendente dipendente, Corsi corsi, ListaCorsiPropView parent, Corso corso) {
 		setTitle("Lista Iscritti al Corso");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panel = new JPanel(new GridLayout(0, 1));
 		Color CBACK = new Color(28, 28, 28);

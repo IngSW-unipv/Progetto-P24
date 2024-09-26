@@ -34,10 +34,9 @@ public class RinAbbController {
 	public void aggAnnuale(ClienteAbboDAO dao) {
 
 		clienteAbbonato.aggScad(12);
-		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(),
-				clienteAbbonato.getCliente().getCognome(), clienteAbbonato.getCliente().getMail(),
-				clienteAbbonato.getDataScadenza());
+		dao.updateScadenzaAbbonamento(clienteAbbonato.getCliente().getNome(), clienteAbbonato.getCliente().getCognome(),
+				clienteAbbonato.getCliente().getMail(), clienteAbbonato.getDataScadenza());
 		JOptionPane.showMessageDialog(null, "Abbonamento Rinnovato", "Op Riuscita", JOptionPane.INFORMATION_MESSAGE);
-		
+
 	}
 }

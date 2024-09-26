@@ -26,7 +26,7 @@ public class ListaPTView extends JFrame {
 
 	public ListaPTView(Palestra p, ClienteAbbonato clienteAbbonato, LatoClienteView parent, Richieste r) {
 		setTitle("Interfaccia Personal Trainer");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		scpt = new SceltaPTController(this);
 		isIscritto = new boolean[p.contaDip("personaltrainer")];

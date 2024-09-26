@@ -35,8 +35,9 @@ public class CreaSchedaController {
 		s.aggiungiEsercizio(e4);
 		s.aggiungiEsercizio(e5);
 		ri.aggScheda(s);
-		ri.modSchedaId(ri.getRichiesteI(index).getCliente(), ri.getRichiesteI(index).getDipendente(), ri.getSchede().size() + 1);
-		
+		ri.modSchedaId(ri.getRichiesteI(index).getCliente(), ri.getRichiesteI(index).getDipendente(),
+				ri.getSchede().size() + 1);
+
 		SchedaDAO schedao = new SchedaDAO();
 		RichiesteDAO ridao = new RichiesteDAO();
 

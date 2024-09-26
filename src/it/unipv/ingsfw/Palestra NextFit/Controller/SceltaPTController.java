@@ -13,9 +13,9 @@ import Model.Richieste;
 import View.ListaPTView;
 
 public class SceltaPTController {
-	
-	private ListaPTView view;	
-	
+
+	private ListaPTView view;
+
 	public SceltaPTController(ListaPTView view) {
 		this.view = view;
 	}
@@ -26,8 +26,8 @@ public class SceltaPTController {
 		JButton button = (JButton) e.getSource();
 
 		boolean isIscritto = view.getIsIscritto()[n];
-        boolean isRichiestaAttiva = view.getIsRichiestaAttiva();
-		
+		boolean isRichiestaAttiva = view.getIsRichiestaAttiva();
+
 		if (!isIscritto && !isRichiestaAttiva) {
 			r.aggRichiesta(pt, clienteAbbonato, 0);
 			button.setText(p.getDIP("Personaltrainer", n).getNome() + " " + p.getDIP("Personaltrainer", n).getCognome()
@@ -36,7 +36,7 @@ public class SceltaPTController {
 			dao.insertRichiesta(r.ricarcaRichiesta(clienteAbbonato, pt));
 
 			view.getIsIscritto()[n] = true;
-            view.setIsRichiestaAttiva(true);
+			view.setIsRichiestaAttiva(true);
 			r.visualizzaRichieste();
 		} else if (isIscritto) {
 			button.setText(
@@ -46,7 +46,7 @@ public class SceltaPTController {
 			r.eliminaRichiesta(r.ricarcaRichiesta(clienteAbbonato, pt));
 
 			view.getIsIscritto()[n] = false;
-            view.setIsRichiestaAttiva(false);
+			view.setIsRichiestaAttiva(false);
 			r.visualizzaRichieste();
 		} else {
 			JOptionPane.showMessageDialog(null,
